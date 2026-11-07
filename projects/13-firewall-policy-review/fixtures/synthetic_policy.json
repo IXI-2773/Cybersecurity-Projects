@@ -1,0 +1,46 @@
+{
+  "name": "Fabricated perimeter policy",
+  "default_action": "deny",
+  "rules": [
+    {
+      "id": "PUBLIC-WEB",
+      "action": "allow",
+      "source": "0.0.0.0/0",
+      "destination": "192.0.2.10/32",
+      "protocol": "tcp",
+      "port": 443
+    },
+    {
+      "id": "MANAGEMENT-SSH",
+      "action": "allow",
+      "source": "10.10.0.0/24",
+      "destination": "10.10.1.5/32",
+      "protocol": "tcp",
+      "port": 22
+    },
+    {
+      "id": "OPEN-RDP",
+      "action": "allow",
+      "source": "0.0.0.0/0",
+      "destination": "10.10.1.20/32",
+      "protocol": "tcp",
+      "port": 3389
+    },
+    {
+      "id": "BROAD-EXCEPTION",
+      "action": "allow",
+      "source": "0.0.0.0/0",
+      "destination": "0.0.0.0/0",
+      "protocol": "any",
+      "port": null
+    },
+    {
+      "id": "GUEST-BLOCK",
+      "action": "deny",
+      "source": "10.10.30.0/24",
+      "destination": "10.10.1.0/24",
+      "protocol": "any",
+      "port": null
+    }
+  ]
+}

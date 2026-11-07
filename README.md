@@ -46,6 +46,7 @@ The following sections describe the portfolio's work. Public recorded datasets, 
 | Project | Implementation and status | Portfolio |
 | --- | --- | --- |
 | [SOC Triage Assistant](projects/10-soc-triage/) | Runnable Python CLI, synthetic inputs, actual HTML/JSON output and focused tests. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/soc-triage-automation.html) |
+| [Firewall Policy Reviewer — starter](projects/13-firewall-policy-review/) | Original offline Python CLI; fabricated rules, two recorded review candidates, focused tests. No real firewall access or portfolio case study claimed. | [Code, example and limits](projects/13-firewall-policy-review/) |
 | [Splunk execution workflow](splunk_workflow/) | Runbooks, verifier and [app source](splunk_app/don_lopez_soc/); offline validation exists, live indexing and fired-alert validation remain pending. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/splunk-execution-workflow.html) |
 | [Certification learning engines](projects/certification-learning-engine.md) | Public [Security+ source](https://github.com/IXI-2773/Comptia-SY0-701-Test-Learning-Engine) and [SC-900 source](https://github.com/IXI-2773/Microsoft_SC-900_Test_Learning_Engine) remain in their existing repositories. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/certification-learning-engine.html) |
 
