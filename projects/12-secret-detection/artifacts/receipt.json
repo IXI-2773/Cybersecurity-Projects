@@ -1,0 +1,32 @@
+{
+  "tool": "secrets",
+  "executed_at": "2026-11-07T14:03:39.329747+00:00",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "harness_sha256": "28ec3bd210a0480f40806dfe72c0d2d33dde1f694292d927a908daed3b0bb458",
+  "imports_sha256": "2fe172d939a5a952486ae946f6c9caef2fff7ffaeebdd525be8fd7fbf0ee57b7",
+  "inputs": {
+    "projects/12-secret-detection/fixtures/allowlisted.txt": "f3210717df7c5aa0ffc4b1055e0ca984f34a1dad8c65530db0bd71b915a9b63e",
+    "projects/12-secret-detection/fixtures/benign.txt": "dee7b55e234cd780c974e17b5bd3e7d42a576afd3d213515dad27b731d8cf8ee",
+    "projects/12-secret-detection/fixtures/positive.txt": "695bc5f53b7a5357445943039b8469379b5c460b1ab962cfd3597b26f55e0155"
+  },
+  "outputs": {
+    "after.json": "ba5c5bcd6b9c24e3c1baabefd06f36f707f512a4999face752f3fa94859bb987",
+    "before.json": "7e69fe0fb3f0eef69394e84c9905c460486e48f259eab29dd3dbeddfe23d65e4"
+  },
+  "observed": {
+    "before_findings": 1,
+    "after_findings": 0,
+    "benign_findings": 0,
+    "allowlisted_findings": 0,
+    "network_verification": false,
+    "tool_exit_codes": [
+      0,
+      0
+    ],
+    "dependencies": {
+      "requests": "2.34.2",
+      "PyYAML": "6.0.3"
+    }
+  }
+}

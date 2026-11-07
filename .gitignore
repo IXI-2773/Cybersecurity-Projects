@@ -16,3 +16,4 @@ local_splunk_run*/
 
 # Committed synthetic lab fixture
 !projects/04-local-vulnerability-assessment/access.log
+.venv-tools/

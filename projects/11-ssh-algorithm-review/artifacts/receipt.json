@@ -1,0 +1,23 @@
+{
+  "tool": "ssh",
+  "executed_at": "2026-11-07T14:03:38.885107+00:00",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "harness_sha256": "28ec3bd210a0480f40806dfe72c0d2d33dde1f694292d927a908daed3b0bb458",
+  "imports_sha256": "2fe172d939a5a952486ae946f6c9caef2fff7ffaeebdd525be8fd7fbf0ee57b7",
+  "inputs": {
+    "projects/11-ssh-algorithm-review/fixtures/algorithms.json": "304ebaa6b01dace36e30e5007ca4eab90848c41d68479682e9cf490192d709e2"
+  },
+  "outputs": {
+    "lookup.txt": "29c8219d2ae8c617d34136ad383460fa4ddca4fcacc20f5f629e1ab12e4cfd14"
+  },
+  "observed": {
+    "method": "offline upstream algorithm database lookup",
+    "network_used": false,
+    "classifications": {
+      "mlkem768x25519-sha256": "info",
+      "diffie-hellman-group1-sha1": "fail"
+    },
+    "tool_exit_code": 3
+  }
+}
