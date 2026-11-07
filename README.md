@@ -6,9 +6,9 @@
 
 | Work type | What the label means | Browse |
 | --- | --- | --- |
-| ![Portfolio project](assets/badges/portfolio-project.svg) | Analysis, lab implementations and software developed for the portfolio, plus clearly identified training and private-research summaries. Data sources and execution limits stay attached to each case. | [Portfolio work](#portfolio-projects) |
-| ![Open-source integration](assets/badges/open-source-integration.svg) | A tool written by other authors, with collection-developed example inputs, a runner and recorded results. | [Integration examples](#open-source-tool-integrations) |
-| ![Third-party source](assets/badges/third-party-source.svg) | Unmodified copies of the original tool code, with author credits, licenses and pinned revisions. | [Upstream source directory](third_party/) |
+| **Portfolio project** | Analysis, lab implementations and software developed for the portfolio, plus clearly identified training and private-research summaries. Data sources and execution limits stay attached to each case. | [Portfolio work](#portfolio-projects) |
+| **Open-source integration** | A tool written by other authors, with collection-developed example inputs, a runner and recorded results. | [Integration examples](#open-source-tool-integrations) |
+| **Third-party source** | Unmodified copies of the original tool code, with author credits, licenses and pinned revisions. | [Upstream source directory](third_party/) |
 
 <a id="all-projects"></a>
 
