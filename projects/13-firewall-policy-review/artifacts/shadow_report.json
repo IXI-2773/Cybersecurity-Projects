@@ -1,0 +1,13 @@
+{
+  "policy": "iptables-save IPv4 filter INPUT",
+  "rule_count": 2,
+  "findings": [
+    {
+      "rule_id": "INPUT:L7",
+      "code": "SHADOWED_RULE",
+      "severity": "INFO",
+      "detail": "INPUT:L6 matches all traffic for this later rule; it cannot be reached in this INPUT model."
+    }
+  ],
+  "scope": "Single-earlier-rule shadowing checked; combined coverage and real reachability not evaluated"
+}

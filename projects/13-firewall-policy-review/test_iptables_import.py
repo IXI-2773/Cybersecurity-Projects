@@ -36,7 +36,7 @@ COMMIT
         report = json.loads(result.stdout)
         self.assertEqual(report["policy"], "iptables-save IPv4 filter INPUT")
         self.assertEqual(report.get("scope"),
-                         "Static INPUT pattern review; rule order and reachability not evaluated")
+                         "Single-earlier-rule shadowing checked; combined coverage and real reachability not evaluated")
         self.assertEqual(report["rule_count"], 2)
         self.assertEqual(report["findings"], [{
             "rule_id": "INPUT:L6", "code": "UNRESTRICTED_ADMIN_SOURCE",
@@ -65,6 +65,40 @@ COMMIT
         self.assertEqual(result.returncode, 2, result.stdout)
         self.assertEqual(result.stdout, "")
         self.assertIn("Invalid policy:", result.stderr)
+
+    def test_earlier_catchall_drop_shadows_later_admin_allow(self):
+        export = """*filter
+:INPUT DROP [0:0]
+-A INPUT -j DROP
+-A INPUT -p tcp -m tcp --dport 3389 -j ACCEPT
+COMMIT
+"""
+        result = self.run_export(export)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        report = json.loads(result.stdout)
+        self.assertEqual(report["rule_count"], 2)
+        self.assertEqual(report["findings"], [{
+            "rule_id": "INPUT:L4", "code": "SHADOWED_RULE", "severity": "INFO",
+            "detail": "INPUT:L3 matches all traffic for this later rule; it cannot be reached in this INPUT model.",
+        }])
+
+    def test_cidr_subsumption_shadows_subset_but_not_broader_source(self):
+        export = """*filter
+:INPUT DROP [0:0]
+-A INPUT -s 10.0.0.0/8 -d 192.0.2.0/24 -p tcp --dport 22 -j DROP
+-A INPUT -s 10.1.0.0/16 -d 192.0.2.10/32 -p tcp --dport 22 -j ACCEPT
+-A INPUT -s 0.0.0.0/0 -d 192.0.2.10/32 -p tcp --dport 22 -j ACCEPT
+COMMIT
+"""
+        result = self.run_export(export)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        report = json.loads(result.stdout)
+        self.assertEqual(report["findings"], [
+            {"rule_id": "INPUT:L4", "code": "SHADOWED_RULE", "severity": "INFO",
+             "detail": "INPUT:L3 matches all traffic for this later rule; it cannot be reached in this INPUT model."},
+            {"rule_id": "INPUT:L5", "code": "UNRESTRICTED_ADMIN_SOURCE", "severity": "HIGH",
+             "detail": "TCP/22 is allowed from all IPv4 addresses; review source restrictions."},
+        ])
 
 
 if __name__ == "__main__":

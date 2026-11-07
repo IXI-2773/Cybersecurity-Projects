@@ -12,6 +12,7 @@ from pathlib import Path
 import sys
 
 from iptables_import import parse_iptables_save
+from rule_order import shadowed_by_prior_rule
 
 
 ADMIN_TCP_PORTS = {22, 3389, 5985, 5986}  # SSH, RDP, WinRM
@@ -97,8 +98,19 @@ def main(argv=None):
                   else parse_iptables_save(contents))
         report = analyze(policy)
         if args.format == "iptables-save":
-            report["scope"] = ("Static INPUT pattern review; rule order and "
-                               "reachability not evaluated")
+            shadows = shadowed_by_prior_rule(policy["rules"])
+            report["findings"] = [finding for finding in report["findings"]
+                                  if finding["rule_id"] not in shadows]
+            for rule_id, earlier_id in shadows.items():
+                report["findings"].append({
+                    "rule_id": rule_id, "code": "SHADOWED_RULE", "severity": "INFO",
+                    "detail": (f"{earlier_id} matches all traffic for this later rule; "
+                               "it cannot be reached in this INPUT model."),
+                })
+            input_order = {rule["id"]: index for index, rule in enumerate(policy["rules"])}
+            report["findings"].sort(key=lambda item: input_order.get(item["rule_id"], -1))
+            report["scope"] = ("Single-earlier-rule shadowing checked; combined "
+                               "coverage and real reachability not evaluated")
     except (OSError, ValueError, KeyError, TypeError) as exc:
         print(f"Invalid policy: {exc}", file=sys.stderr)
         return 2

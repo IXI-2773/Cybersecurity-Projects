@@ -15,5 +15,5 @@
       "detail": "Allows all protocols between all IPv4 addresses; verify intent and scope."
     }
   ],
-  "scope": "Static INPUT pattern review; rule order and reachability not evaluated"
+  "scope": "Single-earlier-rule shadowing checked; combined coverage and real reachability not evaluated"
 }
