@@ -1,5 +1,7 @@
 # Splunk End-to-End SOC Authentication Lab
 
+![Portfolio project](../assets/badges/portfolio-project.svg)
+
 **Owner:** Don Lopez · **Source:** 64 synthetic authentication rows, nine scenarios, five expected correlation matches.
 
 **Status:** Application/dashboard/alert package **PREPARED — installation, true CSV ingestion, dashboard rendering, and alert triggering are NOT YET VERIFIED in your Splunk Enterprise trial.** The separate original seven-event smoke search passed and the corrected 64-row in-memory SPL returned a screenshot with five expected rows; those do not validate this packaged app or indexed behavior.

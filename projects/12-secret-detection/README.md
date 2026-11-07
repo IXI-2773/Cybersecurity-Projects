@@ -1,5 +1,9 @@
 # Secret detection with detect-secrets
 
+![Open-source integration](../../assets/badges/open-source-integration.svg)
+
+**Contribution type:** integration example. Original tool authorship is identified below; collection work covers the fixtures, runner and recorded results.
+
 **Upstream tool:** [Yelp/detect-secrets](https://github.com/Yelp/detect-secrets). **License:** [Apache-2.0](../../third_party/detect-secrets/LICENSE), with original embedded notices preserved. Runtime source is unmodified v1.5.0; [provenance](../../THIRD_PARTY.md).
 
 ## Collection contribution and observed result

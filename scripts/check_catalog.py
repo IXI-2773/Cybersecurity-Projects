@@ -12,6 +12,8 @@ sources = 0
 
 
 def project_files(suffix):
+    if suffix == '.md' and (ROOT / 'third_party/README.md').exists():
+        yield ROOT / 'third_party/README.md'
     for parent, folders, files in os.walk(ROOT):
         folders[:] = [name for name in folders
                       if name not in {'.git', 'third_party', '.venv-tools', '__pycache__'}]

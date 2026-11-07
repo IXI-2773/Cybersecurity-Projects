@@ -1,5 +1,7 @@
 # Authentication detection — reproducible synthetic lab
 
+![Portfolio project](../../assets/badges/portfolio-project.svg)
+
 **Implemented:** Python detector and focused tests.  
 **Partial Splunk runtime evidence:** A [seven-event screenshot](SPLUNK_SMOKE_OBSERVATION_2026-10-23.md) matches the expected smoke result. **Not verified:** indexed CSV parity, independently authenticated job exports, real SIEM deployment or accuracy. Original 64-event result was 3/5; corrected result screenshot shows 5/5.
 

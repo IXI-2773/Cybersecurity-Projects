@@ -1,5 +1,7 @@
 # SOC Triage Assistant
 
+![Portfolio project](../../assets/badges/portfolio-project.svg)
+
 Working Python 3.11+ command-line tool for local CSV/JSON security exports.
 Standard library only; run from a clone of this repository. No home PC, Splunk,
 network, endpoint agent, third-party package or live account access is required.

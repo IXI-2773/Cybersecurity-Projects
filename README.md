@@ -1,10 +1,24 @@
-# Cybersecurity Projects — Don Lopez
+# Project Library — Don Lopez
 
-[Portfolio](https://ixi-2773.github.io/Cybersecurity_Portfolio/) · [All projects](#all-projects) · [Run a project](#run-a-project) · [Imported tools](#imported-open-source-tools)
+[Portfolio website — case studies & résumé](https://ixi-2773.github.io/Cybersecurity_Portfolio/) · [Portfolio projects](#portfolio-projects) · [Open-source integrations](#open-source-tool-integrations) · [Run a project](#run-a-project)
 
-Public security investigations, runnable labs, analyst tools and supporting research summaries. Each entry below links directly to its implementation or evidence and the portfolio write-up.
+**This is the code and evidence library.** The [portfolio website](https://ixi-2773.github.io/Cybersecurity_Portfolio/) presents the case studies, résumé and credentials.
 
-## Start here
+| Work type | What the label means | Browse |
+| --- | --- | --- |
+| ![Portfolio project](assets/badges/portfolio-project.svg) | Analysis, lab implementations and software developed for the portfolio, plus clearly identified training and private-research summaries. Data sources and execution limits stay attached to each case. | [Portfolio work](#portfolio-projects) |
+| ![Open-source integration](assets/badges/open-source-integration.svg) | A tool written by other authors, with collection-developed example inputs, a runner and recorded results. | [Integration examples](#open-source-tool-integrations) |
+| ![Third-party source](assets/badges/third-party-source.svg) | Unmodified copies of the original tool code, with author credits, licenses and pinned revisions. | [Upstream source directory](third_party/) |
+
+<a id="all-projects"></a>
+
+## Portfolio projects
+
+![Portfolio project](assets/badges/portfolio-project.svg)
+
+The following sections describe the portfolio's work. Public recorded datasets, synthetic labs, prior training and private architecture summaries are identified separately.
+
+### Start here
 
 | Project | Result and scope | Open |
 | --- | --- | --- |
@@ -12,7 +26,6 @@ Public security investigations, runnable labs, analyst tools and supporting rese
 | **Splunk authentication detection** | Corrected the inclusive 600-second boundary; the saved synthetic-lab result improved from 3/5 to 5/5 expected findings. | [Query and evidence](projects/01-authentication-detection/) · [Saved result](assets/evidence/splunk-native-dashboard-results.png) · [Visual case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/detection-engineering.html) |
 | **Python SOC Triage Assistant** | Executed CSV/JSON walkthrough: 13 accepted events, three review candidates and six quarantined rows; partial processing stays visible. | [Tool and usage](projects/10-soc-triage/) · [Recorded JSON](projects/10-soc-triage/artifacts/case.json) · [Visual case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/soc-triage-automation.html) |
 
-## All projects
 
 ### Investigations and runnable labs
 
@@ -52,14 +65,18 @@ Public security investigations, runnable labs, analyst tools and supporting rese
 | [Celestial Resonance](projects/celestial-resonance.md) | Architecture summary of private research engineering; private implementation is excluded. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/celestial-resonance.html) |
 | [Research AI Infrastructure](projects/research-ai-infrastructure.md) | Architecture summary of private evidence-aware research software; private implementation is excluded. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/research-ai-infrastructure.html) |
 
-### Imported open-source tools
+<a id="imported-open-source-tools"></a>
 
-These are upstream-authored tools with their licenses and source attribution preserved. Collection work covers the imports, examples and recorded runs; see [third-party attribution](THIRD_PARTY.md).
+## Open-source tool integrations
 
-| Tool and example | Original project | Recorded scope |
+![Open-source integration](assets/badges/open-source-integration.svg)
+
+**The original tools are written by the authors named below.** The collection's work is the pinned import, controlled examples, execution runner and source-linked results. [Full author and license details](THIRD_PARTY.md).
+
+| Integration example | Original tool and authors | Collection contribution and result |
 | --- | --- | --- |
-| [SSH algorithm review](projects/11-ssh-algorithm-review/) | [ssh-audit — Joe Testa and contributors](third_party/ssh-audit/) · MIT | Actual offline lookup with a flagged legacy algorithm and comparison control; no server scan claimed. |
-| [Secret detection](projects/12-secret-detection/) | [Yelp/detect-secrets](third_party/detect-secrets/) · Apache-2.0 | Actual synthetic before/after scan plus benign/allowlist controls; network verification disabled. |
+| [SSH algorithm review](projects/11-ssh-algorithm-review/) | [ssh-audit — Joe Testa and contributors](third_party/ssh-audit/) · MIT | Two-algorithm fixture, offline runner and retained upstream classifications. No server scan claimed. |
+| [Secret detection](projects/12-secret-detection/) | [Yelp/detect-secrets](third_party/detect-secrets/) · Apache-2.0 | Three-file fixture, before/after runner, benign/allowlist controls and recorded outputs; network verification disabled. |
 
 ## Run a project
 
