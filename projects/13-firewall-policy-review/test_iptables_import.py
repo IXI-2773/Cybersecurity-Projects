@@ -82,6 +82,7 @@ COMMIT
         self.assertEqual(report["rule_count"], 2)
         self.assertEqual(report["findings"], [{
             "rule_id": "INPUT:L4", "code": "SHADOWED_RULE", "severity": "INFO",
+            "covering_rule_ids": ["INPUT:L3"],
             "detail": "INPUT:L3 matches all traffic for this later rule; it cannot be reached in this INPUT model.",
         }])
 
@@ -98,6 +99,7 @@ COMMIT
         report = json.loads(result.stdout)
         self.assertEqual(report["findings"], [
             {"rule_id": "INPUT:L4", "code": "SHADOWED_RULE", "severity": "INFO",
+             "covering_rule_ids": ["INPUT:L3"],
              "detail": "INPUT:L3 matches all traffic for this later rule; it cannot be reached in this INPUT model."},
             {"rule_id": "INPUT:L5", "code": "UNRESTRICTED_ADMIN_SOURCE", "severity": "HIGH",
              "detail": "TCP/22 is allowed from all IPv4 addresses; review source restrictions."},

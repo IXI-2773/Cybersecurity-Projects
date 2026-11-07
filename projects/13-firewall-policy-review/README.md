@@ -2,7 +2,7 @@
 
 ![Portfolio project](../../assets/badges/portfolio-project.svg)
 
-**Original implementation:** Don Lopez · **Category:** defensive network configuration review · **Input:** fabricated JSON and limited `iptables-save` exports · **Runtime:** Python 3.10+ standard library · **Network:** none.
+**Original implementation:** Don Lopez · **Category:** defensive network configuration review · **Input:** fabricated JSON and limited `iptables-save` exports · **Reports:** JSON, HTML and CSV · **Runtime:** Python 3.10+ standard library · **Network:** none.
 
 This small CLI makes firewall-rule *review candidates* easy to explain to an interviewer. It reads a local, deliberately simplified policy file and reports:
 
@@ -28,7 +28,7 @@ python -m unittest discover -s projects/13-firewall-policy-review -p 'test_*.py'
 
 The example intentionally exits **1** because two potential policy problems are present. Its captured [JSON report](artifacts/example_report.json) contains exactly those two findings, with rule IDs and descriptions. Exit codes: `0` = no modeled findings; `1` = one or more review candidates; `2` = unreadable or invalid policy. `0` does **not** certify a firewall as secure.
 
-## Import a limited `iptables-save` export and check shadowing (v5)
+## Import a limited `iptables-save` export and check shadowing (v6)
 
 The same CLI can also read **IPv4 `iptables-save -t filter` output**, without applying or changing firewall rules. For example, run the supplied fabricated export:
 
@@ -62,6 +62,19 @@ python projects/13-firewall-policy-review/review.py --format iptables-save proje
 
 The two earlier `DROP` CIDRs cover three quarters of the source address space, leaving the final quarter unmatched by those rules. The [retained partial-overlap report](artifacts/partial_overlap_report.json) records `PARTIALLY_SHADOWED_RULE`, both earlier rule IDs and a concrete overlapping CIDR/port example. It **retains the `HIGH` unrestricted-RDP-source review candidate** because the later allow is not fully shadowed. The example is a witness of some overlap, **not** a complete overlap listing or a measured share of real traffic. Fully shadowed earlier rules are excluded from the reported overlap IDs.
 
+## Open or export an analyst-readable report
+
+Employers can download and open the **[saved HTML report](artifacts/partial_overlap_report.html)** in a browser, or inspect the **[saved CSV report](artifacts/partial_overlap_report.csv)** in a spreadsheet. Both come from the same fabricated partial-overlap fixture and retain rule IDs, findings, earlier-rule references, overlap evidence and scope limits. The HTML is self-contained—no JavaScript, external stylesheets or live data connections.
+
+Create your own report from the repository root, using a filename that does not already exist:
+
+```sh
+python projects/13-firewall-policy-review/review.py --format iptables-save --report-format html --output firewall_review.html projects/13-firewall-policy-review/fixtures/iptables_partial_overlap.rules
+python projects/13-firewall-policy-review/review.py --format iptables-save --report-format csv --output firewall_review.csv projects/13-firewall-policy-review/fixtures/iptables_partial_overlap.rules
+```
+
+Without `--output`, the chosen format is printed to standard output; without `--report-format`, the existing JSON output remains the default. Exit code `1` still means review candidates were found **even if the report file was saved successfully**. `--output` creates a new file and refuses to overwrite an existing file; invalid input does not create a report. CSV text is protected against leading spreadsheet formulas, and HTML text is escaped. No configuration is changed. **Do not publish a real firewall export or its report without authorization and redaction.**
+
 The adapter intentionally supports a bounded subset:
 
 - One complete `*filter` table with an `INPUT` default policy (`ACCEPT` or `DROP`) and `COMMIT`.
@@ -76,9 +89,9 @@ For the default JSON mode, input must be an object with `name` (text), `default_
 
 ## Scope and next extensions
 
-- **Now:** three static checks on JSON plus a bounded IPv4 `iptables-save` filter/INPUT importer with exact single- and combined-prior-rule shadow detection and partial-overlap review candidates, fabricated fixtures and line-linked examples.
-- **Next:** offer a concise analyst-readable HTML/CSV findings report, or expand supported match syntax only with dedicated evidence and tests.
-- **Later:** HTML/CSV analyst report with change tickets and evidence for remediation, plus a portfolio case study once independently executed on authorized data.
+- **Now:** three static checks on JSON plus a bounded IPv4 `iptables-save` filter/INPUT importer with single/combined shadowing, partial-overlap findings, and reproducible JSON/HTML/CSV report examples.
+- **Next:** add a short interview-oriented case walkthrough that connects the findings to manual review questions and preserves the fabricated-lab label.
+- **Later:** expand supported match syntax only with dedicated evidence and tests; pursue a properly authorized, sanitized real-world configuration case study.
 
 The reviewer does **not** fully parse iptables or parse nftables, Azure/AWS rules, NAT, interfaces, routing or zone precedence. Beyond exact match coverage in the supported INPUT model, it does not establish real reachability, account for upstream controls, infer asset criticality or replace a managed firewall audit.
 

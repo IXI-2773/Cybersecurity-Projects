@@ -6,6 +6,9 @@
       "rule_id": "INPUT:L7",
       "code": "SHADOWED_RULE",
       "severity": "INFO",
+      "covering_rule_ids": [
+        "INPUT:L6"
+      ],
       "detail": "INPUT:L6 matches all traffic for this later rule; it cannot be reached in this INPUT model."
     }
   ],

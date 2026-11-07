@@ -12,6 +12,7 @@ from pathlib import Path
 import sys
 
 from iptables_import import parse_iptables_save
+from report_export import render_csv, render_html
 from rule_order import (combined_shadowed_by_prior_rules,
                         partially_shadowed_by_prior_rules, shadowed_by_prior_rule)
 
@@ -91,6 +92,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--format", choices=("json", "iptables-save"), default="json",
                         help="Input format (default: illustrative JSON)")
+    parser.add_argument("--report-format", choices=("json", "html", "csv"), default="json",
+                        help="Output format (default: JSON)")
+    parser.add_argument("--output", type=Path,
+                        help="Save a new report file; existing files are not overwritten")
     parser.add_argument("policy", type=Path, help="Local policy file")
     args = parser.parse_args(argv)
     try:
@@ -108,6 +113,7 @@ def main(argv=None):
             for rule_id, earlier_id in shadows.items():
                 report["findings"].append({
                     "rule_id": rule_id, "code": "SHADOWED_RULE", "severity": "INFO",
+                    "covering_rule_ids": [earlier_id],
                     "detail": (f"{earlier_id} matches all traffic for this later rule; "
                                "it cannot be reached in this INPUT model."),
                 })
@@ -135,7 +141,21 @@ def main(argv=None):
         print(f"Invalid policy: {exc}", file=sys.stderr)
         return 2
 
-    print(json.dumps(report, indent=2))
+    if args.report_format == "html":
+        rendered = render_html(report)
+    elif args.report_format == "csv":
+        rendered = render_csv(report)
+    else:
+        rendered = json.dumps(report, indent=2) + "\n"
+    try:
+        if args.output is None:
+            sys.stdout.write(rendered)
+        else:
+            with args.output.open("x", encoding="utf-8", newline="") as destination:
+                destination.write(rendered)
+    except OSError as exc:
+        print(f"Cannot save report: {exc}", file=sys.stderr)
+        return 2
     return 1 if report["findings"] else 0
 
 

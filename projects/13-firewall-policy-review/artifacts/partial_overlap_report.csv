@@ -1,0 +1,3 @@
+policy,rule_count,rule_id,severity,code,detail,prior_rule_ids,overlap_example,scope
+iptables-save IPv4 filter INPUT,3,INPUT:L8,HIGH,UNRESTRICTED_ADMIN_SOURCE,TCP/3389 is allowed from all IPv4 addresses; review source restrictions.,,,Exact single/combined shadowing and partial overlap checked for supported IPv4 INPUT; real reachability not evaluated
+iptables-save IPv4 filter INPUT,3,INPUT:L8,INFO,PARTIALLY_SHADOWED_RULE,"Earlier terminating INPUT rules match part, but not all, of this rule's traffic; review redundant matches and rule order.",INPUT:L6; INPUT:L7,0.0.0.0/1 → 0.0.0.0/0 (tcp/3389),Exact single/combined shadowing and partial overlap checked for supported IPv4 INPUT; real reachability not evaluated
