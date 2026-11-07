@@ -25,12 +25,32 @@ python -m unittest discover -s projects/13-firewall-policy-review -p 'test_*.py'
 
 The example intentionally exits **1** because two potential policy problems are present. Its captured [JSON report](artifacts/example_report.json) contains exactly those two findings, with rule IDs and descriptions. Exit codes: `0` = no modeled findings; `1` = one or more review candidates; `2` = unreadable or invalid policy. `0` does **not** certify a firewall as secure.
 
+## Import a limited `iptables-save` export (v2)
+
+The same CLI can also read **IPv4 `iptables-save -t filter` output**, without applying or changing firewall rules. For example, run the supplied fabricated export:
+
+```sh
+python projects/13-firewall-policy-review/review.py --format iptables-save projects/13-firewall-policy-review/fixtures/iptables_filter.rules
+```
+
+The [retained import report](artifacts/iptables_report.json) identifies two review candidates by the original `INPUT:L7` and `INPUT:L8` line numbers. In an authorized Linux environment, you can export your own filter table with `iptables-save -t filter` and save it locally for offline review. **Never commit real infrastructure exports, internal addresses or sensitive rules to this public repository.**
+
+The adapter intentionally supports a bounded subset:
+
+- One complete `*filter` table with an `INPUT` default policy (`ACCEPT` or `DROP`) and `COMMIT`.
+- IPv4 `-A INPUT` rules using `-s`, `-d`, `-p tcp`/`udp`/`all`, optional matching `-m tcp`/`udp`, one numeric `--dport`, and `-j ACCEPT`/`DROP`/`REJECT`. Unspecified addresses mean `0.0.0.0/0`.
+- `INPUT` review only. Other built-in chains are outside this tool's analysis scope.
+
+It rejects unsupported `INPUT` syntax, including conntrack/state matches, interface matches, negation, multiport/ranges, user-chain jumps, IPv6, and other tables. This is **not** a full iptables parser. Rule order, shadowing, routing, NAT, and effective packet reachability are not evaluated; the output labels that limitation. A finding is a review candidate even if another rule would prevent traffic.
+
+Format references: [iptables-save manual](https://man7.org/linux/man-pages/man8/iptables-save.8.html) and [iptables rule syntax](https://man7.org/linux/man-pages/man8/iptables.8.html).
+
 The input must be a JSON object with `name` (text), `default_action` (`allow`/`deny`), and `rules` (array). Each rule has a unique `id`, `action` (`allow`/`deny`), IPv4/IPv6 CIDR `source` and `destination` of the same IP family, `protocol` (`tcp`, `udp`, or `any`) and `port` (1–65535 for TCP/UDP; `null` for `any`). Invalid or ambiguous input is rejected rather than silently analyzed. It reads local files only, makes no network calls and cannot change firewall rules.
 
 ## Scope and next extensions
 
-- **Now:** static illustration of three checks on a custom JSON representation, with a fabricated positive fixture and benign controls.
-- **Next:** add a safe import/normalization adapter for one exported real-world ruleset format, then check duplicate or shadowed rules using documented rule-order semantics.
+- **Now:** static illustration of three checks on JSON plus a bounded, fail-closed IPv4 `iptables-save` filter/INPUT importer, with fabricated fixtures and preserved line numbers.
+- **Next:** model INPUT first-match semantics to distinguish reachable from shadowed rules; expand supported match syntax only with dedicated evidence and tests.
 - **Later:** HTML/CSV analyst report with change tickets and evidence for remediation, plus a portfolio case study once independently executed on authorized data.
 
 The reviewer does **not** parse iptables/nftables, Azure/AWS rules, NAT, interfaces, routing, rule order or zone precedence. It does not prove packet reachability, account for upstream controls, infer asset criticality or replace a managed firewall audit.

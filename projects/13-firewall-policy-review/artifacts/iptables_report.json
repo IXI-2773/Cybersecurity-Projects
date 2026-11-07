@@ -1,0 +1,19 @@
+{
+  "policy": "iptables-save IPv4 filter INPUT",
+  "rule_count": 3,
+  "findings": [
+    {
+      "rule_id": "INPUT:L7",
+      "code": "UNRESTRICTED_ADMIN_SOURCE",
+      "severity": "HIGH",
+      "detail": "TCP/3389 is allowed from all IPv4 addresses; review source restrictions."
+    },
+    {
+      "rule_id": "INPUT:L8",
+      "code": "ANY_TO_ANY_ALLOW",
+      "severity": "CRITICAL",
+      "detail": "Allows all protocols between all IPv4 addresses; verify intent and scope."
+    }
+  ],
+  "scope": "Static INPUT pattern review; rule order and reachability not evaluated"
+}

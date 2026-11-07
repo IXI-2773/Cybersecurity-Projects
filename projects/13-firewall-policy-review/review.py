@@ -11,6 +11,8 @@ import json
 from pathlib import Path
 import sys
 
+from iptables_import import parse_iptables_save
+
 
 ADMIN_TCP_PORTS = {22, 3389, 5985, 5986}  # SSH, RDP, WinRM
 
@@ -85,11 +87,18 @@ def analyze(policy):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("policy", type=Path, help="Local illustrative policy JSON file")
+    parser.add_argument("--format", choices=("json", "iptables-save"), default="json",
+                        help="Input format (default: illustrative JSON)")
+    parser.add_argument("policy", type=Path, help="Local policy file")
     args = parser.parse_args(argv)
     try:
-        policy = json.loads(args.policy.read_text(encoding="utf-8"))
+        contents = args.policy.read_text(encoding="utf-8")
+        policy = (json.loads(contents) if args.format == "json"
+                  else parse_iptables_save(contents))
         report = analyze(policy)
+        if args.format == "iptables-save":
+            report["scope"] = ("Static INPUT pattern review; rule order and "
+                               "reachability not evaluated")
     except (OSError, ValueError, KeyError, TypeError) as exc:
         print(f"Invalid policy: {exc}", file=sys.stderr)
         return 2
