@@ -12,7 +12,7 @@ from pathlib import Path
 import sys
 
 from iptables_import import parse_iptables_save
-from rule_order import shadowed_by_prior_rule
+from rule_order import combined_shadowed_by_prior_rules, shadowed_by_prior_rule
 
 
 ADMIN_TCP_PORTS = {22, 3389, 5985, 5986}  # SSH, RDP, WinRM
@@ -99,18 +99,29 @@ def main(argv=None):
         report = analyze(policy)
         if args.format == "iptables-save":
             shadows = shadowed_by_prior_rule(policy["rules"])
+            combined = combined_shadowed_by_prior_rules(policy["rules"], shadows)
             report["findings"] = [finding for finding in report["findings"]
-                                  if finding["rule_id"] not in shadows]
+                                  if finding["rule_id"] not in shadows
+                                  and finding["rule_id"] not in combined]
             for rule_id, earlier_id in shadows.items():
                 report["findings"].append({
                     "rule_id": rule_id, "code": "SHADOWED_RULE", "severity": "INFO",
                     "detail": (f"{earlier_id} matches all traffic for this later rule; "
                                "it cannot be reached in this INPUT model."),
                 })
+            for rule_id, covering_ids in combined.items():
+                names = (" and ".join(covering_ids) if len(covering_ids) == 2
+                         else ", ".join(covering_ids[:-1]) + ", and " + covering_ids[-1])
+                report["findings"].append({
+                    "rule_id": rule_id, "code": "COMBINED_SHADOWED_RULE", "severity": "INFO",
+                    "covering_rule_ids": covering_ids,
+                    "detail": (f"{names} jointly match all traffic for this later rule; "
+                               "it cannot be reached in this INPUT model."),
+                })
             input_order = {rule["id"]: index for index, rule in enumerate(policy["rules"])}
             report["findings"].sort(key=lambda item: input_order.get(item["rule_id"], -1))
-            report["scope"] = ("Single-earlier-rule shadowing checked; combined "
-                               "coverage and real reachability not evaluated")
+            report["scope"] = ("Exact single/combined prior-rule CIDR coverage checked "
+                               "for supported IPv4 INPUT; real reachability not evaluated")
     except (OSError, ValueError, KeyError, TypeError) as exc:
         print(f"Invalid policy: {exc}", file=sys.stderr)
         return 2

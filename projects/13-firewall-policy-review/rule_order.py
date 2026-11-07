@@ -2,6 +2,14 @@
 
 from ipaddress import ip_network
 
+MAX_UNCOVERED_REGIONS = 4096
+
+
+def _protocol_covers(earlier, later):
+    return (earlier["protocol"] == "any"
+            or (earlier["protocol"] == later["protocol"]
+                and earlier["port"] == later["port"]))
+
 
 def _covers(earlier, later):
     """Whether one earlier terminating rule matches the later rule's full set."""
@@ -9,10 +17,7 @@ def _covers(earlier, later):
         return False
     if not ip_network(later["destination"]).subnet_of(ip_network(earlier["destination"])):
         return False
-    if earlier["protocol"] == "any":
-        return True
-    return (earlier["protocol"] == later["protocol"]
-            and earlier["port"] == later["port"])
+    return _protocol_covers(earlier, later)
 
 
 def shadowed_by_prior_rule(rules):
@@ -24,3 +29,55 @@ def shadowed_by_prior_rule(rules):
                 shadows[later["id"]] = earlier["id"]
                 break
     return shadows
+
+
+def _subtract_region(region, covering_region):
+    """Subtract an IPv4 CIDR rectangle; return disjoint remaining rectangles."""
+    source, destination = region
+    cover_source, cover_destination = covering_region
+    if not source.overlaps(cover_source) or not destination.overlaps(cover_destination):
+        return [region]
+
+    common_source = cover_source if cover_source.subnet_of(source) else source
+    common_destination = (cover_destination if cover_destination.subnet_of(destination)
+                          else destination)
+    remaining = []
+    if source != common_source:
+        remaining.extend((piece, destination) for piece in source.address_exclude(common_source))
+    if destination != common_destination:
+        remaining.extend((common_source, piece)
+                         for piece in destination.address_exclude(common_destination))
+    return remaining
+
+
+def combined_shadowed_by_prior_rules(rules, single_shadows):
+    """Find complete union coverage by 2+ earlier terminal rules.
+
+    Returns later ID -> contributing earlier IDs, in original order. Abort when
+    exact disjoint CIDR partitioning exceeds the fixed complexity limit.
+    """
+    combined = {}
+    networks = [(ip_network(rule["source"]), ip_network(rule["destination"]))
+                for rule in rules]
+    for index, later in enumerate(rules):
+        if later["id"] in single_shadows:
+            continue
+        uncovered = [networks[index]]
+        contributors = []
+        for earlier_index in range(index):
+            earlier = rules[earlier_index]
+            if not _protocol_covers(earlier, later):
+                continue
+            remaining = []
+            for region in uncovered:
+                remaining.extend(_subtract_region(region, networks[earlier_index]))
+                if len(remaining) > MAX_UNCOVERED_REGIONS:
+                    raise ValueError("INPUT shadow coverage too complex; no partial report produced")
+            if remaining != uncovered:
+                contributors.append(earlier["id"])
+            uncovered = remaining
+            if not uncovered:
+                if len(contributors) > 1:
+                    combined[later["id"]] = contributors
+                break
+    return combined

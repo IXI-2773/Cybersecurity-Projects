@@ -15,5 +15,5 @@
       "detail": "Allows all protocols between all IPv4 addresses; verify intent and scope."
     }
   ],
-  "scope": "Single-earlier-rule shadowing checked; combined coverage and real reachability not evaluated"
+  "scope": "Exact single/combined prior-rule CIDR coverage checked for supported IPv4 INPUT; real reachability not evaluated"
 }

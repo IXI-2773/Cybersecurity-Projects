@@ -6,6 +6,9 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
+
+from rule_order import combined_shadowed_by_prior_rules
 
 
 SCRIPT = Path(__file__).with_name("review.py")
@@ -36,7 +39,7 @@ COMMIT
         report = json.loads(result.stdout)
         self.assertEqual(report["policy"], "iptables-save IPv4 filter INPUT")
         self.assertEqual(report.get("scope"),
-                         "Single-earlier-rule shadowing checked; combined coverage and real reachability not evaluated")
+                         "Exact single/combined prior-rule CIDR coverage checked for supported IPv4 INPUT; real reachability not evaluated")
         self.assertEqual(report["rule_count"], 2)
         self.assertEqual(report["findings"], [{
             "rule_id": "INPUT:L6", "code": "UNRESTRICTED_ADMIN_SOURCE",
@@ -99,6 +102,74 @@ COMMIT
             {"rule_id": "INPUT:L5", "code": "UNRESTRICTED_ADMIN_SOURCE", "severity": "HIGH",
              "detail": "TCP/22 is allowed from all IPv4 addresses; review source restrictions."},
         ])
+
+    def test_combined_source_coverage_requires_no_gaps(self):
+        partial = """*filter
+:INPUT DROP [0:0]
+-A INPUT -s 0.0.0.0/1 -j DROP
+-A INPUT -s 128.0.0.0/2 -j DROP
+-A INPUT -p tcp --dport 3389 -j ACCEPT
+COMMIT
+"""
+        partial_result = self.run_export(partial)
+        self.assertEqual(partial_result.returncode, 1, partial_result.stderr)
+        self.assertEqual(json.loads(partial_result.stdout)["findings"], [{
+            "rule_id": "INPUT:L5", "code": "UNRESTRICTED_ADMIN_SOURCE", "severity": "HIGH",
+            "detail": "TCP/3389 is allowed from all IPv4 addresses; review source restrictions.",
+        }])
+
+        complete = partial.replace("128.0.0.0/2", "128.0.0.0/1")
+        complete_result = self.run_export(complete)
+        self.assertEqual(complete_result.returncode, 1, complete_result.stderr)
+        self.assertEqual(json.loads(complete_result.stdout)["findings"], [{
+            "rule_id": "INPUT:L5", "code": "COMBINED_SHADOWED_RULE", "severity": "INFO",
+            "covering_rule_ids": ["INPUT:L3", "INPUT:L4"],
+            "detail": "INPUT:L3 and INPUT:L4 jointly match all traffic for this later rule; it cannot be reached in this INPUT model.",
+        }])
+
+    def test_combined_source_and_destination_coverage(self):
+        export = """*filter
+:INPUT DROP [0:0]
+-A INPUT -s 0.0.0.0/1 -d 10.0.0.0/8 -p tcp --dport 22 -j DROP
+-A INPUT -s 0.0.0.0/1 -d 11.0.0.0/8 -p tcp --dport 22 -j DROP
+-A INPUT -s 128.0.0.0/1 -d 10.0.0.0/7 -p tcp --dport 22 -j REJECT
+-A INPUT -d 10.0.0.0/7 -p tcp --dport 22 -j ACCEPT
+COMMIT
+"""
+        result = self.run_export(export)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertEqual(json.loads(result.stdout)["findings"], [{
+            "rule_id": "INPUT:L6", "code": "COMBINED_SHADOWED_RULE", "severity": "INFO",
+            "covering_rule_ids": ["INPUT:L3", "INPUT:L4", "INPUT:L5"],
+            "detail": ("INPUT:L3, INPUT:L4, and INPUT:L5 jointly match all traffic "
+                       "for this later rule; it cannot be reached in this INPUT model."),
+        }])
+
+    def test_combined_coverage_requires_matching_protocol_and_port(self):
+        export = """*filter
+:INPUT DROP [0:0]
+-A INPUT -s 0.0.0.0/1 -p tcp --dport 22 -j DROP
+-A INPUT -s 128.0.0.0/1 -p udp --dport 22 -j DROP
+-A INPUT -p tcp --dport 22 -j ACCEPT
+COMMIT
+"""
+        result = self.run_export(export)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertEqual(json.loads(result.stdout)["findings"], [{
+            "rule_id": "INPUT:L5", "code": "UNRESTRICTED_ADMIN_SOURCE", "severity": "HIGH",
+            "detail": "TCP/22 is allowed from all IPv4 addresses; review source restrictions.",
+        }])
+
+    def test_aborts_exact_coverage_when_region_budget_exceeded(self):
+        rules = [
+            {"id": "INPUT:L3", "source": "10.0.0.1/32", "destination": "0.0.0.0/0",
+             "protocol": "any", "port": None},
+            {"id": "INPUT:L4", "source": "0.0.0.0/0", "destination": "0.0.0.0/0",
+             "protocol": "tcp", "port": 22},
+        ]
+        with patch("rule_order.MAX_UNCOVERED_REGIONS", 1):
+            with self.assertRaisesRegex(ValueError, "coverage too complex"):
+                combined_shadowed_by_prior_rules(rules, {})
 
 
 if __name__ == "__main__":

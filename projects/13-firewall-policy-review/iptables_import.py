@@ -1,7 +1,8 @@
 """Conservative, offline adapter for IPv4 iptables-save -t filter INPUT exports.
 
 Unsupported INPUT rules are rejected, never silently omitted. The adapter
-does not evaluate packet reachability, rule shadowing, or other chains.
+does not evaluate packet reachability or other chains; the separate review
+stage checks exact rule shadowing within the supported INPUT model.
 """
 
 import re

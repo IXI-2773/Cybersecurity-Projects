@@ -1,0 +1,17 @@
+{
+  "policy": "iptables-save IPv4 filter INPUT",
+  "rule_count": 3,
+  "findings": [
+    {
+      "rule_id": "INPUT:L8",
+      "code": "COMBINED_SHADOWED_RULE",
+      "severity": "INFO",
+      "covering_rule_ids": [
+        "INPUT:L6",
+        "INPUT:L7"
+      ],
+      "detail": "INPUT:L6 and INPUT:L7 jointly match all traffic for this later rule; it cannot be reached in this INPUT model."
+    }
+  ],
+  "scope": "Exact single/combined prior-rule CIDR coverage checked for supported IPv4 INPUT; real reachability not evaluated"
+}
