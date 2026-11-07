@@ -1,0 +1,2 @@
+Documented demonstration marker, intentionally excluded by the analyst.
+-----BEGIN PRIVATE KEY----- # pragma: allowlist secret

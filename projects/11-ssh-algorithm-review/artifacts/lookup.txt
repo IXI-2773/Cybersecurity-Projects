@@ -1,0 +1,12 @@
+# key exchange algorithms
+(kex) mlkem768x25519-sha256      -- [info] available since OpenSSH 9.9
+                                 `- [info] default key exchange since OpenSSH 10.0
+                                 `- [info] hybrid key exchange based on post-quantum resistant algorithm and proven conventional X25519 algorithm
+(kex) diffie-hellman-group1-sha1 -- [fail] using small 1024-bit modulus
+                                 `- [fail] vulnerable to the Logjam attack: https://en.wikipedia.org/wiki/Logjam_(computer_security)
+                                 `- [fail] using broken SHA-1 hash algorithm
+                                 `- [warn] does not provide protection against post-quantum attacks
+                                 `- [info] available since OpenSSH 2.3.0, Dropbear SSH 0.28
+                                 `- [info] removed in OpenSSH 6.9: https://www.openssh.com/txt/release-6.9
+
+

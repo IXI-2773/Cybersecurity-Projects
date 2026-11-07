@@ -1,0 +1,4 @@
+{
+  "flagged_algorithm": "diffie-hellman-group1-sha1",
+  "comparison_algorithm": "mlkem768x25519-sha256"
+}

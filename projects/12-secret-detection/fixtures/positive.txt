@@ -1,0 +1,3 @@
+Demonstration header only. No key material exists in this fixture.
+-----BEGIN PRIVATE KEY-----
+NO KEY DATA IS INCLUDED

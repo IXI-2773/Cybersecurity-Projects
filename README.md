@@ -1,6 +1,6 @@
 # Cybersecurity Projects — Don Lopez
 
-[Portfolio](https://ixi-2773.github.io/Cybersecurity_Portfolio/) · [All projects](#all-projects) · [Run a project](#run-a-project)
+[Portfolio](https://ixi-2773.github.io/Cybersecurity_Portfolio/) · [All projects](#all-projects) · [Run a project](#run-a-project) · [Imported tools](#imported-open-source-tools)
 
 Public security investigations, runnable labs, analyst tools and supporting research summaries. Each entry below links directly to its implementation or evidence and the portfolio write-up.
 
@@ -51,6 +51,15 @@ Public security investigations, runnable labs, analyst tools and supporting rese
 | --- | --- | --- |
 | [Celestial Resonance](projects/celestial-resonance.md) | Architecture summary of private research engineering; private implementation is excluded. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/celestial-resonance.html) |
 | [Research AI Infrastructure](projects/research-ai-infrastructure.md) | Architecture summary of private evidence-aware research software; private implementation is excluded. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/research-ai-infrastructure.html) |
+
+### Imported open-source tools
+
+These are upstream-authored tools with their licenses and source attribution preserved. Collection work covers the imports, examples and recorded runs; see [third-party attribution](THIRD_PARTY.md).
+
+| Tool and example | Original project | Recorded scope |
+| --- | --- | --- |
+| [SSH algorithm review](projects/11-ssh-algorithm-review/) | [ssh-audit — Joe Testa and contributors](third_party/ssh-audit/) · MIT | Actual offline lookup with a flagged legacy algorithm and comparison control; no server scan claimed. |
+| [Secret detection](projects/12-secret-detection/) | [Yelp/detect-secrets](third_party/detect-secrets/) · Apache-2.0 | Actual synthetic before/after scan plus benign/allowlist controls; network verification disabled. |
 
 ## Run a project
 

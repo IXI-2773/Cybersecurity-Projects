@@ -1,0 +1,2 @@
+Application notes
+The service displays a welcome message.
