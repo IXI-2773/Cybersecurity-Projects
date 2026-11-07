@@ -1,5 +1,9 @@
 # SSH algorithm review with ssh-audit
 
+![Open-source integration](../../assets/badges/open-source-integration.svg)
+
+**Contribution type:** integration example. Original tool authorship is identified below; collection work covers the fixtures, runner and recorded results.
+
 **Upstream tool:** [ssh-audit](https://github.com/jtesta/ssh-audit), Joe Testa and contributors. **License:** [MIT](../../third_party/ssh-audit/LICENSE). The imported runtime is unmodified v3.9.0; [provenance](../../THIRD_PARTY.md).
 
 ## Collection contribution

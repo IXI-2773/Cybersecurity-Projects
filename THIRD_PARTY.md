@@ -1,5 +1,9 @@
 # Imported open-source tools
 
+![Open-source integration](assets/badges/open-source-integration.svg)
+
+**Work type:** upstream-authored tool source, paired with collection-developed integration examples. [Portfolio projects](README.md#portfolio-projects) have a separate index.
+
 These tools are copied release snapshots credited to their original authors. Their source is unmodified; each retains its own license. The collection's contribution is the pinned import, local examples, recorded outputs and integration checks.
 
 | Tool | Original project and authors | Imported release | License | Collection example |

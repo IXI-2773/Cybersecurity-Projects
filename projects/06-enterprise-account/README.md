@@ -1,5 +1,7 @@
 # LAB-ID-001 — enterprise account investigation
 
+![Portfolio project](../../assets/badges/portfolio-project.svg)
+
 This offline exercise correlates six normalized Windows-style identity events: three failed logons, a successful logon, a privileged group change, and a separate benign service sign-in.
 
 ## Reproduce

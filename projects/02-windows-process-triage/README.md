@@ -1,5 +1,7 @@
 # Windows Process Execution Triage — synthetic Event ID 4688 lab
 
+![Portfolio project](../../assets/badges/portfolio-project.svg)
+
 **What it is:** An offline, standard-library Python tool that analyzes fabricated Windows process-creation data. It emits candidate findings for PowerShell encoded-command switches and certutil URL-cache/force flags.
 
 **What it is not:** Antivirus, a validated endpoint detection solution, malware attribution, or a live Windows Event Log collector.

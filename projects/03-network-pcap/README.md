@@ -1,5 +1,7 @@
 # Network Traffic Analysis — Synthetic DNS and HTTP PCAP
 
+![Portfolio project](../../assets/badges/portfolio-project.svg)
+
 **Author:** Don Lopez · **Status:** 18 local unit tests passed · **Dependencies:** Python 3.10+ standard library only.
 
 This is a **real PCAP-format file generated entirely offline**. No packets were captured from a device, sent across a network, or obtained from an organization.

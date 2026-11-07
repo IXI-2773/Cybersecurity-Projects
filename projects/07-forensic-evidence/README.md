@@ -1,5 +1,7 @@
 # Reproduce LAB-DFIR-001
 
+![Portfolio project](../../assets/badges/portfolio-project.svg)
+
 This standard-library Python lab builds a deterministic ZIP evidence package, verifies it against an acquisition hash, examines a temporary working copy, inventories the artifacts, and creates a bounded timeline and findings.
 
 ```bash

@@ -1,5 +1,7 @@
 # LAB-MAIL-001 — phishing email investigation
 
+![Portfolio project](../../assets/badges/portfolio-project.svg)
+
 This offline exercise preserves and analyzes a harmless lab-created RFC 5322 message. All domains use reserved `.example` or `.invalid` namespaces. The analyzer performs no DNS lookups, HTTP requests, attachment execution, or mailbox access.
 
 ## Reproduce

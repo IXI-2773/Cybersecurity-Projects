@@ -1,5 +1,7 @@
 # Linux access audit with SQL
 
+![Portfolio project](../../assets/badges/portfolio-project.svg)
+
 This case creates three dummy regular files in a fresh temporary directory, joins
 their observed Linux modes to declared policies in SQLite, applies scoped chmod
 changes and checks actual access as UID/GID 65534 with no supplementary groups.
