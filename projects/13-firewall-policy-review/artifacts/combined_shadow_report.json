@@ -13,5 +13,5 @@
       "detail": "INPUT:L6 and INPUT:L7 jointly match all traffic for this later rule; it cannot be reached in this INPUT model."
     }
   ],
-  "scope": "Exact single/combined prior-rule CIDR coverage checked for supported IPv4 INPUT; real reachability not evaluated"
+  "scope": "Exact single/combined shadowing and partial overlap checked for supported IPv4 INPUT; real reachability not evaluated"
 }

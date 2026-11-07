@@ -39,7 +39,7 @@ COMMIT
         report = json.loads(result.stdout)
         self.assertEqual(report["policy"], "iptables-save IPv4 filter INPUT")
         self.assertEqual(report.get("scope"),
-                         "Exact single/combined prior-rule CIDR coverage checked for supported IPv4 INPUT; real reachability not evaluated")
+                         "Exact single/combined shadowing and partial overlap checked for supported IPv4 INPUT; real reachability not evaluated")
         self.assertEqual(report["rule_count"], 2)
         self.assertEqual(report["findings"], [{
             "rule_id": "INPUT:L6", "code": "UNRESTRICTED_ADMIN_SOURCE",
@@ -101,6 +101,11 @@ COMMIT
              "detail": "INPUT:L3 matches all traffic for this later rule; it cannot be reached in this INPUT model."},
             {"rule_id": "INPUT:L5", "code": "UNRESTRICTED_ADMIN_SOURCE", "severity": "HIGH",
              "detail": "TCP/22 is allowed from all IPv4 addresses; review source restrictions."},
+            {"rule_id": "INPUT:L5", "code": "PARTIALLY_SHADOWED_RULE", "severity": "INFO",
+             "overlapping_rule_ids": ["INPUT:L3"],
+             "overlap_example": {"source": "10.0.0.0/8", "destination": "192.0.2.10/32",
+                                 "protocol": "tcp", "port": 22},
+             "detail": "Earlier terminating INPUT rules match part, but not all, of this rule's traffic; review redundant matches and rule order."},
         ])
 
     def test_combined_source_coverage_requires_no_gaps(self):
@@ -113,10 +118,15 @@ COMMIT
 """
         partial_result = self.run_export(partial)
         self.assertEqual(partial_result.returncode, 1, partial_result.stderr)
-        self.assertEqual(json.loads(partial_result.stdout)["findings"], [{
-            "rule_id": "INPUT:L5", "code": "UNRESTRICTED_ADMIN_SOURCE", "severity": "HIGH",
-            "detail": "TCP/3389 is allowed from all IPv4 addresses; review source restrictions.",
-        }])
+        self.assertEqual(json.loads(partial_result.stdout)["findings"], [
+            {"rule_id": "INPUT:L5", "code": "UNRESTRICTED_ADMIN_SOURCE", "severity": "HIGH",
+             "detail": "TCP/3389 is allowed from all IPv4 addresses; review source restrictions."},
+            {"rule_id": "INPUT:L5", "code": "PARTIALLY_SHADOWED_RULE", "severity": "INFO",
+             "overlapping_rule_ids": ["INPUT:L3", "INPUT:L4"],
+             "overlap_example": {"source": "0.0.0.0/1", "destination": "0.0.0.0/0",
+                                 "protocol": "tcp", "port": 3389},
+             "detail": "Earlier terminating INPUT rules match part, but not all, of this rule's traffic; review redundant matches and rule order."},
+        ])
 
         complete = partial.replace("128.0.0.0/2", "128.0.0.0/1")
         complete_result = self.run_export(complete)
@@ -155,10 +165,34 @@ COMMIT
 """
         result = self.run_export(export)
         self.assertEqual(result.returncode, 1, result.stderr)
-        self.assertEqual(json.loads(result.stdout)["findings"], [{
-            "rule_id": "INPUT:L5", "code": "UNRESTRICTED_ADMIN_SOURCE", "severity": "HIGH",
-            "detail": "TCP/22 is allowed from all IPv4 addresses; review source restrictions.",
-        }])
+        self.assertEqual(json.loads(result.stdout)["findings"], [
+            {"rule_id": "INPUT:L5", "code": "UNRESTRICTED_ADMIN_SOURCE", "severity": "HIGH",
+             "detail": "TCP/22 is allowed from all IPv4 addresses; review source restrictions."},
+            {"rule_id": "INPUT:L5", "code": "PARTIALLY_SHADOWED_RULE", "severity": "INFO",
+             "overlapping_rule_ids": ["INPUT:L3"],
+             "overlap_example": {"source": "0.0.0.0/1", "destination": "0.0.0.0/0",
+                                 "protocol": "tcp", "port": 22},
+             "detail": "Earlier terminating INPUT rules match part, but not all, of this rule's traffic; review redundant matches and rule order."},
+        ])
+
+    def test_specific_port_partially_overlaps_later_any_protocol(self):
+        export = """*filter
+:INPUT DROP [0:0]
+-A INPUT -s 192.0.2.0/24 -p tcp --dport 443 -j DROP
+-A INPUT -j ACCEPT
+COMMIT
+"""
+        result = self.run_export(export)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertEqual(json.loads(result.stdout)["findings"], [
+            {"rule_id": "INPUT:L4", "code": "ANY_TO_ANY_ALLOW", "severity": "CRITICAL",
+             "detail": "Allows all protocols between all IPv4 addresses; verify intent and scope."},
+            {"rule_id": "INPUT:L4", "code": "PARTIALLY_SHADOWED_RULE", "severity": "INFO",
+             "overlapping_rule_ids": ["INPUT:L3"],
+             "overlap_example": {"source": "192.0.2.0/24", "destination": "0.0.0.0/0",
+                                 "protocol": "tcp", "port": 443},
+             "detail": "Earlier terminating INPUT rules match part, but not all, of this rule's traffic; review redundant matches and rule order."},
+        ])
 
     def test_aborts_exact_coverage_when_region_budget_exceeded(self):
         rules = [
@@ -170,6 +204,20 @@ COMMIT
         with patch("rule_order.MAX_UNCOVERED_REGIONS", 1):
             with self.assertRaisesRegex(ValueError, "coverage too complex"):
                 combined_shadowed_by_prior_rules(rules, {})
+
+    def test_retained_iptables_reports_match_current_cli(self):
+        base = SCRIPT.parent
+        for name in ("iptables_filter", "iptables_shadow", "iptables_combined_shadow",
+                     "iptables_partial_overlap"):
+            with self.subTest(name=name):
+                fixture = (base / "fixtures" / f"{name}.rules").read_text(encoding="utf-8")
+                result = self.run_export(fixture)
+                self.assertEqual(result.returncode, 1, result.stderr)
+                report_name = name.replace("iptables_", "") + "_report.json"
+                if name == "iptables_filter":
+                    report_name = "iptables_report.json"
+                self.assertEqual(json.loads(result.stdout),
+                                 json.loads((base / "artifacts" / report_name).read_text(encoding="utf-8")))
 
 
 if __name__ == "__main__":

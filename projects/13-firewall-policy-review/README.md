@@ -13,6 +13,7 @@ This small CLI makes firewall-rule *review candidates* easy to explain to an int
 | `DEFAULT_ALLOW` | Policy's fallback action is `allow` | Verify least-privilege design |
 | `SHADOWED_RULE` (iptables mode) | An earlier terminating rule fully covers one later rule's source, destination, protocol and port | Later rule is unreachable within the supported INPUT model; maintenance review, not an exposure |
 | `COMBINED_SHADOWED_RULE` (iptables mode) | Two or more earlier terminating rules jointly cover every source/destination address and protocol/port of a later rule | Later rule is unreachable within the supported INPUT model; report lists contributing earlier rule IDs |
+| `PARTIALLY_SHADOWED_RULE` (iptables mode) | Earlier terminal rules intersect a later rule's match set without covering it all | Lists overlapping rule IDs and one exact CIDR/protocol/port intersection; the later rule can still match other traffic |
 
 Findings are heuristics, **not confirmed vulnerabilities**, exposure measurements or claims about a live firewall. `HIGH` and `CRITICAL` are tutorial review priorities, not CVSS scores.
 
@@ -27,7 +28,7 @@ python -m unittest discover -s projects/13-firewall-policy-review -p 'test_*.py'
 
 The example intentionally exits **1** because two potential policy problems are present. Its captured [JSON report](artifacts/example_report.json) contains exactly those two findings, with rule IDs and descriptions. Exit codes: `0` = no modeled findings; `1` = one or more review candidates; `2` = unreadable or invalid policy. `0` does **not** certify a firewall as secure.
 
-## Import a limited `iptables-save` export and check shadowing (v4)
+## Import a limited `iptables-save` export and check shadowing (v5)
 
 The same CLI can also read **IPv4 `iptables-save -t filter` output**, without applying or changing firewall rules. For example, run the supplied fabricated export:
 
@@ -35,7 +36,7 @@ The same CLI can also read **IPv4 `iptables-save -t filter` output**, without ap
 python projects/13-firewall-policy-review/review.py --format iptables-save projects/13-firewall-policy-review/fixtures/iptables_filter.rules
 ```
 
-The [retained import report](artifacts/iptables_report.json) identifies two review candidates by the original `INPUT:L7` and `INPUT:L8` line numbers. In an authorized Linux environment, you can export your own filter table with `iptables-save -t filter` and save it locally for offline review. **Never commit real infrastructure exports, internal addresses or sensitive rules to this public repository.**
+The [retained import report](artifacts/iptables_report.json) records three findings across the original `INPUT:L7` and `INPUT:L8` line numbers, including a partial overlap on the final catchall rule. In an authorized Linux environment, you can export your own filter table with `iptables-save -t filter` and save it locally for offline review. **Never commit real infrastructure exports, internal addresses or sensitive rules to this public repository.**
 
 For a first-match example, run:
 
@@ -53,13 +54,21 @@ python projects/13-firewall-policy-review/review.py --format iptables-save proje
 
 In this synthetic example, two earlier `DROP` rules cover opposite halves of the IPv4 source space; neither alone covers the later RDP allow. The [retained combined-shadow report](artifacts/combined_shadow_report.json) records `COMBINED_SHADOWED_RULE` with both contributing `INPUT:L` line IDs. The algorithm subtracts prior matching IPv4 source/destination CIDR regions exactly, accepting different terminal actions and retaining protocol/port restrictions. It **does not** call a partly overlapping rule shadowed unless the earlier rules collectively cover every possible packet in the simplified model.
 
+To compare with an **incomplete overlap**, run:
+
+```sh
+python projects/13-firewall-policy-review/review.py --format iptables-save projects/13-firewall-policy-review/fixtures/iptables_partial_overlap.rules
+```
+
+The two earlier `DROP` CIDRs cover three quarters of the source address space, leaving the final quarter unmatched by those rules. The [retained partial-overlap report](artifacts/partial_overlap_report.json) records `PARTIALLY_SHADOWED_RULE`, both earlier rule IDs and a concrete overlapping CIDR/port example. It **retains the `HIGH` unrestricted-RDP-source review candidate** because the later allow is not fully shadowed. The example is a witness of some overlap, **not** a complete overlap listing or a measured share of real traffic. Fully shadowed earlier rules are excluded from the reported overlap IDs.
+
 The adapter intentionally supports a bounded subset:
 
 - One complete `*filter` table with an `INPUT` default policy (`ACCEPT` or `DROP`) and `COMMIT`.
 - IPv4 `-A INPUT` rules using `-s`, `-d`, `-p tcp`/`udp`/`all`, optional matching `-m tcp`/`udp`, one numeric `--dport`, and `-j ACCEPT`/`DROP`/`REJECT`. Unspecified addresses mean `0.0.0.0/0`.
 - `INPUT` review only. Other built-in chains are outside this tool's analysis scope.
 
-It rejects unsupported `INPUT` syntax, including conntrack/state matches, interface matches, negation, multiport/ranges, user-chain jumps, IPv6, and other tables. This is **not** a full iptables parser. Shadow detection handles complete coverage by **one or a combination of earlier terminal rules**; it does not separately classify incomplete partial overlaps. The exact-CIDR analysis stops with exit code `2` and no partial report if its uncovered-region partition grows past 4,096 regions. Routing, NAT, other chains and real packet reachability are not evaluated; the output labels that limitation. Non-shadowed warnings remain review candidates, not proof that traffic can reach a destination.
+It rejects unsupported `INPUT` syntax, including conntrack/state matches, interface matches, negation, multiport/ranges, user-chain jumps, IPv6, and other tables. This is **not** a full iptables parser. Shadow detection handles complete coverage by **one or a combination of earlier terminal rules** and separately flags incomplete intersections, including when an earlier TCP/UDP port overlaps a later all-protocol rule. It does not estimate overlap percentages, simulate packets or recommend automatic rule removal. The exact-CIDR full-shadow analysis stops with exit code `2` and no partial report if its uncovered-region partition grows past 4,096 regions. Routing, NAT, other chains and real packet reachability are not evaluated; the output labels that limitation. Non-shadowed warnings remain review candidates, not proof that traffic can reach a destination.
 
 Format references: [iptables-save manual](https://man7.org/linux/man-pages/man8/iptables-save.8.html) and [iptables rule syntax](https://man7.org/linux/man-pages/man8/iptables.8.html).
 
@@ -67,8 +76,8 @@ For the default JSON mode, input must be an object with `name` (text), `default_
 
 ## Scope and next extensions
 
-- **Now:** three static checks on JSON plus a bounded IPv4 `iptables-save` filter/INPUT importer with exact single- and combined-prior-rule first-match shadow detection, fabricated fixtures and source line numbers.
-- **Next:** report incomplete partial overlaps as separate maintenance candidates, or expand supported match syntax only with dedicated evidence and tests.
+- **Now:** three static checks on JSON plus a bounded IPv4 `iptables-save` filter/INPUT importer with exact single- and combined-prior-rule shadow detection and partial-overlap review candidates, fabricated fixtures and line-linked examples.
+- **Next:** offer a concise analyst-readable HTML/CSV findings report, or expand supported match syntax only with dedicated evidence and tests.
 - **Later:** HTML/CSV analyst report with change tickets and evidence for remediation, plus a portfolio case study once independently executed on authorized data.
 
 The reviewer does **not** fully parse iptables or parse nftables, Azure/AWS rules, NAT, interfaces, routing or zone precedence. Beyond exact match coverage in the supported INPUT model, it does not establish real reachability, account for upstream controls, infer asset criticality or replace a managed firewall audit.

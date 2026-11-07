@@ -81,3 +81,46 @@ def combined_shadowed_by_prior_rules(rules, single_shadows):
                     combined[later["id"]] = contributors
                 break
     return combined
+
+
+def partially_shadowed_by_prior_rules(rules, single_shadows, combined_shadows):
+    """Identify non-fully-covered later rules with earlier overlapping matches.
+
+    An example describes one actual intersection, not the whole redundant
+    region. Ignore earlier rules already fully shadowed by other predecessors.
+    """
+    fully_shadowed = set(single_shadows) | set(combined_shadows)
+    networks = [(ip_network(rule["source"]), ip_network(rule["destination"]))
+                for rule in rules]
+    partial = {}
+    for index, later in enumerate(rules):
+        if later["id"] in fully_shadowed:
+            continue
+        overlapping_ids = []
+        example = None
+        later_source, later_destination = networks[index]
+        for earlier_index in range(index):
+            earlier = rules[earlier_index]
+            if earlier["id"] in fully_shadowed:
+                continue
+            if not (_protocol_covers(earlier, later) or later["protocol"] == "any"):
+                continue
+            earlier_source, earlier_destination = networks[earlier_index]
+            if not (earlier_source.overlaps(later_source)
+                    and earlier_destination.overlaps(later_destination)):
+                continue
+            overlapping_ids.append(earlier["id"])
+            if example is None:
+                example = {
+                    "source": str(earlier_source if earlier_source.subnet_of(later_source)
+                                  else later_source),
+                    "destination": str(earlier_destination if earlier_destination.subnet_of(later_destination)
+                                       else later_destination),
+                    "protocol": (earlier["protocol"] if later["protocol"] == "any"
+                                 else later["protocol"]),
+                    "port": earlier["port"] if later["protocol"] == "any" else later["port"],
+                }
+        if overlapping_ids:
+            partial[later["id"]] = {"overlapping_rule_ids": overlapping_ids,
+                                    "overlap_example": example}
+    return partial
