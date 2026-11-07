@@ -1,0 +1,18 @@
+# Local qualification artifacts; review before sharing
+smoke_local.json
+local_qualification.json
+splunk_findings.csv
+splunk_raw_events.csv
+*.log
+.env
+.env.*
+projects/03-network-pcap/synthetic_traffic.pcap
+cybersecurity-portfolio-site.zip
+__pycache__/
+*.pyc
+
+don_lopez_soc.spl
+local_splunk_run*/
+
+# Committed synthetic lab fixture
+!projects/04-local-vulnerability-assessment/access.log
