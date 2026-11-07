@@ -1,0 +1,58 @@
+{
+  "case_id": "LAB-MAIL-001",
+  "findings": [
+    {
+      "id": "MAIL_REPLY_TO_MISMATCH",
+      "label": "Sender and Reply-To domains differ",
+      "severity": "high"
+    },
+    {
+      "id": "MAIL_AUTH_FAILURES",
+      "label": "SPF, DKIM or DMARC did not pass",
+      "severity": "high"
+    },
+    {
+      "id": "MAIL_LINK_DOMAIN_MISMATCH",
+      "label": "Linked host differs from sender domain",
+      "severity": "medium"
+    }
+  ],
+  "metrics": [
+    {
+      "label": "URLs reviewed",
+      "value": "1"
+    },
+    {
+      "label": "Auth concerns",
+      "value": "3"
+    },
+    {
+      "label": "Findings",
+      "value": "3"
+    }
+  ],
+  "status": "Completed offline analysis",
+  "timeline": [
+    {
+      "label": "Preserved",
+      "state": "observed",
+      "time": "01"
+    },
+    {
+      "label": "Headers parsed",
+      "state": "observed",
+      "time": "02"
+    },
+    {
+      "label": "Indicators reviewed",
+      "state": "finding",
+      "time": "03"
+    },
+    {
+      "label": "Handoff written",
+      "state": "observed",
+      "time": "04"
+    }
+  ],
+  "title": "Phishing email investigation"
+}

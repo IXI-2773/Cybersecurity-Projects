@@ -1,0 +1,31 @@
+{
+  "id": "AD-2020-1022",
+  "title": "Incident review: connected AD activity",
+  "subtitle": "Independent analysis of recorded emulation",
+  "author": "Don Lopez",
+  "prepared": "2026-10-26",
+  "capture_date": "2020-10-22",
+  "status": "Historical evidence review; compromise unconfirmed",
+  "summary": "Seven distinct-account failures, five successful RC4 service-ticket requests and IPC$/srvsvc checks precede GUID-linked remote PowerShell on three targets. The connected activity warrants authorization and command review. Authorized emulation or administration remains a competing explanation; business impact is not established.",
+  "scope": "THESHIRE\\pgustavo on WORKSTATION5; target records on WORKSTATION6, WORKSTATION7 and MORDORDC. Coverage: 25,993 host events and 1,121 packets; 226 host records selected. These are observed hosts, not confirmed compromised systems.",
+  "timeline": [
+    {"time": "08:29:53 UTC", "text": "Seven failures share caller host, PID and session. Failure records have no client IP.", "refs": ["H00788", "H00790", "H00792", "H00794", "H00796", "H00798", "H00803", "H00019"]},
+    {"time": "08:29:53-54 UTC", "text": "Five successful RC4 service tickets; IPC$/srvsvc checks span three hosts. Neither proves cracking or file theft.", "refs": ["H01125", "H01136", "H01140", "H01144", "H01148", "H01198", "H01284", "H01324"]},
+    {"time": "08:29:57.967-58.095 UTC", "text": "Three wsmprovhost.exe / powershell.exe parent-child pairs have same-host GUID and account/session joins.", "refs": ["H03601", "H04447", "H03833", "H04352", "H23781", "H24051"]}
+  ],
+  "decisions": [
+    {"title": "Correlate, with a causality limit", "text": "Matching TCP/5985 tuples corroborate client flows (for example H03882 / P00872). No end-to-end request ID proves a packet caused a particular PowerShell child."},
+    {"title": "Use execution time", "text": "The DC child executed at 08:29:58.095 UTC; collection at 08:30:37.907 UTC was 39.812 seconds later. This is collection delay, not a second execution wave."}
+  ],
+  "recommendations": [
+    {"title": "SOC analyst / establish authorization", "text": "Check operator identity, change approval and full command/script-block content before assigning operational severity. Retain host, session and source references."},
+    {"title": "Incident lead + system owner / conditional response", "text": "If live evidence shows unauthorized ongoing activity, assess approved account/session restrictions and host isolation with the owner; preserve evidence and weigh service impact. No containment was performed in this historical review."},
+    {"title": "Detection engineer / validate before deployment", "text": "Baseline RC4 and WinRM use, test benign administration and late arrivals, then validate backend fields. Python analysis executed; the AD SPL/Sigma candidates remain unexecuted."}
+  ],
+  "limits": "OTRF recorded this PurpleSharp emulation in 2020; this is not a production incident or an owner-operated attack. Shared-password use, credential cracking, persistence, data theft and business impact remain unproven. Security timestamps use a calibrated capture-local UTC-04:00 assumption.",
+  "sources": [
+    {"label": "Full analysis and source references", "url": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/main/projects/08-ad-investigation/CASE_REPORT.md"},
+    {"label": "Evidence JSON", "url": "https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/08-ad-investigation/analysis.json"},
+    {"label": "Pinned source manifest", "url": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/main/docs/research/2026-10-24-ad-investigation-source-intake.json"}
+  ]
+}

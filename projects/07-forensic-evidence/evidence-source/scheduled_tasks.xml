@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tasks>
+  <Task name="SupportUpdate">
+    <CreatedUTC>2026-10-14T18:09:00Z</CreatedUTC>
+    <Command>C:\Users\analyst\Downloads\remote-support.exe</Command>
+    <Trigger>AtLogOn</Trigger>
+  </Task>
+</Tasks>

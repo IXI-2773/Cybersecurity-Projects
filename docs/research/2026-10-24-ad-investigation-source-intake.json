@@ -1,0 +1,231 @@
+{
+  "retrieved_on": "2026-10-24",
+  "source_project": "OTRF/Security-Datasets",
+  "source_commit": "d9d40ef123d2c87d5d3df28c96bcab4f0faccc87",
+  "dataset_page": "https://securitydatasets.com/notebooks/atomic/windows/credential_access/SDWIN-201022042947.html",
+  "archives": [
+    {
+      "kind": "host",
+      "url": "https://raw.githubusercontent.com/OTRF/Security-Datasets/master/datasets/atomic/windows/lateral_movement/host/purplesharp_ad_playbook_I.zip",
+      "sha256": "2a2d80e7b8d8ee6821a1754118f3ab908b4bac84cf4ed3d018e281f631bd2870",
+      "compressed_bytes": 1362498,
+      "members": [
+        {
+          "name": "purplesharp_ad_playbook_I_2020-10-22042947.json",
+          "bytes": 39654430
+        }
+      ],
+      "samples": [
+        {
+          "member": "purplesharp_ad_playbook_I_2020-10-22042947.json",
+          "fields": [
+            "@timestamp",
+            "DestPort",
+            "ProcessId",
+            "OpcodeValue",
+            "port",
+            "SourceAddress",
+            "RemoteMachineID",
+            "Severity",
+            "SourcePort",
+            "EventTime",
+            "SourceName",
+            "ProviderGuid",
+            "Channel",
+            "DestAddress",
+            "FilterRTID",
+            "RemoteUserID",
+            "EventReceivedTime",
+            "ExecutionProcessID",
+            "EventID",
+            "Category",
+            "tags",
+            "SeverityValue",
+            "Keywords",
+            "EventType",
+            "Version",
+            "Direction",
+            "SourceModuleName",
+            "Application",
+            "SourceModuleType",
+            "host",
+            "LayerName",
+            "RecordNumber",
+            "ThreadID",
+            "Task",
+            "Message"
+          ]
+        }
+      ],
+      "pinned_url": "https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/lateral_movement/host/purplesharp_ad_playbook_I.zip",
+      "source_commit": "d9d40ef123d2c87d5d3df28c96bcab4f0faccc87"
+    },
+    {
+      "kind": "network",
+      "url": "https://raw.githubusercontent.com/OTRF/Security-Datasets/master/datasets/atomic/windows/lateral_movement/network/purplesharp_ad_playbook_I.zip",
+      "sha256": "c7dd67e1f2b914d4f553b3ef98d29b8858ed86b03ffa7dd7c0a55af30eacf03b",
+      "compressed_bytes": 598314,
+      "members": [
+        {
+          "name": "purplesharp_ad_playbook_I_2020-10-22042947.cap",
+          "bytes": 753206
+        }
+      ],
+      "samples": [],
+      "pinned_url": "https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/lateral_movement/network/purplesharp_ad_playbook_I.zip",
+      "source_commit": "d9d40ef123d2c87d5d3df28c96bcab4f0faccc87"
+    }
+  ],
+  "coverage": {
+    "host_event_count": 25993,
+    "timestamp_range_raw": [
+      "2020-10-22T08:29:48.785Z",
+      "2020-10-22T08:30:42.832Z"
+    ],
+    "providers": [
+      [
+        "Microsoft-Windows-Sysmon",
+        22054
+      ],
+      [
+        "Microsoft-Windows-Security-Auditing",
+        2843
+      ],
+      [
+        "Microsoft-Windows-PowerShell",
+        747
+      ],
+      [
+        "PowerShell",
+        342
+      ],
+      [
+        "Microsoft-Windows-WMI-Activity",
+        4
+      ],
+      [
+        "Microsoft-Windows-Hyper-V-Netvsc",
+        2
+      ],
+      [
+        "Service Control Manager",
+        1
+      ]
+    ],
+    "event_ids": [
+      [
+        "12",
+        17917
+      ],
+      [
+        "7",
+        1537
+      ],
+      [
+        "13",
+        1135
+      ],
+      [
+        "4658",
+        761
+      ],
+      [
+        "11",
+        629
+      ],
+      [
+        "4656",
+        405
+      ],
+      [
+        "4690",
+        381
+      ],
+      [
+        "10",
+        345
+      ],
+      [
+        "800",
+        285
+      ],
+      [
+        "4103",
+        285
+      ],
+      [
+        "4663",
+        250
+      ],
+      [
+        "23",
+        207
+      ],
+      [
+        "4703",
+        202
+      ],
+      [
+        "5156",
+        197
+      ],
+      [
+        "4673",
+        164
+      ]
+    ],
+    "channels": [
+      [
+        "Microsoft-Windows-Sysmon/Operational",
+        22054
+      ],
+      [
+        "Security",
+        2843
+      ],
+      [
+        "Microsoft-Windows-PowerShell/Operational",
+        747
+      ],
+      [
+        "Windows PowerShell",
+        342
+      ],
+      [
+        "Microsoft-Windows-WMI-Activity/Operational",
+        4
+      ],
+      [
+        "System",
+        3
+      ]
+    ],
+    "hosts": [
+      [
+        "MORDORDC.theshire.local",
+        19875
+      ],
+      [
+        "WORKSTATION6.theshire.local",
+        2677
+      ],
+      [
+        "WORKSTATION7.theshire.local",
+        2672
+      ],
+      [
+        "WORKSTATION5.theshire.local",
+        769
+      ]
+    ],
+    "network": {
+      "format": "classic PCAP",
+      "packet_count": 1121,
+      "first_utc": "2020-10-22T08:29:53+00:00",
+      "last_utc": "2020-10-22T08:30:08+00:00",
+      "link_type": 1
+    },
+    "scope": "Read-only public capture intake; no detection performance or incident finding claimed."
+  },
+  "status": "SOURCE_INTAKE_COMPLETE; CORRELATED_CASE_NOT_YET_IMPLEMENTED"
+}

@@ -1,0 +1,28 @@
+title: PowerShell Child of WinRM Provider Host - Investigation Seed
+id: a9046b4a-a781-4c81-bda5-13efa1599f8a
+status: experimental
+description: >-
+  Unexecuted broad process-tree translation. Does not implement the Python
+  same-host GUID, account, session, logon or network joins. Legitimate WinRM
+  administration commonly matches. Validate the backend and field mapping.
+author: Don Lopez
+date: 2026-10-24
+references:
+  - https://securitydatasets.com/notebooks/atomic/windows/credential_access/SDWIN-201022042947.html
+tags:
+  - attack.lateral-movement
+  - attack.t1021.006
+  - attack.execution
+  - attack.t1059.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith: '\powershell.exe'
+    ParentImage|endswith: '\wsmprovhost.exe'
+  condition: selection
+falsepositives:
+  - Authorized WinRM administration and automation
+  - Approved security emulation
+level: low

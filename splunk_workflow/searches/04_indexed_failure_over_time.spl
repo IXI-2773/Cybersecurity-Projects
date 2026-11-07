@@ -1,0 +1,3 @@
+index=lab_auth sourcetype="portfolio:auth"
+| eval _time=strptime(replace(timestamp,"Z$","+0000"),"%Y-%m-%dT%H:%M:%S%z")
+| timechart span=10m count by event_type

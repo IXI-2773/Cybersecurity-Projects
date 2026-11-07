@@ -1,0 +1,46 @@
+{
+  "assessment": "Suspicious lab message; quarantine and verify through a trusted channel.",
+  "authentication": {
+    "dkim": "none",
+    "dmarc": "fail",
+    "spf": "fail"
+  },
+  "case_id": "LAB-MAIL-001",
+  "findings": [
+    {
+      "id": "MAIL_REPLY_TO_MISMATCH",
+      "label": "Sender and Reply-To domains differ",
+      "severity": "high"
+    },
+    {
+      "id": "MAIL_AUTH_FAILURES",
+      "label": "SPF, DKIM or DMARC did not pass",
+      "severity": "high"
+    },
+    {
+      "id": "MAIL_LINK_DOMAIN_MISMATCH",
+      "label": "Linked host differs from sender domain",
+      "severity": "medium"
+    }
+  ],
+  "from": {
+    "address": "support@contoso.example",
+    "domain": "contoso.example"
+  },
+  "limitations": "Lab-created message; no mailbox, DNS, proxy, endpoint or user-action telemetry was queried.",
+  "message_id": "<lab-mail-001@contoso.example>",
+  "reply_to": {
+    "address": "security-check@contoso-login.example",
+    "domain": "contoso-login.example"
+  },
+  "sender_reply_to_mismatch": true,
+  "sha256": "d110efbb542d29e4a0b5e29a2479a637c435d26c98dd872ff85fc6c5e0ba5442",
+  "subject": "Password expires today",
+  "urls": [
+    {
+      "defanged": "hxxps://contoso-login[.]example/verify?account=analyst",
+      "host": "contoso-login.example",
+      "scheme": "https"
+    }
+  ]
+}

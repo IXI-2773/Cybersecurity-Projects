@@ -1,0 +1,24 @@
+{
+  "acquired_utc": "2026-10-15T09:00:00Z",
+  "case_id": "LAB-DFIR-001",
+  "files": [
+    {
+      "artifact": "browser_history.csv",
+      "sha256": "28a2b8fdd240af17cefcc823aca3c0ae11248f6a96cfd544644aa188bf51c427",
+      "size_bytes": 187
+    },
+    {
+      "artifact": "case_notes.txt",
+      "sha256": "78bf085790a1e56a78d30aee01a212cc65ca0f4e72318eb6c1259772b7caebc6",
+      "size_bytes": 206
+    },
+    {
+      "artifact": "scheduled_tasks.xml",
+      "sha256": "73df7bdf09b42e2566b3e4c8b9e94f60bb16b51575ebd976bcbef61b2bb36aad",
+      "size_bytes": 246
+    }
+  ],
+  "package_sha256": "409bd208bf9a794f61e72176cc19c713cb81abb29e7b0006612075fed2c64cba",
+  "package_size_bytes": 993,
+  "scope": "Deterministic lab-created evidence; no real person, device, or incident."
+}

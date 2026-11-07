@@ -1,0 +1,14 @@
+| inputlookup portfolio_auth_validation.csv
+| where event_type="login_failure" OR event_type="login_success"
+| eval _time=strptime(replace(timestamp,"Z$","+0000"),"%Y-%m-%dT%H:%M:%S%z")
+| where isnotnull(_time) AND isnotnull(username) AND isnotnull(source_ip)
+| sort 0 _time
+| streamstats current=f count(eval(event_type="login_success")) as prior_successes by username source_ip
+| fillnull value=0 prior_successes
+| eval failure_epoch=if(event_type="login_failure",_time,null())
+| streamstats current=f list(failure_epoch) as prior_failure_times by username source_ip prior_successes
+| eval age_seconds=mvmap(prior_failure_times,_time-tonumber(prior_failure_times))
+| eval eligible_ages=mvfilter(isnotnull(age_seconds) AND age_seconds>=0 AND age_seconds<=600)
+| eval failure_count_in_window=coalesce(mvcount(eligible_ages),0)
+| where event_type="login_success" AND failure_count_in_window>=5
+| table timestamp username source_ip host scenario failure_count_in_window

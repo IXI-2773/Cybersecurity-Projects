@@ -1,0 +1,13 @@
+event_uid,timestamp,username,host,event_type,source_ip
+a01,2026-10-26T10:00:00Z,lab_analyst,LAB-WKS-01,login_failure,192.0.2.10
+a02,2026-10-26T10:01:00Z,lab_analyst,LAB-WKS-01,login_failure,192.0.2.10
+a03,2026-10-26T10:02:00Z,lab_analyst,LAB-WKS-01,login_failure,192.0.2.10
+a04,2026-10-26T10:03:00Z,lab_analyst,LAB-WKS-01,login_failure,192.0.2.10
+a05,2026-10-26T10:04:00Z,lab_analyst,LAB-WKS-01,login_failure,192.0.2.10
+a06,2026-10-26T12:10:00+02:00,lab_analyst,LAB-WKS-01,login_success,192.0.2.10
+a03,2026-10-26T10:02:00Z,lab_analyst,LAB-WKS-01,login_failure,192.0.2.10
+b01,2026-10-26T10:00:00Z,lab_control,LAB-WKS-02,login_failure,192.0.2.20
+b02,2026-10-26T10:01:00Z,lab_control,LAB-WKS-02,login_failure,192.0.2.20
+b03,2026-10-26T10:02:00Z,lab_control,LAB-WKS-02,login_success,192.0.2.20
+bad01,2026-10-26T10:00:00,lab_unknown,LAB-WKS-03,login_failure,192.0.2.30
+bad02,2026-10-26T10:00:00Z,lab_unknown,LAB-WKS-03,login_failure,not-an-address

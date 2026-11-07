@@ -1,0 +1,113 @@
+{
+  "schema": "portfolio.linux-access-audit.v1",
+  "executed_at_utc": "2026-10-26T13:43:45.957146+00:00",
+  "environment": {
+    "system": "Linux",
+    "python": "3.11.17",
+    "sqlite": "3.45.1"
+  },
+  "execution_context": {
+    "GITHUB_RUN_ID": "40333115846",
+    "GITHUB_SHA": "5d1a34086adc419921e5d8696dfe1289b80daa89",
+    "GITHUB_REPOSITORY": "IXI-2773/Cybersecurity_Portfolio"
+  },
+  "scope": "Three dummy regular files in an isolated temporary directory; standard Unix mode bits only",
+  "source_sha256": {
+    "audit_lab.py": "5f9ff93caa9ef1613c5c7ffb1bfbd4870dbdba2edfab51336b954cecd345590c",
+    "audit.sql": "ee4cc7568cf92fd9af28c3080b172085d42ea25e7fc4b9c709b4c0c1bddabeee"
+  },
+  "before": {
+    "assets": [
+      {
+        "path": "secrets/service.env",
+        "mode": 420,
+        "mode_octal": "0644",
+        "uid": 0,
+        "gid": 0,
+        "sha256": "3f2088a2cc82412247ff73626117ebd562cbd8c722d33613a2280da1670cbe54"
+      },
+      {
+        "path": "bin/rotate_logs.sh",
+        "mode": 511,
+        "mode_octal": "0777",
+        "uid": 0,
+        "gid": 0,
+        "sha256": "808c65b26e8ba5438ff28fbc2ce0ca314ec83dd6c5dc2ff3dc2632b257a0fa8f"
+      },
+      {
+        "path": "public/notice.txt",
+        "mode": 420,
+        "mode_octal": "0644",
+        "uid": 0,
+        "gid": 0,
+        "sha256": "08a4ce73a1c79a3f2bb00d1afc1d65951fc5e1d9df62153f8f10017da7c36b3b"
+      }
+    ],
+    "findings": [
+      {
+        "path": "bin/rotate_logs.sh",
+        "mode": 511,
+        "forbidden_mask": 18,
+        "target_mode": 493,
+        "risk": "Group/other write access to a dummy maintenance script"
+      },
+      {
+        "path": "secrets/service.env",
+        "mode": 420,
+        "forbidden_mask": 36,
+        "target_mode": 384,
+        "risk": "Group/other read access to a dummy service secret"
+      }
+    ],
+    "probe": {
+      "uid": 65534,
+      "gid": 65534,
+      "groups": [],
+      "access": {
+        "secret_read": "allowed",
+        "script_write": "allowed",
+        "public_read": "allowed"
+      }
+    }
+  },
+  "after": {
+    "assets": [
+      {
+        "path": "secrets/service.env",
+        "mode": 384,
+        "mode_octal": "0600",
+        "uid": 0,
+        "gid": 0,
+        "sha256": "3f2088a2cc82412247ff73626117ebd562cbd8c722d33613a2280da1670cbe54"
+      },
+      {
+        "path": "bin/rotate_logs.sh",
+        "mode": 493,
+        "mode_octal": "0755",
+        "uid": 0,
+        "gid": 0,
+        "sha256": "808c65b26e8ba5438ff28fbc2ce0ca314ec83dd6c5dc2ff3dc2632b257a0fa8f"
+      },
+      {
+        "path": "public/notice.txt",
+        "mode": 420,
+        "mode_octal": "0644",
+        "uid": 0,
+        "gid": 0,
+        "sha256": "08a4ce73a1c79a3f2bb00d1afc1d65951fc5e1d9df62153f8f10017da7c36b3b"
+      }
+    ],
+    "findings": [],
+    "probe": {
+      "uid": 65534,
+      "gid": 65534,
+      "groups": [],
+      "access": {
+        "secret_read": "denied",
+        "script_write": "denied",
+        "public_read": "allowed"
+      }
+    }
+  },
+  "parent_uid_after_probe": 0
+}

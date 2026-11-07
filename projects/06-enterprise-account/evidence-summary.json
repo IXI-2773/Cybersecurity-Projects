@@ -1,0 +1,58 @@
+{
+  "case_id": "LAB-ID-001",
+  "findings": [
+    {
+      "id": "ACCT_FAILURE_BURST",
+      "label": "Three failures from one source in four minutes",
+      "severity": "medium"
+    },
+    {
+      "id": "ACCT_SUCCESS_AFTER_FAILURES",
+      "label": "Successful sign-in followed the failure burst",
+      "severity": "high"
+    },
+    {
+      "id": "ACCT_PRIVILEGE_CHANGE",
+      "label": "Privilege change followed the successful sign-in",
+      "severity": "high"
+    }
+  ],
+  "metrics": [
+    {
+      "label": "Events reviewed",
+      "value": "6"
+    },
+    {
+      "label": "Linked events",
+      "value": "5"
+    },
+    {
+      "label": "Findings",
+      "value": "3"
+    }
+  ],
+  "status": "Completed event correlation",
+  "timeline": [
+    {
+      "label": "First failure",
+      "state": "observed",
+      "time": "16:00Z"
+    },
+    {
+      "label": "Third failure",
+      "state": "observed",
+      "time": "16:04Z"
+    },
+    {
+      "label": "Sign-in",
+      "state": "finding",
+      "time": "16:07Z"
+    },
+    {
+      "label": "Privilege change",
+      "state": "finding",
+      "time": "16:09Z"
+    }
+  ],
+  "title": "Enterprise account investigation"
+}

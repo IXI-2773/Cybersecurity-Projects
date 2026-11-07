@@ -1,0 +1,42 @@
+{
+  "schema": "portfolio.auth-validation.v1",
+  "description": "Hand-reviewed expected alerts for nine synthetic scenarios; these expectations are not derived from the detector.",
+  "synthetic": true,
+  "expected_findings": [
+    {
+      "scenario": "threshold",
+      "timestamp": "2026-10-05T09:05:00Z",
+      "username": "user_threshold",
+      "source_ip": "192.0.2.10",
+      "failure_count_in_window": 5
+    },
+    {
+      "scenario": "post_success_burst",
+      "timestamp": "2026-10-05T10:39:00Z",
+      "username": "user_reset",
+      "source_ip": "192.0.2.13",
+      "failure_count_in_window": 5
+    },
+    {
+      "scenario": "ten_minute_boundary",
+      "timestamp": "2026-10-05T13:10:00Z",
+      "username": "user_boundary",
+      "source_ip": "203.0.113.10",
+      "failure_count_in_window": 5
+    },
+    {
+      "scenario": "interleaved_users",
+      "timestamp": "2026-10-05T13:40:00Z",
+      "username": "user_alpha",
+      "source_ip": "203.0.113.20",
+      "failure_count_in_window": 5
+    },
+    {
+      "scenario": "interleaved_users",
+      "timestamp": "2026-10-05T13:41:00Z",
+      "username": "user_beta",
+      "source_ip": "203.0.113.21",
+      "failure_count_in_window": 5
+    }
+  ]
+}

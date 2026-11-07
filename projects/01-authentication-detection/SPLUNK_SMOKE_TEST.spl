@@ -1,0 +1,13 @@
+| makeresults
+| eval raw_events="2026-10-05T09:00:00Z;2026-10-05T09:01:00Z;2026-10-05T09:02:00Z;2026-10-05T09:03:00Z;2026-10-05T09:04:00Z;2026-10-05T09:05:00Z;2026-10-05T09:06:00Z"
+| makemv delim=";" raw_events
+| mvexpand raw_events
+| eval timestamp=raw_events, username="smoke_user", source_ip="192.0.2.99", host="SYNTHETIC-SPLUNK-SMOKE", event_type=if(timestamp="2026-10-05T09:05:00Z","login_success",if(timestamp="2026-10-05T09:06:00Z","login_success","login_failure"))
+| eval _time=strptime(replace(timestamp,"Z$","+0000"),"%Y-%m-%dT%H:%M:%S%z")
+| sort 0 _time
+| streamstats current=f count(eval(event_type="login_success")) as prior_successes by username source_ip
+| fillnull value=0 prior_successes
+| streamstats time_window=10m count(eval(event_type="login_failure")) as recent_failures by username source_ip prior_successes
+| where event_type="login_success" AND recent_failures>=5
+| rename recent_failures as failure_count_in_window
+| table timestamp username source_ip host failure_count_in_window

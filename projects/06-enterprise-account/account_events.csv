@@ -1,0 +1,7 @@
+timestamp_utc,event_id,account,source_ip,host,outcome,detail
+2026-10-20T16:00:00Z,4625,dlopez,198.51.100.24,DC01,failure,Bad password
+2026-10-20T16:02:00Z,4625,dlopez,198.51.100.24,DC01,failure,Bad password
+2026-10-20T16:04:00Z,4625,dlopez,198.51.100.24,DC01,failure,Bad password
+2026-10-20T16:07:00Z,4624,dlopez,198.51.100.24,DC01,success,Interactive sign-in
+2026-10-20T16:09:00Z,4728,dlopez,198.51.100.24,DC01,success,Added to privileged administrators group
+2026-10-20T17:00:00Z,4624,service_build,192.0.2.10,APP01,success,Scheduled service sign-in

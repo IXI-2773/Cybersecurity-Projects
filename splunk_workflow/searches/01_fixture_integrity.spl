@@ -1,0 +1,2 @@
+| inputlookup portfolio_auth_validation.csv
+| stats count as event_count dc(scenario) as scenario_count dc(username) as distinct_users

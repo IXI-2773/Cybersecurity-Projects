@@ -1,0 +1,4 @@
+Case: LAB-DFIR-001
+System: LAB-WS-07
+Question: Do the supplied artifacts support a download-to-scheduled-task sequence?
+Scope: Lab-created evidence only. No real person, device, or incident is represented.

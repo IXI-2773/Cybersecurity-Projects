@@ -1,0 +1,15 @@
+{
+  "source": "synthetic_lab",
+  "findings": [
+    {
+      "observed_at_utc": "2026-10-01T09:06:00Z",
+      "username": "alice",
+      "source_ip": "192.0.2.15",
+      "host": "LAB-DC1",
+      "failure_count_in_window": 6,
+      "earliest_failure_utc": "2026-10-01T09:00:00Z",
+      "assessment": "Suspicious authentication sequence; investigate, not confirmed compromise",
+      "attack_hypothesis": "MITRE ATT&CK T1110 (Brute Force)"
+    }
+  ]
+}

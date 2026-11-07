@@ -1,0 +1,26 @@
+{
+  "schema": "portfolio.network-pcap.v1",
+  "synthetic": true,
+  "packet_count": 20,
+  "decoded_event_count": 12,
+  "findings": [
+    {
+      "rule_id": "NET_DNS_NXDOMAIN_BURST",
+      "observed_at_utc": "2026-10-10T12:00:36.200Z",
+      "source_ip": "192.0.2.10",
+      "nxdomain_count_in_window": 4,
+      "attack_hypothesis": "T1071.004 DNS",
+      "assessment": "Synthetic triage signal; not evidence of DNS tunneling"
+    },
+    {
+      "rule_id": "NET_HTTP_POST_RESERVED_HOST",
+      "observed_at_utc": "2026-10-10T12:01:15.030Z",
+      "source_ip": "192.0.2.10",
+      "destination_ip": "203.0.113.80",
+      "host": "collector.invalid",
+      "path": "/upload",
+      "attack_hypothesis": "T1071.001 Web Protocols",
+      "assessment": "Synthetic triage signal; not evidence of exfiltration"
+    }
+  ]
+}

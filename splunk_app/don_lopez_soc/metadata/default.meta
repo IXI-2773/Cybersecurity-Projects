@@ -1,0 +1,16 @@
+# Public synthetic fixtures; application objects remain app-scoped.
+[]
+access = read : [ * ], write : [ admin ]
+export = none
+
+[views]
+access = read : [ * ], write : [ admin ]
+export = none
+
+[lookups]
+access = read : [ * ], write : [ admin ]
+export = none
+
+[savedsearches]
+access = read : [ * ], write : [ admin ]
+export = none

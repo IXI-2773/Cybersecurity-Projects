@@ -1,0 +1,4 @@
+PASS: 2 permission findings -> 0 under the same SQL policies
+UID 65534: secret read allowed -> denied; script write allowed -> denied
+Control: public read allowed -> allowed; file contents unchanged; parent UID remains 0
+Scope: isolated Linux dummy files; no production system, account or service changed

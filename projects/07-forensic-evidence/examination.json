@@ -1,0 +1,60 @@
+{
+  "assessment": "The supplied artifacts support a download-to-scheduled-task sequence in this lab fixture.",
+  "case_id": "LAB-DFIR-001",
+  "findings": [
+    {
+      "artifact": "browser_history.csv",
+      "id": "FORENSIC_DOWNLOAD_SEQUENCE",
+      "label": "Download record precedes task creation by two minutes",
+      "severity": "medium",
+      "timestamp_utc": "2026-10-14T18:07:00Z"
+    },
+    {
+      "artifact": "scheduled_tasks.xml",
+      "id": "FORENSIC_PERSISTENCE_REFERENCE",
+      "label": "Scheduled task references the downloaded filename",
+      "severity": "high",
+      "timestamp_utc": "2026-10-14T18:09:00Z"
+    }
+  ],
+  "inventory": [
+    {
+      "artifact": "browser_history.csv",
+      "modified_utc": "2026-10-15T09:00:00Z",
+      "sha256": "28a2b8fdd240af17cefcc823aca3c0ae11248f6a96cfd544644aa188bf51c427",
+      "size_bytes": 187
+    },
+    {
+      "artifact": "case_notes.txt",
+      "modified_utc": "2026-10-15T09:00:00Z",
+      "sha256": "78bf085790a1e56a78d30aee01a212cc65ca0f4e72318eb6c1259772b7caebc6",
+      "size_bytes": 206
+    },
+    {
+      "artifact": "scheduled_tasks.xml",
+      "modified_utc": "2026-10-15T09:00:00Z",
+      "sha256": "73df7bdf09b42e2566b3e4c8b9e94f60bb16b51575ebd976bcbef61b2bb36aad",
+      "size_bytes": 246
+    }
+  ],
+  "limitations": "Artifacts are lab-created and do not establish execution, user intent, malware behavior, or a real incident.",
+  "original_sha256": "409bd208bf9a794f61e72176cc19c713cb81abb29e7b0006612075fed2c64cba",
+  "timeline": [
+    {
+      "artifact": "browser_history.csv",
+      "event": "Portal sign-in recorded",
+      "timestamp_utc": "2026-10-14T18:02:00Z"
+    },
+    {
+      "artifact": "browser_history.csv",
+      "event": "Remote-support download URL recorded",
+      "timestamp_utc": "2026-10-14T18:07:00Z"
+    },
+    {
+      "artifact": "scheduled_tasks.xml",
+      "event": "SupportUpdate scheduled task created",
+      "timestamp_utc": "2026-10-14T18:09:00Z"
+    }
+  ],
+  "working_copy_sha256": "409bd208bf9a794f61e72176cc19c713cb81abb29e7b0006612075fed2c64cba"
+}

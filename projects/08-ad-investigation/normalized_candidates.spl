@@ -1,0 +1,16 @@
+``` UNEXECUTED candidate SPL. Input is the analyzer's records array, expanded to
+   one event per object by an ingestion pipeline. _time MUST equal numeric epoch,
+   not collection_time. No index/sourcetype or raw Windows extraction is implied.
+   Candidate RC4 burst only: not the whole investigation or production validation.
+   Verify streamstats inclusive endpoints, extraction and ordering in your backend. ```
+index=YOUR_NORMALIZED_AD_INDEX provider="Microsoft-Windows-Security-Auditing" event_id=4769
+| dedup host provider channel record_number
+| where status="0x0" AND encryption="0x17" AND isnotnull(actor) AND isnotnull(client_ip)
+    AND isnotnull(service) AND substr(service,-1)!="$" AND lower(service)!="krbtgt"
+| eval _time=epoch
+| sort 0 _time line
+| streamstats current=true time_window=15s dc(service) AS distinct_services values(service) AS services BY host actor client_ip
+| where distinct_services>=5
+| table _time host actor client_ip distinct_services services id
+``` This can emit multiple rows per burst. Python emits one strongest window per
+   group. Correlation/deduplication policy and backend tests remain necessary. ```

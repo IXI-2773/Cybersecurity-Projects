@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dashboard version="1.1" theme="dark">
+<label>SOC Authentication | Indexed CSV Investigation</label>
+<description>Indexed CSV events only. Empty until authorized upload to index lab_auth / sourcetype portfolio:auth. All timestamps and identities are fabricated and dated 2026-10-05. Detection results are review hypotheses, not confirmed compromises.</description>
+<row>
+<panel><title>Synthetic events</title><single><search><query><![CDATA[index=lab_auth sourcetype="portfolio:auth"
+| stats count as total_events]]></query><earliest>0</earliest><latest>now</latest></search></single></panel>
+<panel><title>Scenario families</title><single><search><query><![CDATA[index=lab_auth sourcetype="portfolio:auth"
+| stats dc(scenario) as scenario_count]]></query><earliest>0</earliest><latest>now</latest></search></single></panel>
+</row>
+<row>
+<panel><title>Login successes and failures over time</title><chart><search><query><![CDATA[index=lab_auth sourcetype="portfolio:auth"
+| eval _time=strptime(replace(timestamp,"Z$","+0000"),"%Y-%m-%dT%H:%M:%S%z")
+| timechart span=10m count by event_type]]></query><earliest>0</earliest><latest>now</latest></search><option name="charting.chart">column</option></chart></panel>
+<panel><title>Source IPs by authentication activity</title><table><search><query><![CDATA[index=lab_auth sourcetype="portfolio:auth"
+| stats count(eval(event_type="login_failure")) as failures count(eval(event_type="login_success")) as successes by source_ip
+| sort - failures
+| head 10]]></query><earliest>0</earliest><latest>now</latest></search></table></panel>
+</row>
+<row><panel><title>Candidate successes following five failed attempts (inclusive 600 seconds)</title><table><search><query><![CDATA[index=lab_auth sourcetype="portfolio:auth"
+| where event_type="login_failure" OR event_type="login_success"
+| eval _time=strptime(replace(timestamp,"Z$","+0000"),"%Y-%m-%dT%H:%M:%S%z")
+| where isnotnull(_time) AND isnotnull(username) AND isnotnull(source_ip)
+| sort 0 _time
+| streamstats current=f count(eval(event_type="login_success")) as prior_successes by username source_ip
+| fillnull value=0 prior_successes
+| eval failure_epoch=if(event_type="login_failure",_time,null())
+| streamstats current=f list(failure_epoch) as prior_failure_times by username source_ip prior_successes
+| eval age_seconds=mvmap(prior_failure_times,_time-tonumber(prior_failure_times))
+| eval eligible_ages=mvfilter(isnotnull(age_seconds) AND age_seconds>=0 AND age_seconds<=600)
+| eval failure_count_in_window=coalesce(mvcount(eligible_ages),0)
+| where event_type="login_success" AND failure_count_in_window>=5
+| table timestamp username source_ip host scenario failure_count_in_window]]></query><earliest>0</earliest><latest>now</latest></search></table></panel></row>
+<row><panel><title>Fabricated event timeline</title><table><search><query><![CDATA[index=lab_auth sourcetype="portfolio:auth"
+| table timestamp username source_ip host event_type scenario
+| sort timestamp]]></query><earliest>0</earliest><latest>now</latest></search></table></panel></row>
+</dashboard>

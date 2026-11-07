@@ -1,0 +1,3 @@
+timestamp_utc,url,title
+2026-10-14T18:02:00Z,https://portal.example/login,Portal sign-in
+2026-10-14T18:07:00Z,https://downloads.example.invalid/remote-support.exe,Remote support download

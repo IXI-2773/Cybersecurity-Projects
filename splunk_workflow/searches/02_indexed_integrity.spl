@@ -1,0 +1,2 @@
+index=lab_auth sourcetype="portfolio:auth"
+| stats count as event_count dc(scenario) as scenario_count dc(username) as distinct_users

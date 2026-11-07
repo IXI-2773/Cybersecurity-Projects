@@ -1,0 +1,48 @@
+{
+  "case_id": "LAB-DFIR-001",
+  "findings": [
+    {
+      "id": "FORENSIC_DOWNLOAD_SEQUENCE",
+      "label": "Download record precedes task creation by two minutes",
+      "severity": "medium"
+    },
+    {
+      "id": "FORENSIC_PERSISTENCE_REFERENCE",
+      "label": "Scheduled task references the downloaded filename",
+      "severity": "high"
+    }
+  ],
+  "metrics": [
+    {
+      "label": "Artifacts inventoried",
+      "value": "3"
+    },
+    {
+      "label": "Timeline events",
+      "value": "3"
+    },
+    {
+      "label": "Findings",
+      "value": "2"
+    }
+  ],
+  "status": "Verified working-copy analysis",
+  "timeline": [
+    {
+      "label": "Portal sign-in recorded",
+      "state": "observed",
+      "time": "18:02Z"
+    },
+    {
+      "label": "Remote-support download URL recorded",
+      "state": "finding",
+      "time": "18:07Z"
+    },
+    {
+      "label": "SupportUpdate scheduled task created",
+      "state": "finding",
+      "time": "18:09Z"
+    }
+  ],
+  "title": "Forensic evidence examination"
+}

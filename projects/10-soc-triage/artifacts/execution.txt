@@ -1,0 +1,2 @@
+PARTIAL: input_rows=20, accepted_events=13, duplicate_rows=1, rejected_rows=6, review_candidates=3
+Wrote case.json and report.html; findings require analyst review.

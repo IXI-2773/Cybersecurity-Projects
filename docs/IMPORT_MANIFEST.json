@@ -1,0 +1,1135 @@
+{
+  "source_repository": "IXI-2773/Cybersecurity_Portfolio",
+  "source_commit": "4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89",
+  "files": [
+    {
+      "path": ".gitignore",
+      "source_sha256": "a8599cb78eb0e0b9efd3373b61713661bdb62d5b28d143020f1e04117caf67de",
+      "import_sha256": "484c4bb7a0c97a5c7bfb4adabfd23ae1ccfdf066de651cb6a0bc352874246b97",
+      "change": "synthetic fixture tracking exception added"
+    },
+    {
+      "path": "assets/evidence/splunk-native-dashboard-results.png",
+      "source_sha256": "cf99420085245622e959ffb40aebcb397c1640f208d8c2112f6debce6c324412",
+      "import_sha256": "cf99420085245622e959ffb40aebcb397c1640f208d8c2112f6debce6c324412",
+      "change": "unchanged"
+    },
+    {
+      "path": "assets/js/ad-evidence.js",
+      "source_sha256": "6611b82c19d475ec648e4fec708bd9bee53b558e0c52fb14fd72b8d680b101ff",
+      "import_sha256": "6611b82c19d475ec648e4fec708bd9bee53b558e0c52fb14fd72b8d680b101ff",
+      "change": "unchanged"
+    },
+    {
+      "path": "docs/research/2026-10-24-ad-investigation-source-intake.json",
+      "source_sha256": "fa0facd00708da31dedf3bc04c2ef87b35096b1513dfcc7b0be783e944014a56",
+      "import_sha256": "fa0facd00708da31dedf3bc04c2ef87b35096b1513dfcc7b0be783e944014a56",
+      "change": "unchanged"
+    },
+    {
+      "path": "docs/research/2026-10-24-ad-investigation-source-intake.md",
+      "source_sha256": "e4004fe9bd888723ed5b9a60d9414c1c64f3f330c646780695a8642c13fd1ff0",
+      "import_sha256": "e4004fe9bd888723ed5b9a60d9414c1c64f3f330c646780695a8642c13fd1ff0",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/README.md",
+      "source_sha256": "16df1058c7da8c89bfc00d8021916b811c04353eae78dd8391afa6634abbb9aa",
+      "import_sha256": "16df1058c7da8c89bfc00d8021916b811c04353eae78dd8391afa6634abbb9aa",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/SOC_CASE_REPORT.md",
+      "source_sha256": "d8af21731deb9c199d9b9dca671efc61cefc1e053a9dee2d9c9a97e75612de32",
+      "import_sha256": "d8af21731deb9c199d9b9dca671efc61cefc1e053a9dee2d9c9a97e75612de32",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/SPLUNK_MATRIX_BOUNDARY_RETEST.md",
+      "source_sha256": "9fb9a1f4b0598c3646531dc91494b205e25c6c53e28aac597a9a7c7c7c2e873c",
+      "import_sha256": "9fb9a1f4b0598c3646531dc91494b205e25c6c53e28aac597a9a7c7c7c2e873c",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/SPLUNK_MATRIX_BOUNDARY_RETEST.spl",
+      "source_sha256": "8636265d5b52c9925ca63c6a55e1cead4a9630efb977734b315e6b37344e642a",
+      "import_sha256": "8636265d5b52c9925ca63c6a55e1cead4a9630efb977734b315e6b37344e642a",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/SPLUNK_MATRIX_BOUNDARY_RETEST_RESULT_2026-10-23.md",
+      "source_sha256": "3699a5edf0d9f3c1fbd99d15fe11df0abad69c113e144e3ad3a709de81cf3956",
+      "import_sha256": "3699a5edf0d9f3c1fbd99d15fe11df0abad69c113e144e3ad3a709de81cf3956",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/SPLUNK_MATRIX_FIRST_RUN_2026-10-23.md",
+      "source_sha256": "101b10b24c6369a35fe6d3104668a648939fa962ecef10f26960ca319340dce8",
+      "import_sha256": "101b10b24c6369a35fe6d3104668a648939fa962ecef10f26960ca319340dce8",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/SPLUNK_MATRIX_IN_MEMORY.md",
+      "source_sha256": "d450fd8799699f61d6d34f4e93d9ff7a8282414b429ece734e109e99db933065",
+      "import_sha256": "5cffc40638901f28d3b013d14b0c11871ac2a7bcd296eaf42788ed42ef953d02",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/01-authentication-detection/SPLUNK_MATRIX_IN_MEMORY.spl",
+      "source_sha256": "80bfd4a0828458dd11b5eb310fe99d301f3c007f520a70a9bf08d6abcb9351ab",
+      "import_sha256": "80bfd4a0828458dd11b5eb310fe99d301f3c007f520a70a9bf08d6abcb9351ab",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/SPLUNK_RUNBOOK.md",
+      "source_sha256": "347757cd3af84b6694dc1b9b09e432943c68ff205c5f380287b4e5445bd76e7a",
+      "import_sha256": "347757cd3af84b6694dc1b9b09e432943c68ff205c5f380287b4e5445bd76e7a",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/SPLUNK_SMOKE_OBSERVATION_2026-10-23.md",
+      "source_sha256": "5034e0e4bd62f8b5883aff3c52b446fe0e82579eff8d62829c7df32edf451949",
+      "import_sha256": "5034e0e4bd62f8b5883aff3c52b446fe0e82579eff8d62829c7df32edf451949",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/SPLUNK_SMOKE_TEST.spl",
+      "source_sha256": "9682f7349c47dcf6d0622113c9478879bdd9bdc5baa53413ab954cb5261aaece",
+      "import_sha256": "9682f7349c47dcf6d0622113c9478879bdd9bdc5baa53413ab954cb5261aaece",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/auth_events.csv",
+      "source_sha256": "91c83ee13f7c12c5937156506710fe6525a57e9397805015e043336f0069b454",
+      "import_sha256": "91c83ee13f7c12c5937156506710fe6525a57e9397805015e043336f0069b454",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/detect_auth.py",
+      "source_sha256": "589d83c3277e676d02b54316c48ba91f8efd85a9b2ec6ba1e0437c946f42ebc4",
+      "import_sha256": "589d83c3277e676d02b54316c48ba91f8efd85a9b2ec6ba1e0437c946f42ebc4",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/expected_findings.json",
+      "source_sha256": "35aceeb382f1d4749fa2ebe81c1c89d33143dd54126a6f6dcc0719aa6a9f1d0e",
+      "import_sha256": "35aceeb382f1d4749fa2ebe81c1c89d33143dd54126a6f6dcc0719aa6a9f1d0e",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/qualify_exports.py",
+      "source_sha256": "68ddb08a58d2b5651afaa04b74c9b9b5206bf0e876747673ff06877736856064",
+      "import_sha256": "68ddb08a58d2b5651afaa04b74c9b9b5206bf0e876747673ff06877736856064",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/run_live_splunk_smoke.py",
+      "source_sha256": "a081bf0531bf441dfb0b938b9ce71b5af4c44413d11cfd245ceb671e087793ed",
+      "import_sha256": "a081bf0531bf441dfb0b938b9ce71b5af4c44413d11cfd245ceb671e087793ed",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/sample_findings.json",
+      "source_sha256": "bf82bb313a937cad1f75423186fd2374f06d8b539108d2bdde38dbd774a266a4",
+      "import_sha256": "bf82bb313a937cad1f75423186fd2374f06d8b539108d2bdde38dbd774a266a4",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/splunk.spl",
+      "source_sha256": "f8cc6a04a2c2a3b8626ddbbcf2e26a1cc16cb8418e145f9a9752b47f1706a1a1",
+      "import_sha256": "f8cc6a04a2c2a3b8626ddbbcf2e26a1cc16cb8418e145f9a9752b47f1706a1a1",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/test_detect_auth.py",
+      "source_sha256": "5c1ed55d89e86e5d8a2488e28366bae9c6bf531a3aa326ef3288edb9aa59dae5",
+      "import_sha256": "5c1ed55d89e86e5d8a2488e28366bae9c6bf531a3aa326ef3288edb9aa59dae5",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/test_live_smoke.py",
+      "source_sha256": "122b1843a72647725e1ef37779b39c8c2be1e39ead2fc256ab1f6d60055373cc",
+      "import_sha256": "122b1843a72647725e1ef37779b39c8c2be1e39ead2fc256ab1f6d60055373cc",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/test_qualification.py",
+      "source_sha256": "f2611855b2f72384fb58ca787a3bd4b68a7ceae1ce58766993ae4c9f3e8d9b31",
+      "import_sha256": "f2611855b2f72384fb58ca787a3bd4b68a7ceae1ce58766993ae4c9f3e8d9b31",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/validate_matrix.py",
+      "source_sha256": "119215b35857def9e0ee96c4177bf68b27730b7827badad2b52b480c8d4ce7a5",
+      "import_sha256": "119215b35857def9e0ee96c4177bf68b27730b7827badad2b52b480c8d4ce7a5",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/01-authentication-detection/validation_events.csv",
+      "source_sha256": "84ca7b35537c724c06dd8c8dc67dfafa0bd13a6e4079b216f7e71c4fd8568a03",
+      "import_sha256": "84ca7b35537c724c06dd8c8dc67dfafa0bd13a6e4079b216f7e71c4fd8568a03",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/02-windows-process-triage/CASE_REPORT.md",
+      "source_sha256": "6812ceb07179654ed38b45e9b8732d718b179813c398aca48849159fa16dd895",
+      "import_sha256": "6812ceb07179654ed38b45e9b8732d718b179813c398aca48849159fa16dd895",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/02-windows-process-triage/README.md",
+      "source_sha256": "8f5734249a5985252e5e747c6b94771c11c860de2cf6309fb312e2c6ae8ec180",
+      "import_sha256": "8f5734249a5985252e5e747c6b94771c11c860de2cf6309fb312e2c6ae8ec180",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/02-windows-process-triage/events_4688.csv",
+      "source_sha256": "4fa794c087e0e3b6cd03e5f8c126e9afe5d65a2e7d42a631e158e8beab419188",
+      "import_sha256": "4fa794c087e0e3b6cd03e5f8c126e9afe5d65a2e7d42a631e158e8beab419188",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/02-windows-process-triage/process_triage.py",
+      "source_sha256": "cd8784969935356a724d55a2a5f1e7885f6338fe5b1d5d4137e0578398412064",
+      "import_sha256": "cd8784969935356a724d55a2a5f1e7885f6338fe5b1d5d4137e0578398412064",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/02-windows-process-triage/test_process_triage.py",
+      "source_sha256": "3e2b908bed3b784bdf1a8bcf8eeca41d156cc280505fd9d8cccb50e480106ef7",
+      "import_sha256": "3e2b908bed3b784bdf1a8bcf8eeca41d156cc280505fd9d8cccb50e480106ef7",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/03-network-pcap/CASE_REPORT.md",
+      "source_sha256": "942c35a2669070235ea741f3388792d761ffba4a04a39df51e7d21cb72821a7b",
+      "import_sha256": "c922cea16c0a9b720e2fc204a7b78291d278cc4babfad68cf8ffb2f06f47b41e",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/03-network-pcap/README.md",
+      "source_sha256": "7d067dc584a03ed0b1bff67c92033d03b5124cc96eae7e12b5b4b9ed83e0bb9b",
+      "import_sha256": "fabed80319943a01cac50aa2d53ce07d598be0d2b5adf83a42b543f4c2287966",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/03-network-pcap/analyze_pcap.py",
+      "source_sha256": "aa72e9a37fa44f2e1c7cd7a87618f3aff7f727fdd0634f74071eea82f9b3bb99",
+      "import_sha256": "aa72e9a37fa44f2e1c7cd7a87618f3aff7f727fdd0634f74071eea82f9b3bb99",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/03-network-pcap/expected_findings.json",
+      "source_sha256": "86669bef04122b51d74a14491816ec58d293dc2490442b854442be1442c40e81",
+      "import_sha256": "86669bef04122b51d74a14491816ec58d293dc2490442b854442be1442c40e81",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/03-network-pcap/generate_fixture.py",
+      "source_sha256": "9ef4b75b66b84f2ce4a3ebc4afda2fa45b3dd8637c452b01bf8a74e69b5893fd",
+      "import_sha256": "9ef4b75b66b84f2ce4a3ebc4afda2fa45b3dd8637c452b01bf8a74e69b5893fd",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/03-network-pcap/test_network_lab.py",
+      "source_sha256": "36092ff54675ebaeead19ee5d5a666f58bebf6dc72424591668f716eb65a92b4",
+      "import_sha256": "36092ff54675ebaeead19ee5d5a666f58bebf6dc72424591668f716eb65a92b4",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/CASE_REPORT.md",
+      "source_sha256": "71761f958f46dc284551372f9c0067cb40a66f10e219661c5b7c83bb8bdc58b5",
+      "import_sha256": "71761f958f46dc284551372f9c0067cb40a66f10e219661c5b7c83bb8bdc58b5",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/README.md",
+      "source_sha256": "1d15728e84592c776370fdb33e38eafa747caf17711cfa0106ea16a28b2e9baf",
+      "import_sha256": "1d15728e84592c776370fdb33e38eafa747caf17711cfa0106ea16a28b2e9baf",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/access.log",
+      "source_sha256": "8dfdae67ce98745040a9d00a66b28ad3fd4279168735620c15276b41609134b2",
+      "import_sha256": "8dfdae67ce98745040a9d00a66b28ad3fd4279168735620c15276b41609134b2",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/analyze_access_log.py",
+      "source_sha256": "e5777b9bdee8a7b2575d51fefebb75215c53c7864889e24c5553f63d1a036ace",
+      "import_sha256": "e5777b9bdee8a7b2575d51fefebb75215c53c7864889e24c5553f63d1a036ace",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/attack_log_analysis.json",
+      "source_sha256": "e7c0dc305e30899e8ea2a72c8614f006a6ef4d36dd3cdb070f07ab112bb3a8a8",
+      "import_sha256": "e7c0dc305e30899e8ea2a72c8614f006a6ef4d36dd3cdb070f07ab112bb3a8a8",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/audit_demo.py",
+      "source_sha256": "f21d6c640e1c6777e08eaad9c51d6390bf32ae1b038006722fb86d6655861a38",
+      "import_sha256": "f21d6c640e1c6777e08eaad9c51d6390bf32ae1b038006722fb86d6655861a38",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/evidence-summary.json",
+      "source_sha256": "b5309bb8787f49537c0566b77d6329196bafc5256044273e5fd252f3c3235be2",
+      "import_sha256": "b5309bb8787f49537c0566b77d6329196bafc5256044273e5fd252f3c3235be2",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/expected_assessment.json",
+      "source_sha256": "6c7bf9d96f325d17b807f5c02caec7379be82149bc6f9531363e4eab6bac077c",
+      "import_sha256": "6c7bf9d96f325d17b807f5c02caec7379be82149bc6f9531363e4eab6bac077c",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/fixture_app.py",
+      "source_sha256": "2bc860465f71f40ca6e7c40e9b2e256598e449d4bcf3b05c0c80ff1a74b990e8",
+      "import_sha256": "2bc860465f71f40ca6e7c40e9b2e256598e449d4bcf3b05c0c80ff1a74b990e8",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/request_manifest.json",
+      "source_sha256": "479d80955ea83ea02dabf2de1963f5598ec7836f4922c050c298fe3d6dd51b32",
+      "import_sha256": "479d80955ea83ea02dabf2de1963f5598ec7836f4922c050c298fe3d6dd51b32",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/run_request_lab.py",
+      "source_sha256": "764fe08040973b9afe80acc4d28dd367f960c3b8ce555180d793b78e99d47e28",
+      "import_sha256": "764fe08040973b9afe80acc4d28dd367f960c3b8ce555180d793b78e99d47e28",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/test_attack_log_lab.py",
+      "source_sha256": "990309799f968c8925a82f081af99673776d0b069b90f35ac66ed310da8195ef",
+      "import_sha256": "990309799f968c8925a82f081af99673776d0b069b90f35ac66ed310da8195ef",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/04-local-vulnerability-assessment/test_vulnerability_lab.py",
+      "source_sha256": "d9c9c5d7d94a8f7e985224a0564e344e0ea6a315a95c088bd3f56e18e9b51d20",
+      "import_sha256": "d9c9c5d7d94a8f7e985224a0564e344e0ea6a315a95c088bd3f56e18e9b51d20",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/05-phishing-email/CASE_REPORT.md",
+      "source_sha256": "66f97d4a8da669b923454470eda5861dffa5237bc692019d98f872aa340dc73b",
+      "import_sha256": "66f97d4a8da669b923454470eda5861dffa5237bc692019d98f872aa340dc73b",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/05-phishing-email/README.md",
+      "source_sha256": "9519aab614522d6e292dfa25b0465d2fed8d839816410a2e84d125facd42dd6b",
+      "import_sha256": "9519aab614522d6e292dfa25b0465d2fed8d839816410a2e84d125facd42dd6b",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/05-phishing-email/analysis.json",
+      "source_sha256": "e8dcb0b8e93164b7c37e342d89908df19c7757a69d6d9773aff93353893e3618",
+      "import_sha256": "e8dcb0b8e93164b7c37e342d89908df19c7757a69d6d9773aff93353893e3618",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/05-phishing-email/analyze_email.py",
+      "source_sha256": "bf04cb21dd239d7572cbd1d621caaeb43fcca71586d4ae6e05afb2d66ad29cd7",
+      "import_sha256": "bf04cb21dd239d7572cbd1d621caaeb43fcca71586d4ae6e05afb2d66ad29cd7",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/05-phishing-email/evidence-summary.json",
+      "source_sha256": "ec4fc93bcc03d750eb33a1bf0d3c746465d7dbf94dca05516fab5cfc8e249dee",
+      "import_sha256": "ec4fc93bcc03d750eb33a1bf0d3c746465d7dbf94dca05516fab5cfc8e249dee",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/05-phishing-email/expected_analysis.json",
+      "source_sha256": "e8dcb0b8e93164b7c37e342d89908df19c7757a69d6d9773aff93353893e3618",
+      "import_sha256": "e8dcb0b8e93164b7c37e342d89908df19c7757a69d6d9773aff93353893e3618",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/05-phishing-email/sample_message.eml",
+      "source_sha256": "d110efbb542d29e4a0b5e29a2479a637c435d26c98dd872ff85fc6c5e0ba5442",
+      "import_sha256": "d110efbb542d29e4a0b5e29a2479a637c435d26c98dd872ff85fc6c5e0ba5442",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/05-phishing-email/test_email_analysis.py",
+      "source_sha256": "7b32fd4aafa050df240bd85e8f833867d2304997e8ff23e3b521b13d8e42e16e",
+      "import_sha256": "7b32fd4aafa050df240bd85e8f833867d2304997e8ff23e3b521b13d8e42e16e",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/06-enterprise-account/CASE_REPORT.md",
+      "source_sha256": "48a5f65a8d3173626e9433ad79446b0d16041860f0826c0b33f4b78b03856a08",
+      "import_sha256": "48a5f65a8d3173626e9433ad79446b0d16041860f0826c0b33f4b78b03856a08",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/06-enterprise-account/README.md",
+      "source_sha256": "485d44eb26fb473ec6e6eb7c793f819f55dc2311ff3596ae06e1c6a4014db6f5",
+      "import_sha256": "485d44eb26fb473ec6e6eb7c793f819f55dc2311ff3596ae06e1c6a4014db6f5",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/06-enterprise-account/account_events.csv",
+      "source_sha256": "11ad6768c5467e4ca117d073ca544205c9cfb244be512ecbd5979d8fa267dadb",
+      "import_sha256": "11ad6768c5467e4ca117d073ca544205c9cfb244be512ecbd5979d8fa267dadb",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/06-enterprise-account/analysis.json",
+      "source_sha256": "9a7ba3da2642495c82a2c60339b38cfd47d143614455d6bf00393e9e4d1b0aea",
+      "import_sha256": "9a7ba3da2642495c82a2c60339b38cfd47d143614455d6bf00393e9e4d1b0aea",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/06-enterprise-account/analyze_account.py",
+      "source_sha256": "0258e862e30c9deb0357f1f747a71ff7c4213c6d34bf49596a7681ae71ccc802",
+      "import_sha256": "0258e862e30c9deb0357f1f747a71ff7c4213c6d34bf49596a7681ae71ccc802",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/06-enterprise-account/evidence-summary.json",
+      "source_sha256": "39f808bbd110fe4b337e509eec381c2212a4a21f38d448954ab91aa0ab72bf93",
+      "import_sha256": "39f808bbd110fe4b337e509eec381c2212a4a21f38d448954ab91aa0ab72bf93",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/06-enterprise-account/expected_analysis.json",
+      "source_sha256": "9a7ba3da2642495c82a2c60339b38cfd47d143614455d6bf00393e9e4d1b0aea",
+      "import_sha256": "9a7ba3da2642495c82a2c60339b38cfd47d143614455d6bf00393e9e4d1b0aea",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/06-enterprise-account/test_account_analysis.py",
+      "source_sha256": "6f1da82c168b472c2f361a7630eca4466d37be49366518e498649c44876ce89a",
+      "import_sha256": "6f1da82c168b472c2f361a7630eca4466d37be49366518e498649c44876ce89a",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/07-forensic-evidence/CASE_REPORT.md",
+      "source_sha256": "e0c10d870b1b85f6cbbbd3a8eefc061de499722544214f5b1b4be04454fc3d50",
+      "import_sha256": "e0c10d870b1b85f6cbbbd3a8eefc061de499722544214f5b1b4be04454fc3d50",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/07-forensic-evidence/README.md",
+      "source_sha256": "8c09ceeb31c9197ac61cecd4fa272550bb92521f2b3c3f867f14dbb4a93bd7e4",
+      "import_sha256": "8c09ceeb31c9197ac61cecd4fa272550bb92521f2b3c3f867f14dbb4a93bd7e4",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/07-forensic-evidence/build_evidence.py",
+      "source_sha256": "8a319e62e732cd075b5c0cf3e4b85bfbdf3667234e6357ea8d684433e9ede0c5",
+      "import_sha256": "8a319e62e732cd075b5c0cf3e4b85bfbdf3667234e6357ea8d684433e9ede0c5",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/07-forensic-evidence/evidence-package.zip",
+      "source_sha256": "409bd208bf9a794f61e72176cc19c713cb81abb29e7b0006612075fed2c64cba",
+      "import_sha256": "409bd208bf9a794f61e72176cc19c713cb81abb29e7b0006612075fed2c64cba",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/07-forensic-evidence/evidence-source/browser_history.csv",
+      "source_sha256": "28a2b8fdd240af17cefcc823aca3c0ae11248f6a96cfd544644aa188bf51c427",
+      "import_sha256": "28a2b8fdd240af17cefcc823aca3c0ae11248f6a96cfd544644aa188bf51c427",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/07-forensic-evidence/evidence-source/case_notes.txt",
+      "source_sha256": "78bf085790a1e56a78d30aee01a212cc65ca0f4e72318eb6c1259772b7caebc6",
+      "import_sha256": "78bf085790a1e56a78d30aee01a212cc65ca0f4e72318eb6c1259772b7caebc6",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/07-forensic-evidence/evidence-source/scheduled_tasks.xml",
+      "source_sha256": "73df7bdf09b42e2566b3e4c8b9e94f60bb16b51575ebd976bcbef61b2bb36aad",
+      "import_sha256": "73df7bdf09b42e2566b3e4c8b9e94f60bb16b51575ebd976bcbef61b2bb36aad",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/07-forensic-evidence/evidence-summary.json",
+      "source_sha256": "d588a4346271815095ec1c132d18305e19030009afee18d3a0979f253b2599dd",
+      "import_sha256": "d588a4346271815095ec1c132d18305e19030009afee18d3a0979f253b2599dd",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/07-forensic-evidence/examination.json",
+      "source_sha256": "f775f3a3d607fa915689e317c99da38f06ba074b4ce736efd5dc877a542dbfe3",
+      "import_sha256": "f775f3a3d607fa915689e317c99da38f06ba074b4ce736efd5dc877a542dbfe3",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/07-forensic-evidence/examine_evidence.py",
+      "source_sha256": "a5566c29eec236e93ea465751393c7b55bf37723d9af1a10e98cb9501cc4547b",
+      "import_sha256": "a5566c29eec236e93ea465751393c7b55bf37723d9af1a10e98cb9501cc4547b",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/07-forensic-evidence/manifest.json",
+      "source_sha256": "83f92b61153e0f870b72a20817a9ebce2c3699ede6107d54667fd4a4220a4ae8",
+      "import_sha256": "83f92b61153e0f870b72a20817a9ebce2c3699ede6107d54667fd4a4220a4ae8",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/07-forensic-evidence/test_forensic_lab.py",
+      "source_sha256": "473fb89b8cb42eed302c35f4bb5d456d5fb584c08b9a373b7c555938af28c97f",
+      "import_sha256": "473fb89b8cb42eed302c35f4bb5d456d5fb584c08b9a373b7c555938af28c97f",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/08-ad-investigation/AD_Incident_Report.pdf",
+      "source_sha256": "d4e3b30460166f8975dd51a09203bac4e5553b213bc186daf71437cfd14aa0db",
+      "import_sha256": "d4e3b30460166f8975dd51a09203bac4e5553b213bc186daf71437cfd14aa0db",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/08-ad-investigation/CASE_REPORT.md",
+      "source_sha256": "e386fb450190cb1dcff578e7693a440204151a15172edd5c1cf00c04b30785ac",
+      "import_sha256": "e386fb450190cb1dcff578e7693a440204151a15172edd5c1cf00c04b30785ac",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/08-ad-investigation/SOURCE_LICENSE.txt",
+      "source_sha256": "fce88163b60d67ecabd317b75f7638233e11cbe648fe608ebbf6c10161564686",
+      "import_sha256": "fce88163b60d67ecabd317b75f7638233e11cbe648fe608ebbf6c10161564686",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/08-ad-investigation/analysis.json",
+      "source_sha256": "6d3725a420b8408b3a7908c694cc3b2cc1d7fbb6af4e77bcb9d1ab3bb13151d9",
+      "import_sha256": "6d3725a420b8408b3a7908c694cc3b2cc1d7fbb6af4e77bcb9d1ab3bb13151d9",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/08-ad-investigation/analyze.py",
+      "source_sha256": "89c2a51d6f0e0b8f9d75372cc5f020c206d7335dd70c6507ca405b501629457d",
+      "import_sha256": "89c2a51d6f0e0b8f9d75372cc5f020c206d7335dd70c6507ca405b501629457d",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/08-ad-investigation/evidence.csv",
+      "source_sha256": "45ddf19fa1bec00d66ce4c7000e4acc64385c559d0f255602492af05006f6e87",
+      "import_sha256": "45ddf19fa1bec00d66ce4c7000e4acc64385c559d0f255602492af05006f6e87",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/08-ad-investigation/expected_findings.json",
+      "source_sha256": "490b82e64dd9089a038571f9ade3e96a1aeeccada90391bd59ae7881e8f23be4",
+      "import_sha256": "490b82e64dd9089a038571f9ade3e96a1aeeccada90391bd59ae7881e8f23be4",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/08-ad-investigation/incident_brief.json",
+      "source_sha256": "b8b1c41c0dd89d2ab470dba2e30ff11f48c517727098de994abc852990238797",
+      "import_sha256": "b8b1c41c0dd89d2ab470dba2e30ff11f48c517727098de994abc852990238797",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/08-ad-investigation/normalized_candidates.spl",
+      "source_sha256": "481ce2a4b25a918a4c59e4cfb41ff02e710f4dda9f3cb3fccce6bd31a5ac6e75",
+      "import_sha256": "481ce2a4b25a918a4c59e4cfb41ff02e710f4dda9f3cb3fccce6bd31a5ac6e75",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/08-ad-investigation/remote_powershell_sigma.yml",
+      "source_sha256": "26f68ea9f1a95f996506763c826c5f94d92baff02c2741b6d28a1cb9791671a1",
+      "import_sha256": "26f68ea9f1a95f996506763c826c5f94d92baff02c2741b6d28a1cb9791671a1",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/08-ad-investigation/test_analysis.py",
+      "source_sha256": "9db290795ac9bb0040f33ba4f09639f80574e0c32d0731176c66525acb49811d",
+      "import_sha256": "9db290795ac9bb0040f33ba4f09639f80574e0c32d0731176c66525acb49811d",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/09-linux-access-audit/README.md",
+      "source_sha256": "7bbc46bc06f583959950631a71d9d41c9d8a03ab0780f473bff923bdc77a9e63",
+      "import_sha256": "84e87b451713d55f5259e95b7556d549ba29dda1be2e367d4f871da522a547bc",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/09-linux-access-audit/artifacts/executed_report.json",
+      "source_sha256": "493fd3f9c8e55453ff044c2cfc56de9e4c09e266dbe7b8815f48f4f2dfee0a77",
+      "import_sha256": "493fd3f9c8e55453ff044c2cfc56de9e4c09e266dbe7b8815f48f4f2dfee0a77",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/09-linux-access-audit/artifacts/execution.txt",
+      "source_sha256": "6f9412ffa3746ec34ae11988d297c15a51d88a18f00f1b70ce3332d87e7fb813",
+      "import_sha256": "6f9412ffa3746ec34ae11988d297c15a51d88a18f00f1b70ce3332d87e7fb813",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/09-linux-access-audit/audit.sql",
+      "source_sha256": "ee4cc7568cf92fd9af28c3080b172085d42ea25e7fc4b9c709b4c0c1bddabeee",
+      "import_sha256": "ee4cc7568cf92fd9af28c3080b172085d42ea25e7fc4b9c709b4c0c1bddabeee",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/09-linux-access-audit/audit_lab.py",
+      "source_sha256": "5f9ff93caa9ef1613c5c7ffb1bfbd4870dbdba2edfab51336b954cecd345590c",
+      "import_sha256": "5f9ff93caa9ef1613c5c7ffb1bfbd4870dbdba2edfab51336b954cecd345590c",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/09-linux-access-audit/test_audit_lab.py",
+      "source_sha256": "a84fd266ccefe8b7c3bab48dcf783a1ce5ea6b2fc2e345ebcf3f041daed48ab3",
+      "import_sha256": "a84fd266ccefe8b7c3bab48dcf783a1ce5ea6b2fc2e345ebcf3f041daed48ab3",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/10-soc-triage/README.md",
+      "source_sha256": "22d4f6edb7d4277f30f75767a107f639a97dac9bb2ca4c56259066ddcf09b1c5",
+      "import_sha256": "22d4f6edb7d4277f30f75767a107f639a97dac9bb2ca4c56259066ddcf09b1c5",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/10-soc-triage/artifacts/case.json",
+      "source_sha256": "df4dea7322133c556bad9b149f10c047d369aa7bdf55ee5ebfb9a196726ffd6c",
+      "import_sha256": "df4dea7322133c556bad9b149f10c047d369aa7bdf55ee5ebfb9a196726ffd6c",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/10-soc-triage/artifacts/execution.txt",
+      "source_sha256": "de117d664dbeae964ed11f3fa6da042fb3cb5aae7ef78f4142e7de5eb4e0af75",
+      "import_sha256": "de117d664dbeae964ed11f3fa6da042fb3cb5aae7ef78f4142e7de5eb4e0af75",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/10-soc-triage/artifacts/report.html",
+      "source_sha256": "3a7267799ce14f6bcf23a1ff3e44999402264504786d33d31d41f0e3c86c5730",
+      "import_sha256": "3a7267799ce14f6bcf23a1ff3e44999402264504786d33d31d41f0e3c86c5730",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/10-soc-triage/fixtures/authentication.csv",
+      "source_sha256": "0099191c7dd9ab4395676b63b93b95de9ef28d4152b08e626ee0939f44efffae",
+      "import_sha256": "0099191c7dd9ab4395676b63b93b95de9ef28d4152b08e626ee0939f44efffae",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/10-soc-triage/fixtures/processes.json",
+      "source_sha256": "2461f8d3fa083458e7ddc5398a4dc12a119477970f8d2fb300b4b767f610702a",
+      "import_sha256": "2461f8d3fa083458e7ddc5398a4dc12a119477970f8d2fb300b4b767f610702a",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/10-soc-triage/run_demo.py",
+      "source_sha256": "8b53f994ea48004fe4e6b60c9062779df479f0f496a096ad95a059b6765633fd",
+      "import_sha256": "8b53f994ea48004fe4e6b60c9062779df479f0f496a096ad95a059b6765633fd",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/10-soc-triage/test_triage.py",
+      "source_sha256": "116e2c2dff2063b2815af4f8b266e2735e34b5d293ddc0de87857df2f47fb725",
+      "import_sha256": "116e2c2dff2063b2815af4f8b266e2735e34b5d293ddc0de87857df2f47fb725",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/10-soc-triage/triage.py",
+      "source_sha256": "f74800fa490303e2a62d061b53ca2d0ffdc6ebbbcc5b83800495a84ae1787fd7",
+      "import_sha256": "f74800fa490303e2a62d061b53ca2d0ffdc6ebbbcc5b83800495a84ae1787fd7",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/ad-attack-chain.md",
+      "source_sha256": "bee343306973399abb7b9ff6a8b335b8da9b8edd139b8514d1abbf421f0e513d",
+      "import_sha256": "bee343306973399abb7b9ff6a8b335b8da9b8edd139b8514d1abbf421f0e513d",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/authentication-detection.md",
+      "source_sha256": "83d4510c434693eea1d8c86c7990567bb60e4ef8497a45502e011c0e500219d9",
+      "import_sha256": "83d4510c434693eea1d8c86c7990567bb60e4ef8497a45502e011c0e500219d9",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/celestial-resonance.md",
+      "source_sha256": "2fc4d177104855c9b04ea41139c5cde0d83d03e3a3573f24ea25e7a135aa2949",
+      "import_sha256": "eb007f548a690a0171a692fad6061d680d9de4965a796c591f1ba809a524a998",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/certification-learning-engine.md",
+      "source_sha256": "91955319630e6cc108d19eed767aa7c4b11f50ca510593d0e7cae68b97755e8d",
+      "import_sha256": "b7cd94eeb6a1e72a681ef969d8535b67613e48f3e0c75095336da6b4691eb205",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/detection-engineering.md",
+      "source_sha256": "7a10ca29509c4cc977929629fe1235b40fec99cdf983cdd435f8a1b8fd417b08",
+      "import_sha256": "a55d0935008dd29566ed384dac34d4f70f2d66fa4a096a7a517d8d9f8f1a1b76",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/e3-digital-forensics.md",
+      "source_sha256": "2ef2fac5bbae4aaa5ff305582d400ecc2a0c8450b7cff058d6c9e0381d141f18",
+      "import_sha256": "65b102f707f927ce69d430c6109ec780dcc940de5b45f3496afa1c9feded09fc",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/identity-mfa-investigation.md",
+      "source_sha256": "99111a60b0499bd0323da35d9e25007068d5da25885b351059bbf307a4a3eb7b",
+      "import_sha256": "7d348d6a72e161db9716b2245a2ed2eb93987b6f4fd198a7c6692ffc58dfeb6f",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/kali-defender-visibility.md",
+      "source_sha256": "577a8149fa1e90c28ad73e4d8a3e97076885cc81b816aefcedc5eafc617d8279",
+      "import_sha256": "6b98326350515bf214e8baede1eb7c9ea72716698e32060d5d3570f8242a215b",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/network-intrusion-lab.md",
+      "source_sha256": "78a592b82a54551d037cdc9a94927fedaea000ae4b0f75ca99e4115f0d95e40b",
+      "import_sha256": "1399effe356a156db39eb6c86aeaad2be109c0b71cbf85995655c77eb22b58e0",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/network-traffic-analysis.md",
+      "source_sha256": "a4d5cd2a4f2a454d94d2d1d7fa704ea353cf31c51511c3295147a6576b71f040",
+      "import_sha256": "876ddad9262a3a3606cfd559d51e42236d6d08d6c4caa1b4d50f4d801cc2438b",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/offensive-security-vm-labs.md",
+      "source_sha256": "289b074017c9f8244b0687620872fecc26a01ed0a505ed87ab34490bc7d8adf5",
+      "import_sha256": "289b074017c9f8244b0687620872fecc26a01ed0a505ed87ab34490bc7d8adf5",
+      "change": "unchanged"
+    },
+    {
+      "path": "projects/phishing-investigation.md",
+      "source_sha256": "9cbac379ba7973c20de3f89fa52b1da32bd0ee2a4e10892fc9fcd49019ed76ce",
+      "import_sha256": "f1c2572c61ecf08dfd2c40edbc210d629d298404b67b564a2e4f80edece0f2d7",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/research-ai-infrastructure.md",
+      "source_sha256": "ee0c8256157a84519d50efc0769e6bda054f2e6b5da7935a6e9a204e6509c4fa",
+      "import_sha256": "5cba53ecfce9713b9b1f8a1d10439163616642fdcf053489fc2f9e417dc1a8d7",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/soc-triage-automation.md",
+      "source_sha256": "7adc56d443b0ef5cef8c3e6ea7513c03119413ce194df848a45e8a8d47ad36b4",
+      "import_sha256": "4bddb1c41e14081d9c7e024dcbb8308a8dc7649a05e148281ab8786d58b65c95",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/splunk-siem-investigation.md",
+      "source_sha256": "51b785f7e835b0220a19a2b04ed6bee2f45258f376a431018b758b7d847ec9d9",
+      "import_sha256": "ab292b879b7f65c9d5851d01f35f0382cce3ce8e412b1359747785a40f0655e9",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/splunk-threat-hunting.md",
+      "source_sha256": "ce7db2ab61e79a7691ba5c74bbde01ab01e4f1373902405f8be90571cc3d40aa",
+      "import_sha256": "1e0d2491b559936484407aceac9b6f7fd540cc8856963d74e363f7cbf01fbb09",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/vulnerability-remediation.md",
+      "source_sha256": "5c888de68184127afe17715f77d7119f41e850495b8d324b65e073a21eba0fcc",
+      "import_sha256": "050b9f7a636f092ed928abc122da0c2bbfb95de1ee74405217256a716bd92f59",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "projects/windows-process-triage.md",
+      "source_sha256": "7ae1cc4eebc79bd82ce2614799c3b0a870624fd296f9cf7bdaef7ecc104cdaa5",
+      "import_sha256": "24e479c5c6f0d8f0766c94a116c8bc13a219e94450513984a23018f5a322205c",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "scripts/build_splunk_app.py",
+      "source_sha256": "a62aea4da2dd14e8006de54292258b4dccfc888ff0519460e2f6c8f733d61ab7",
+      "import_sha256": "a62aea4da2dd14e8006de54292258b4dccfc888ff0519460e2f6c8f733d61ab7",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_app/don_lopez_soc/default/app.conf",
+      "source_sha256": "24ccd7f3d3ef88d248cf2ead75f70931b88143d7459fe303a834285961a14ae3",
+      "import_sha256": "24ccd7f3d3ef88d248cf2ead75f70931b88143d7459fe303a834285961a14ae3",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_app/don_lopez_soc/default/data/ui/nav/default.xml",
+      "source_sha256": "010327c8b68144379fd53927e70c60fb8b6012be853fce1844e70cc3927e1c06",
+      "import_sha256": "010327c8b68144379fd53927e70c60fb8b6012be853fce1844e70cc3927e1c06",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_app/don_lopez_soc/default/data/ui/views/auth_triage_demo.xml",
+      "source_sha256": "280277cc3e5f8bb4fa02a687e8de027e21d180824ce8a3f095ee49b930912a7a",
+      "import_sha256": "280277cc3e5f8bb4fa02a687e8de027e21d180824ce8a3f095ee49b930912a7a",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_app/don_lopez_soc/default/data/ui/views/auth_triage_indexed.xml",
+      "source_sha256": "129b5ec78f3dc529c99b0b6d107898fa7e233df420e2a0ae40134ddec44b5372",
+      "import_sha256": "129b5ec78f3dc529c99b0b6d107898fa7e233df420e2a0ae40134ddec44b5372",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_app/don_lopez_soc/default/savedsearches.conf",
+      "source_sha256": "8db24d76b1f6eedc24b0317105a6714640d61e854d8360620cf45d80941806c9",
+      "import_sha256": "8db24d76b1f6eedc24b0317105a6714640d61e854d8360620cf45d80941806c9",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_app/don_lopez_soc/lookups/portfolio_auth_validation.csv",
+      "source_sha256": "84ca7b35537c724c06dd8c8dc67dfafa0bd13a6e4079b216f7e71c4fd8568a03",
+      "import_sha256": "84ca7b35537c724c06dd8c8dc67dfafa0bd13a6e4079b216f7e71c4fd8568a03",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_app/don_lopez_soc/metadata/default.meta",
+      "source_sha256": "022dd8b9f08259722340af39ad2e18795b2271edac3f99bcd49c2b8801540fb9",
+      "import_sha256": "022dd8b9f08259722340af39ad2e18795b2271edac3f99bcd49c2b8801540fb9",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/ALERTING.md",
+      "source_sha256": "0128964b6d489bbf88479a85ca50d9b8f2c116b19b484280fb515863d534dabb",
+      "import_sha256": "0128964b6d489bbf88479a85ca50d9b8f2c116b19b484280fb515863d534dabb",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/EXECUTION.md",
+      "source_sha256": "1b041329620a2d3f8787f18f632dcfaf1189885ccef64c1f80a0614d86a42335",
+      "import_sha256": "1b041329620a2d3f8787f18f632dcfaf1189885ccef64c1f80a0614d86a42335",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/INGESTION.md",
+      "source_sha256": "157f98ab3383cac86cfc8f7c881fd97c8affacad4a91ef27728fd71fcae5b83d",
+      "import_sha256": "157f98ab3383cac86cfc8f7c881fd97c8affacad4a91ef27728fd71fcae5b83d",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/NATIVE_DASHBOARD_RESULT_2026-10-23.md",
+      "source_sha256": "78fda891196c4f0d7f1b1d97f39f634ef9ee16e73ec628e6305cb237002604e8",
+      "import_sha256": "78fda891196c4f0d7f1b1d97f39f634ef9ee16e73ec628e6305cb237002604e8",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/NO_APP_DASHBOARD.xml",
+      "source_sha256": "0036d5e82d673c361e008369d1857c1d97f6fd28a41afa45ff07a7f0a4d2baaa",
+      "import_sha256": "0036d5e82d673c361e008369d1857c1d97f6fd28a41afa45ff07a7f0a4d2baaa",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/NO_APP_GUIDE.md",
+      "source_sha256": "a4f9f1f97f11e030b27f2d1b3aac6687cf5c515a7921bd0a03827b8b05f166c1",
+      "import_sha256": "a4f9f1f97f11e030b27f2d1b3aac6687cf5c515a7921bd0a03827b8b05f166c1",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/README.md",
+      "source_sha256": "9ddae0acf7864239a74e3a0cd85081cdd1dd670b51f2fdef81cf0b8aa6c01f8e",
+      "import_sha256": "2ff6b99575237440d00520244f7269fed50b3a506449cc16223f170181cfad6e",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "splunk_workflow/VALIDATION_CHECKLIST.md",
+      "source_sha256": "b9c6f6ed8b6a4cd2e0af07a6277ae2bccb88327d85d3fdf774f9ce80b530ab58",
+      "import_sha256": "a7b374a1d64b5ef5a5305d8eaa01f8f81492f509d2a76729ec07eace700d0194",
+      "change": "documentation links/instructions adapted"
+    },
+    {
+      "path": "splunk_workflow/searches/01_fixture_integrity.spl",
+      "source_sha256": "663f1badd1eb1c46820c4cd9bfd41776714321beba9defdd057e768fb0e76ff4",
+      "import_sha256": "663f1badd1eb1c46820c4cd9bfd41776714321beba9defdd057e768fb0e76ff4",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/searches/02_indexed_integrity.spl",
+      "source_sha256": "a68fb82165521fbb92d0534d00bdb1dad91e71fc1d10aeccd6d5f3d58c111026",
+      "import_sha256": "a68fb82165521fbb92d0534d00bdb1dad91e71fc1d10aeccd6d5f3d58c111026",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/searches/03_indexed_event_timeline.spl",
+      "source_sha256": "97cf93a2b215908a28becdafbc0ae7d4653a42ba86a5a94a3e2ca6121ac93455",
+      "import_sha256": "97cf93a2b215908a28becdafbc0ae7d4653a42ba86a5a94a3e2ca6121ac93455",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/searches/04_indexed_failure_over_time.spl",
+      "source_sha256": "9dc434675b3cfd962ec5cf22d5d919788ba9ba2327c86c960fcca89b6114ff78",
+      "import_sha256": "9dc434675b3cfd962ec5cf22d5d919788ba9ba2327c86c960fcca89b6114ff78",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/searches/05_indexed_top_sources.spl",
+      "source_sha256": "006ef88787e4b09d3ca1e5e58d36202ce298ef7609a83b796d606b548e2a381a",
+      "import_sha256": "006ef88787e4b09d3ca1e5e58d36202ce298ef7609a83b796d606b548e2a381a",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/searches/06_lookup_auth_detection.spl",
+      "source_sha256": "482286e4e31aa85d707055505f78997d58bda0ca1c941b74a76f334cdfc2f293",
+      "import_sha256": "482286e4e31aa85d707055505f78997d58bda0ca1c941b74a76f334cdfc2f293",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/searches/07_indexed_auth_detection.spl",
+      "source_sha256": "03e7a2796ad99262d2e8668db21d3150099b711e01dfe2b674089f75fc6ae9c9",
+      "import_sha256": "03e7a2796ad99262d2e8668db21d3150099b711e01dfe2b674089f75fc6ae9c9",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/searches/08_alert_preview_indexed.spl",
+      "source_sha256": "6901ff95af8445d86d91885b1d148853b5990019578bfd2e4e5818a62c03b9c1",
+      "import_sha256": "6901ff95af8445d86d91885b1d148853b5990019578bfd2e4e5818a62c03b9c1",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/searches/09_alert_preview_synthetic.spl",
+      "source_sha256": "be7a19ff8fa227b52c7425b4a3b9473ae23739d99646e982146537fba76496b3",
+      "import_sha256": "be7a19ff8fa227b52c7425b4a3b9473ae23739d99646e982146537fba76496b3",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/test_verify_execution.py",
+      "source_sha256": "5abaf9a3fcbb9f40cd8e21949dccc63a826338fb2549f55a919eaefec736d71f",
+      "import_sha256": "5abaf9a3fcbb9f40cd8e21949dccc63a826338fb2549f55a919eaefec736d71f",
+      "change": "unchanged"
+    },
+    {
+      "path": "splunk_workflow/verify_execution.py",
+      "source_sha256": "d5d0c4ba0992fa182c3aaf67afb2fa1828d4e648d25a54b72385f85c74044ed0",
+      "import_sha256": "d5d0c4ba0992fa182c3aaf67afb2fa1828d4e648d25a54b72385f85c74044ed0",
+      "change": "unchanged"
+    },
+    {
+      "path": "scripts/check_splunk_workflow.py",
+      "source_sha256": "79c19acd775d74e07ec5dfede84ff8a1f9c164a05f5849bf0c00af873440868b",
+      "import_sha256": "79c19acd775d74e07ec5dfede84ff8a1f9c164a05f5849bf0c00af873440868b",
+      "change": "unchanged"
+    }
+  ],
+  "rebased_links": [
+    {
+      "file": "projects/01-authentication-detection/SPLUNK_MATRIX_IN_MEMORY.md",
+      "from": "../../scripts/check_case_evidence.py",
+      "to": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/scripts/check_case_evidence.py"
+    },
+    {
+      "file": "projects/03-network-pcap/CASE_REPORT.md",
+      "from": "../../assets/network/pcap-evidence-overview.svg",
+      "to": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/network/pcap-evidence-overview.svg"
+    },
+    {
+      "file": "projects/03-network-pcap/CASE_REPORT.md",
+      "from": "../../assets/network/dns-nxdomain-investigation.svg",
+      "to": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/network/dns-nxdomain-investigation.svg"
+    },
+    {
+      "file": "projects/03-network-pcap/CASE_REPORT.md",
+      "from": "../../assets/network/http-request-comparison.svg",
+      "to": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/network/http-request-comparison.svg"
+    },
+    {
+      "file": "projects/03-network-pcap/README.md",
+      "from": "../../assets/network/pcap-evidence-overview.svg",
+      "to": "https://raw.githubusercontent.com/IXI-2773/Cybersecurity_Portfolio/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/network/pcap-evidence-overview.svg"
+    },
+    {
+      "file": "projects/03-network-pcap/README.md",
+      "from": "../../assets/network/dns-nxdomain-investigation.svg",
+      "to": "https://raw.githubusercontent.com/IXI-2773/Cybersecurity_Portfolio/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/network/dns-nxdomain-investigation.svg"
+    },
+    {
+      "file": "projects/03-network-pcap/README.md",
+      "from": "../../assets/network/http-request-comparison.svg",
+      "to": "https://raw.githubusercontent.com/IXI-2773/Cybersecurity_Portfolio/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/network/http-request-comparison.svg"
+    },
+    {
+      "file": "projects/09-linux-access-audit/README.md",
+      "from": "../linux-sql-access-audit.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/linux-sql-access-audit.html"
+    },
+    {
+      "file": "projects/celestial-resonance.md",
+      "from": "celestial-resonance.html#cr-demo-title",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/celestial-resonance.html#cr-demo-title"
+    },
+    {
+      "file": "projects/celestial-resonance.md",
+      "from": "../docs/RECRUITER_OVERVIEW.md",
+      "to": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/docs/RECRUITER_OVERVIEW.md"
+    },
+    {
+      "file": "projects/certification-learning-engine.md",
+      "from": "../docs/LEARNING_ENGINE_EVIDENCE_2026-10-24.md",
+      "to": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/docs/LEARNING_ENGINE_EVIDENCE_2026-10-24.md"
+    },
+    {
+      "file": "projects/certification-learning-engine.md",
+      "from": "../education.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/education.html"
+    },
+    {
+      "file": "projects/detection-engineering.md",
+      "from": "detection-engineering.html#auth-lab-title",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/detection-engineering.html#auth-lab-title"
+    },
+    {
+      "file": "projects/detection-engineering.md",
+      "from": "../docs/DETECTION_EVIDENCE_MATRIX.md",
+      "to": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/docs/DETECTION_EVIDENCE_MATRIX.md"
+    },
+    {
+      "file": "projects/detection-engineering.md",
+      "from": "../explore.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/explore.html"
+    },
+    {
+      "file": "projects/detection-engineering.md",
+      "from": "../education.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/education.html"
+    },
+    {
+      "file": "projects/e3-digital-forensics.md",
+      "from": "../assets/evidence/forensic-evidence-examination.svg",
+      "to": "https://raw.githubusercontent.com/IXI-2773/Cybersecurity_Portfolio/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/evidence/forensic-evidence-examination.svg"
+    },
+    {
+      "file": "projects/e3-digital-forensics.md",
+      "from": "../education.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/education.html"
+    },
+    {
+      "file": "projects/identity-mfa-investigation.md",
+      "from": "../assets/evidence/enterprise-account-investigation.svg",
+      "to": "https://raw.githubusercontent.com/IXI-2773/Cybersecurity_Portfolio/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/evidence/enterprise-account-investigation.svg"
+    },
+    {
+      "file": "projects/kali-defender-visibility.md",
+      "from": "network-intrusion-lab.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/network-intrusion-lab.html"
+    },
+    {
+      "file": "projects/kali-defender-visibility.md",
+      "from": "network-traffic-analysis.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/network-traffic-analysis.html"
+    },
+    {
+      "file": "projects/kali-defender-visibility.md",
+      "from": "../education.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/education.html"
+    },
+    {
+      "file": "projects/network-intrusion-lab.md",
+      "from": "../explore.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/explore.html"
+    },
+    {
+      "file": "projects/network-intrusion-lab.md",
+      "from": "../education.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/education.html"
+    },
+    {
+      "file": "projects/network-traffic-analysis.md",
+      "from": "../assets/network/pcap-evidence-overview.svg",
+      "to": "https://raw.githubusercontent.com/IXI-2773/Cybersecurity_Portfolio/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/network/pcap-evidence-overview.svg"
+    },
+    {
+      "file": "projects/network-traffic-analysis.md",
+      "from": "../assets/network/dns-nxdomain-investigation.svg",
+      "to": "https://raw.githubusercontent.com/IXI-2773/Cybersecurity_Portfolio/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/network/dns-nxdomain-investigation.svg"
+    },
+    {
+      "file": "projects/network-traffic-analysis.md",
+      "from": "../assets/network/http-request-comparison.svg",
+      "to": "https://raw.githubusercontent.com/IXI-2773/Cybersecurity_Portfolio/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/network/http-request-comparison.svg"
+    },
+    {
+      "file": "projects/phishing-investigation.md",
+      "from": "../assets/evidence/phishing-investigation.svg",
+      "to": "https://raw.githubusercontent.com/IXI-2773/Cybersecurity_Portfolio/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/evidence/phishing-investigation.svg"
+    },
+    {
+      "file": "projects/research-ai-infrastructure.md",
+      "from": "research-ai-infrastructure.html#rai-demo-title",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/research-ai-infrastructure.html#rai-demo-title"
+    },
+    {
+      "file": "projects/research-ai-infrastructure.md",
+      "from": "../docs/SOC_TRIAGE_PLAYBOOK.md",
+      "to": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/docs/SOC_TRIAGE_PLAYBOOK.md"
+    },
+    {
+      "file": "projects/research-ai-infrastructure.md",
+      "from": "../docs/DETECTION_EVIDENCE_MATRIX.md",
+      "to": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/docs/DETECTION_EVIDENCE_MATRIX.md"
+    },
+    {
+      "file": "projects/research-ai-infrastructure.md",
+      "from": "../docs/RECRUITER_OVERVIEW.md",
+      "to": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/docs/RECRUITER_OVERVIEW.md"
+    },
+    {
+      "file": "projects/soc-triage-automation.md",
+      "from": "soc-triage-automation.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/soc-triage-automation.html"
+    },
+    {
+      "file": "projects/splunk-siem-investigation.md",
+      "from": "soc-analyst-workflow.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/soc-analyst-workflow.html"
+    },
+    {
+      "file": "projects/splunk-siem-investigation.md",
+      "from": "../explore.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/explore.html"
+    },
+    {
+      "file": "projects/splunk-siem-investigation.md",
+      "from": "../education.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/education.html"
+    },
+    {
+      "file": "projects/splunk-threat-hunting.md",
+      "from": "authentication-detection.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/authentication-detection.html"
+    },
+    {
+      "file": "projects/splunk-threat-hunting.md",
+      "from": "../education.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/education.html"
+    },
+    {
+      "file": "projects/vulnerability-remediation.md",
+      "from": "../assets/evidence/web-attack-log-investigation.svg",
+      "to": "https://raw.githubusercontent.com/IXI-2773/Cybersecurity_Portfolio/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/assets/evidence/web-attack-log-investigation.svg"
+    },
+    {
+      "file": "projects/vulnerability-remediation.md",
+      "from": "../education.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/education.html"
+    },
+    {
+      "file": "projects/windows-process-triage.md",
+      "from": "../docs/SOC_TRIAGE_PLAYBOOK.md",
+      "to": "https://github.com/IXI-2773/Cybersecurity_Portfolio/blob/4eff2aa84ddec581d1127eb12d5a3ac9dc2fff89/docs/SOC_TRIAGE_PLAYBOOK.md"
+    },
+    {
+      "file": "projects/windows-process-triage.md",
+      "from": "../education.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/education.html"
+    },
+    {
+      "file": "splunk_workflow/VALIDATION_CHECKLIST.md",
+      "from": "../projects/splunk-synthetic-preview.html",
+      "to": "https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/splunk-synthetic-preview.html"
+    }
+  ]
+}

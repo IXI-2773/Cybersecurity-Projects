@@ -1,0 +1,4 @@
+index=lab_auth sourcetype="portfolio:auth"
+| stats count(eval(event_type="login_failure")) as failures count(eval(event_type="login_success")) as successes by source_ip
+| sort - failures
+| head 10

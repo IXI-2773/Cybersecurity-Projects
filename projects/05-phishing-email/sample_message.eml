@@ -1,0 +1,15 @@
+From: "Contoso IT Support" <support@contoso.example>
+Reply-To: "Security Center" <security-check@contoso-login.example>
+To: analyst@sample.invalid
+Subject: Password expires today
+Date: Mon, 19 Oct 2026 09:14:00 -0700
+Message-ID: <lab-mail-001@contoso.example>
+Authentication-Results: mx.sample.invalid; spf=fail smtp.mailfrom=contoso.example; dkim=none; dmarc=fail header.from=contoso.example
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Your password expires today. Review your account at:
+https://contoso-login.example/verify?account=analyst
+
+This message is a harmless portfolio fixture. The domains are reserved examples.
