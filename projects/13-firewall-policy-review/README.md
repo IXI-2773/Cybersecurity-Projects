@@ -6,6 +6,8 @@
 
 This small CLI makes firewall-rule *review candidates* easy to explain to an interviewer. It reads a local, deliberately simplified policy file and reports:
 
+**Start here for a hiring-manager review:** [RDP source restriction and partial-overlap case study](CASE_STUDY.md). It connects a fabricated input, original findings, an analyst's reasoning and a reproduced follow-up result. For a visual artifact, see the [HTML findings report](artifacts/partial_overlap_report.html).
+
 | Finding code | Trigger | Interpretation |
 | --- | --- | --- |
 | `UNRESTRICTED_ADMIN_SOURCE` | Allow TCP/22, 3389, 5985 or 5986 from IPv4/IPv6 `/0` | Administrative service source range needs review |
@@ -89,9 +91,9 @@ For the default JSON mode, input must be an object with `name` (text), `default_
 
 ## Scope and next extensions
 
-- **Now:** three static checks on JSON plus a bounded IPv4 `iptables-save` filter/INPUT importer with single/combined shadowing, partial-overlap findings, and reproducible JSON/HTML/CSV report examples.
-- **Next:** add a short interview-oriented case walkthrough that connects the findings to manual review questions and preserves the fabricated-lab label.
-- **Later:** expand supported match syntax only with dedicated evidence and tests; pursue a properly authorized, sanitized real-world configuration case study.
+- **Now:** three static checks on JSON plus a bounded IPv4 `iptables-save` filter/INPUT importer with single/combined shadowing, partial-overlap findings, reproducible JSON/HTML/CSV examples and a [before/after analyst case study](CASE_STUDY.md).
+- **Next:** expand supported match syntax only when an authorized sample and focused tests establish a useful need.
+- **Later:** pursue a properly authorized, sanitized real-world configuration case study and validate actual behavior with independent network evidence.
 
 The reviewer does **not** fully parse iptables or parse nftables, Azure/AWS rules, NAT, interfaces, routing or zone precedence. Beyond exact match coverage in the supported INPUT model, it does not establish real reachability, account for upstream controls, infer asset criticality or replace a managed firewall audit.
 
