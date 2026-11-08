@@ -19,7 +19,7 @@ SCOPE = (
 )
 ROOT_ELEMENTS = {"Version", "Statement", "Id"}
 STATEMENT_ELEMENTS = {"Sid", "Effect", "Action", "Resource", "Condition"}
-SERVICE_WILDCARD = re.compile(r"^[A-Za-z0-9]+:\*$")
+SERVICE_WILDCARD = re.compile(r"^[A-Za-z0-9][A-Za-z0-9-]*:\*$")
 
 
 def _terms(value, label):

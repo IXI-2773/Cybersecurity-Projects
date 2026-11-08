@@ -65,6 +65,18 @@ class IamPolicyReviewTests(unittest.TestCase):
             "detail": "Allow statement lists service-wide action wildcard(s) s3:* with Resource *; review scope.",
         }])
 
+    def test_flags_service_wildcard_with_hyphenated_aws_namespace(self):
+        # AWS API Gateway uses execute-api; excluding hyphens misses this valid action namespace.
+        policy = {"Version": "2012-10-17", "Statement": {
+            "Sid": "AllApiExecution", "Effect": "Allow",
+            "Action": "execute-api:*", "Resource": "*"
+        }}
+        run = self.run_policy(policy)
+        self.assertEqual(run.returncode, 1, run.stderr)
+        report = json.loads(run.stdout)
+        self.assertEqual([finding["code"] for finding in report["findings"]],
+                         ["SERVICE_ACTIONS_ALL_RESOURCES"])
+
     def test_passrole_action_matching_is_case_insensitive(self):
         # A case-sensitive check silently misses an AWS-equivalent spelling.
         policy = {"Version": "2012-10-17", "Statement": {

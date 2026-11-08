@@ -38,7 +38,7 @@ It accepts one IAM JSON document with `Version: "2012-10-17"`, a nonempty `State
 
 - `ALL_ACTIONS_ALL_RESOURCES`: literal `Action: "*"` with `Resource: "*"`.
 - `PASSROLE_ALL_RESOURCES`: literal `iam:PassRole` with `Resource: "*"`.
-- `SERVICE_ACTIONS_ALL_RESOURCES`: literal service-wide pattern such as `s3:*` with `Resource: "*"`.
+- `SERVICE_ACTIONS_ALL_RESOURCES`: literal service-wide pattern such as `s3:*` or `execute-api:*` with `Resource: "*"` (including hyphenated AWS service namespaces).
 - `ASSUMEROLE_ALL_RESOURCES`: literal `sts:AssumeRole` with `Resource: "*"`; other policies and role trust still control actual access.
 
 The reviewer treats AWS action names case-insensitively for exact `PassRole`/`AssumeRole` matches, and can emit multiple distinct review candidates for mixed action lists. Literal `Action: "*"` remains one umbrella candidate. Conditions are recorded as present but not interpreted.
