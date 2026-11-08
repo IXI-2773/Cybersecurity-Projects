@@ -22,3 +22,4 @@ jobs:
           python scripts/check_catalog.py
           python scripts/check_splunk_workflow.py
           python scripts/check_upstream_imports.py
+          python scripts/check_external_imports.py

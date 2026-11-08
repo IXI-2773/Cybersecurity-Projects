@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "imports": [
+    {
+      "name": "dnstwist",
+      "repository": "elceef/dnstwist",
+      "commit": "341395377f40761fe4152f43fd18eea757b6069a",
+      "license": "Apache-2.0",
+      "root": "third_party/external/dnstwist",
+      "scope": "Original CLI source, dictionaries, dependency metadata and text documentation; root README symlink, optional web application and binary demos not imported. Source-only, no DNS/network checks performed.",
+      "files": [
+        {
+          "path": ".gitignore",
+          "git_blob_sha1": "b5743da938b13fddcc7860552d9dad0f86841b98"
+        },
+        {
+          "path": "Dockerfile",
+          "git_blob_sha1": "e42108587470b179395cec5fc000bf609f261c5e"
+        },
+        {
+          "path": "LICENSE",
+          "git_blob_sha1": "a3adfa26ea32b14c02541d7ad3ace8304d78051a"
+        },
+        {
+          "path": "dictionaries/abused_tlds.dict",
+          "git_blob_sha1": "8a56133859bd858150b3000b914dbbfc92513778"
+        },
+        {
+          "path": "dictionaries/common_tlds.dict",
+          "git_blob_sha1": "39735c39431fe7d3b04727d93419bcb933b301cb"
+        },
+        {
+          "path": "dictionaries/english.dict",
+          "git_blob_sha1": "5f0a403f391da5d25c444e5e4abbc894a6f7192c"
+        },
+        {
+          "path": "dictionaries/french.dict",
+          "git_blob_sha1": "c869bff2a3680641d78f1b66429c1a2bcbe42acd"
+        },
+        {
+          "path": "dictionaries/polish.dict",
+          "git_blob_sha1": "3d31dae5cd4a738e4a9a430718f9cfe3817060e2"
+        },
+        {
+          "path": "dnstwist.py",
+          "git_blob_sha1": "a05067743c599a32c12a5ffce13addedead3d443"
+        },
+        {
+          "path": "docs/README.md",
+          "git_blob_sha1": "4dd4387e8e554cc6860767d12e723dcc358cabb2"
+        },
+        {
+          "path": "docs/THANKS.md",
+          "git_blob_sha1": "70ae3bf49764886f86e7e9b6ca522a7fb2a705bb"
+        },
+        {
+          "path": "docs/dnstwist.1",
+          "git_blob_sha1": "fe1f5b540aa6447c524617a5d85e585f0f9d966c"
+        },
+        {
+          "path": "requirements.txt",
+          "git_blob_sha1": "a320ea0fcab7028879aa08e189bcdbb754c11530"
+        },
+        {
+          "path": "setup.py",
+          "git_blob_sha1": "8d2a7ba4f4ad10e8fbf00f5f4c6d8877d8795f7b"
+        }
+      ]
+    },
+    {
+      "name": "assetfinder",
+      "repository": "tomnomnom/assetfinder",
+      "commit": "4e95d8701aae8cff1c27af2626eb22ba110ad583",
+      "license": "MIT",
+      "root": "third_party/external/assetfinder",
+      "scope": "Original source tree with README, license and build helper; no build, domain discovery or network queries performed.",
+      "files": [
+        {
+          "path": ".gitignore",
+          "git_blob_sha1": "ca42e4202bea9f2468e701956beeb9312beced73"
+        },
+        {
+          "path": "LICENSE",
+          "git_blob_sha1": "5e58e590d99de11a4043e646b43fb1c37eff8cfa"
+        },
+        {
+          "path": "README.md",
+          "git_blob_sha1": "7bf4496576f3d80dee5d1ea418ee59de3a7444ce"
+        },
+        {
+          "path": "bufferoverrun.go",
+          "git_blob_sha1": "fd0b75c4061fca528e263c23b0cb934950d2a887"
+        },
+        {
+          "path": "certspotter.go",
+          "git_blob_sha1": "b8348697d763de7b0539a3f974df61b666864044"
+        },
+        {
+          "path": "crtsh.go",
+          "git_blob_sha1": "091751163004a6631f8f94a38b61afd2e7819aa9"
+        },
+        {
+          "path": "facebook.go",
+          "git_blob_sha1": "de5916e6503fc814d8b07801b29f20dbab7706ca"
+        },
+        {
+          "path": "findsubdomains.go",
+          "git_blob_sha1": "b992b9fc26f7b40d91bfbd1eb961f4098260feb2"
+        },
+        {
+          "path": "hackertarget.go",
+          "git_blob_sha1": "3c2e6e3f95db6476c958603b40fa14a320d6dfbd"
+        },
+        {
+          "path": "main.go",
+          "git_blob_sha1": "5ce96d04c759353a02c4fa5f40577b4504c00bed"
+        },
+        {
+          "path": "ratelimit.go",
+          "git_blob_sha1": "592508212cdd8b4955ee315bd4b4ad681b6d9055"
+        },
+        {
+          "path": "script/release",
+          "git_blob_sha1": "18f8d4fdd9e5560ab20949ec86918b68c5120d72"
+        },
+        {
+          "path": "threatcrowd.go",
+          "git_blob_sha1": "fa9a50f1a154fc5756cb08e125bad7c6c752b591"
+        },
+        {
+          "path": "urlscan.go",
+          "git_blob_sha1": "449650b7add84cf2620638a915e90ef207beb325"
+        },
+        {
+          "path": "virustotal.go",
+          "git_blob_sha1": "f34639565e17d1a77d636ad239caa84b3e31fd4b"
+        },
+        {
+          "path": "wayback.go",
+          "git_blob_sha1": "754128b3bd95b77462d4c5a80da30b8239c49cd8"
+        }
+      ]
+    },
+    {
+      "name": "httprobe",
+      "repository": "tomnomnom/httprobe",
+      "commit": "0745f649beb01c3cf712e0c52f9760d8a92cfdc2",
+      "license": "MIT",
+      "root": "third_party/external/httprobe",
+      "scope": "Original source tree with README, license and build metadata; no build, HTTP requests or reachability checks performed.",
+      "files": [
+        {
+          "path": ".gitignore",
+          "git_blob_sha1": "805d801b0913a9df945faab508c708964b058b88"
+        },
+        {
+          "path": "Dockerfile",
+          "git_blob_sha1": "1fa91edbc98f0834bd9d7174c7e338f8c5efe006"
+        },
+        {
+          "path": "LICENSE",
+          "git_blob_sha1": "57a94231d4f9edaf4a504eb47de823f5d24dfebc"
+        },
+        {
+          "path": "README.md",
+          "git_blob_sha1": "86405d6eb58a1e5f8ba27a48e2804ffa2944f8b8"
+        },
+        {
+          "path": "go.mod",
+          "git_blob_sha1": "93855fff04e544cdc127c10cd135dd3762bd1708"
+        },
+        {
+          "path": "main.go",
+          "git_blob_sha1": "60e50042b5afeef659c2daca0f24e959fa9d04c6"
+        },
+        {
+          "path": "script/release",
+          "git_blob_sha1": "bd8c8b78ea0cf56337041b44501275c1a3f01bcb"
+        }
+      ]
+    }
+  ]
+}
