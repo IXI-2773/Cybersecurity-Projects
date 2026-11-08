@@ -14,7 +14,7 @@ def git_blob_sha1(data: bytes) -> str:
 
 def main() -> None:
     records = json.loads(MANIFEST.read_text(encoding="utf-8"))["imports"]
-    expected_names = {"http-headers-scanner", "hash-identifier", "linux-cis-hardening-auditor", "dlp-scanner", "dns-lookup"}
+    expected_names = {"http-headers-scanner", "hash-identifier", "linux-cis-hardening-auditor", "dlp-scanner", "dns-lookup", "docker-security-audit", "sbom-generator-vulnerability-matcher"}
     if {item["name"] for item in records} != expected_names or len(records) != len(expected_names):
         raise ValueError("Unexpected community import set")
     total = 0

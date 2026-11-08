@@ -416,6 +416,294 @@
           "git_blob_sha1": "9b18dd93c04dd4a43c0b9aa52250e292bd5e2cf7"
         }
       ]
+    },
+    {
+      "name": "docker-security-audit",
+      "repository": "CarterPerez-dev/Cybersecurity-Projects",
+      "upstream_path": "PROJECTS/intermediate/docker-security-audit",
+      "commit": "6c8ac8547cf52edaa06935e637a1fe11ac45b865",
+      "license": "AGPL-3.0-or-later",
+      "credit": "AngelaMos (2026); distributed in CarterPerez-dev/Cybersecurity-Projects",
+      "root": "third_party/community/docker-security-audit",
+      "scope": "Verbatim Go CLI/runtime source, Dockerfile, README, go.mod, go.sum and license; upstream tests, build automation and learning modules omitted.",
+      "files": [
+        {
+          "path": "cmd/docksec/main.go",
+          "git_blob_sha1": "c49fd7b8071906ee0933a1b4480a084b82e3b38f"
+        },
+        {
+          "path": "internal/analyzer/analyzer.go",
+          "git_blob_sha1": "c5c7c0c035b6f87867e4cd8ca8ec0416a0cf3fa2"
+        },
+        {
+          "path": "internal/analyzer/compose.go",
+          "git_blob_sha1": "3f70433bbb7b9ad3536b125ab27a8c4bebfbc07d"
+        },
+        {
+          "path": "internal/analyzer/container.go",
+          "git_blob_sha1": "9eb3cddec11282f10ef57ec9cb0a3923a3ddc637"
+        },
+        {
+          "path": "internal/analyzer/daemon.go",
+          "git_blob_sha1": "654675dcb8e47daff297b6f906ffd36c58af2ec1"
+        },
+        {
+          "path": "internal/analyzer/dockerfile.go",
+          "git_blob_sha1": "9cc90a6b5092d6ed6867f89dada2d6321d6d7c64"
+        },
+        {
+          "path": "internal/analyzer/image.go",
+          "git_blob_sha1": "7acc843a7c36755f801571ddbc702923de9d8481"
+        },
+        {
+          "path": "internal/benchmark/controls.go",
+          "git_blob_sha1": "efc9282e558777669b561fae6223b6b50b63d2b9"
+        },
+        {
+          "path": "internal/config/config.go",
+          "git_blob_sha1": "a640b5a6fe454a08c6100515af4c016f34865d44"
+        },
+        {
+          "path": "internal/config/constants.go",
+          "git_blob_sha1": "b8a5180d7b71554383d75d55baa11a92722bfefe"
+        },
+        {
+          "path": "internal/docker/client.go",
+          "git_blob_sha1": "542e315dc43c023ac68e54f06ac6ee74cdec9565"
+        },
+        {
+          "path": "internal/finding/finding.go",
+          "git_blob_sha1": "fa622742da840cb64e493d78d7493b36745a24f3"
+        },
+        {
+          "path": "internal/parser/compose.go",
+          "git_blob_sha1": "aa8568744cf82727b17cf6750ff37013d2c9e8a6"
+        },
+        {
+          "path": "internal/parser/dockerfile.go",
+          "git_blob_sha1": "9f8cc891902e20f096944ca862c35f8e257df221"
+        },
+        {
+          "path": "internal/parser/visitor.go",
+          "git_blob_sha1": "1acff61bf5a602b06e9801aeb964808c09fdd2ff"
+        },
+        {
+          "path": "internal/proc/capabilities.go",
+          "git_blob_sha1": "1148f33a36dc6caa471bf8a3351771bb0be1fe58"
+        },
+        {
+          "path": "internal/proc/proc.go",
+          "git_blob_sha1": "0e76c00ade4b0b60155ed69bc7d7442a4eb09422"
+        },
+        {
+          "path": "internal/proc/security.go",
+          "git_blob_sha1": "0616c01e72b03f303c99b9f61d6472671952bc50"
+        },
+        {
+          "path": "internal/report/json.go",
+          "git_blob_sha1": "cf207cb4c485ba37d967c36e3fc220d7fa964240"
+        },
+        {
+          "path": "internal/report/junit.go",
+          "git_blob_sha1": "f4e5578c749a4e8f832ac8a83470fb2e77e70bb3"
+        },
+        {
+          "path": "internal/report/reporter.go",
+          "git_blob_sha1": "14a1d4ad36f4843e14cd6c3e0678ca96bf0f46c2"
+        },
+        {
+          "path": "internal/report/sarif.go",
+          "git_blob_sha1": "a158a20c8229ec420b9d5971d5ac5d0ee3757571"
+        },
+        {
+          "path": "internal/report/terminal.go",
+          "git_blob_sha1": "ae54abc404c8a1d7012c702261a3b5ff5544ca11"
+        },
+        {
+          "path": "internal/rules/capabilities.go",
+          "git_blob_sha1": "9cdfed1bce60d54a175b0dd272003a51f8e5b280"
+        },
+        {
+          "path": "internal/rules/paths.go",
+          "git_blob_sha1": "89bc2853849fe75d892e301d5094f617c0cd6f6c"
+        },
+        {
+          "path": "internal/rules/secrets.go",
+          "git_blob_sha1": "6018cebbf7621acb91bd387d2e0726d05ab13d8e"
+        },
+        {
+          "path": "internal/scanner/scanner.go",
+          "git_blob_sha1": "5f7eb7b0772c523c67e480723a73c956d328d9e4"
+        },
+        {
+          "path": "LICENSE",
+          "git_blob_sha1": "0ad25db4bd1d86c452db3f9602ccdbe172438f52"
+        },
+        {
+          "path": "README.md",
+          "git_blob_sha1": "612d7925268f99f6ec62213a1f6b76d2e49560e9"
+        },
+        {
+          "path": "go.mod",
+          "git_blob_sha1": "9bd9124b94d89933f8ba325396b8934865ad4b04"
+        },
+        {
+          "path": "go.sum",
+          "git_blob_sha1": "79a146c22bb0e71898f340078a4dac07aa3908f4"
+        },
+        {
+          "path": "Dockerfile",
+          "git_blob_sha1": "376426020479eb40227848ec7fb49793c8f260a8"
+        }
+      ]
+    },
+    {
+      "name": "sbom-generator-vulnerability-matcher",
+      "repository": "CarterPerez-dev/Cybersecurity-Projects",
+      "upstream_path": "PROJECTS/intermediate/sbom-generator-vulnerability-matcher",
+      "commit": "6c8ac8547cf52edaa06935e637a1fe11ac45b865",
+      "license": "AGPL-3.0-or-later",
+      "credit": "AngelaMos (2026); distributed in CarterPerez-dev/Cybersecurity-Projects",
+      "root": "third_party/community/sbom-generator-vulnerability-matcher",
+      "scope": "Verbatim Go CLI/runtime source, README, go.mod, go.sum and license; upstream tests, sample fixtures, install scripts, build automation and learning modules omitted.",
+      "files": [
+        {
+          "path": "cmd/bomber/main.go",
+          "git_blob_sha1": "43a543f02a20b62748f4955bc9b16e4f41fc0ff4"
+        },
+        {
+          "path": "internal/cli/check.go",
+          "git_blob_sha1": "089d19e2760bb91e6cb819fb63bde0706cb6c115"
+        },
+        {
+          "path": "internal/cli/generate.go",
+          "git_blob_sha1": "374aeeca873ba3b398633cd699915e0e54a8ebfb"
+        },
+        {
+          "path": "internal/cli/root.go",
+          "git_blob_sha1": "cca51a51032308fcfe8d1ab5f5f87cdeb60d8be2"
+        },
+        {
+          "path": "internal/cli/scan.go",
+          "git_blob_sha1": "922f49dda11bb1c355a89a2b1e128896533fcf8a"
+        },
+        {
+          "path": "internal/cli/vuln.go",
+          "git_blob_sha1": "ad00ebc31b944bcb887db7e5e9f3f751c6204179"
+        },
+        {
+          "path": "internal/config/config.go",
+          "git_blob_sha1": "cb93ebbc77c9e5748ea7e93c23d9a0430d51eff7"
+        },
+        {
+          "path": "internal/graph/graph.go",
+          "git_blob_sha1": "16cba80928a7a37ce608695da99f994de9fa47af"
+        },
+        {
+          "path": "internal/parser/gomod.go",
+          "git_blob_sha1": "f9fcb3b460ac8ea39bd8a422835fcfcc77fea6c4"
+        },
+        {
+          "path": "internal/parser/node.go",
+          "git_blob_sha1": "bb36aa34bdfcebf2a1891c6cbec14eb94bd761b2"
+        },
+        {
+          "path": "internal/parser/parser.go",
+          "git_blob_sha1": "e0ae460a65438a2498ebe4bf108e00211af9e52b"
+        },
+        {
+          "path": "internal/parser/python.go",
+          "git_blob_sha1": "3ec12721a25f7de0b4e4be76ddb6658e0398690d"
+        },
+        {
+          "path": "internal/parser/registry.go",
+          "git_blob_sha1": "356f11b2ae6e9e87fb1fd0edd3b55c74adabe229"
+        },
+        {
+          "path": "internal/policy/engine.go",
+          "git_blob_sha1": "b2c38fa8222d349a6ba54cb3e122910ad8fa7c4d"
+        },
+        {
+          "path": "internal/policy/rules.go",
+          "git_blob_sha1": "3365ad343c345a54484eafb7c7ff614d45f00e15"
+        },
+        {
+          "path": "internal/report/json.go",
+          "git_blob_sha1": "d9c665a0268e162000a06e584ac67300c5fb770a"
+        },
+        {
+          "path": "internal/report/terminal.go",
+          "git_blob_sha1": "2b10351af11a05384c1161367a6ad95caa98d1df"
+        },
+        {
+          "path": "internal/sbom/cyclonedx.go",
+          "git_blob_sha1": "b347e7e0f86a844ec9b0aae42b406bcdcbc03c7b"
+        },
+        {
+          "path": "internal/sbom/spdx.go",
+          "git_blob_sha1": "c13e3b102314dcfbedf7aeafe98ee33f00e84ffe"
+        },
+        {
+          "path": "internal/scanner/scanner.go",
+          "git_blob_sha1": "a89e446733ad9b6f68efbf57904517b46f586021"
+        },
+        {
+          "path": "internal/ui/banner.go",
+          "git_blob_sha1": "8605b429291db1e6941457f820fabbba5c2142d4"
+        },
+        {
+          "path": "internal/ui/color.go",
+          "git_blob_sha1": "452e0d822b24a0cf5b4ab8391525a2a7c21f61c6"
+        },
+        {
+          "path": "internal/ui/spinner.go",
+          "git_blob_sha1": "9cada0312d7f6afc18eb22dd81d3bd1530e6f4ad"
+        },
+        {
+          "path": "internal/ui/symbol.go",
+          "git_blob_sha1": "0a7461e0adfc83261d3b756af027c41e71abb1f2"
+        },
+        {
+          "path": "internal/vuln/cache.go",
+          "git_blob_sha1": "5e0827722ed636bbbc12598d4a6358fb1c8d89f1"
+        },
+        {
+          "path": "internal/vuln/client.go",
+          "git_blob_sha1": "acf7d0ebe6fdb26d682e3cc5c7de0ea0fb47b550"
+        },
+        {
+          "path": "internal/vuln/cvss.go",
+          "git_blob_sha1": "ea229a6fe1022d22436468852544d553799b289a"
+        },
+        {
+          "path": "internal/vuln/nvd.go",
+          "git_blob_sha1": "519da0ee8658d5106de818dbfdca16a5aec0aa8c"
+        },
+        {
+          "path": "internal/vuln/osv.go",
+          "git_blob_sha1": "be0b301996ea2353f47d376deaa1d470ad94e2ae"
+        },
+        {
+          "path": "pkg/types/types.go",
+          "git_blob_sha1": "ea81e3f22bcb9e884efa61bea34db1e5ea2fca2d"
+        },
+        {
+          "path": "LICENSE",
+          "git_blob_sha1": "0ad25db4bd1d86c452db3f9602ccdbe172438f52"
+        },
+        {
+          "path": "README.md",
+          "git_blob_sha1": "35987ad33159078f1577a96f5298e617c361ce98"
+        },
+        {
+          "path": "go.mod",
+          "git_blob_sha1": "d93ced9a9b00e54564e73e1f0547dd87023a7011"
+        },
+        {
+          "path": "go.sum",
+          "git_blob_sha1": "124a343ac8fd8c3b962d3bf5f5e3699639b71704"
+        }
+      ]
     }
   ]
 }

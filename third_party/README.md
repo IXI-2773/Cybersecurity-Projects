@@ -7,6 +7,6 @@ This directory contains unmodified release snapshots of software written by upst
 The collection-developed fixtures, runners and recorded results are described under [Open-source tool integrations](../README.md#open-source-tool-integrations). Portfolio investigations and software are listed separately under [Portfolio projects](../README.md#portfolio-projects).
 
 
-Additional [community CLI source copies](community/) include HTTP security-header scanning, hash identification, Linux CIS hardening audits, DLP scanning and DNS lookup from CarterPerez-dev/AngelaMos (AGPL-3.0-or-later). Their [separate pinned manifest](community/imports.json) leaves the previously recorded import evidence untouched. They are runnable source only; no collection-authored security findings or results are claimed.
+Additional [community CLI source copies](community/) include HTTP security-header scanning, hash identification, Linux CIS hardening audits, DLP scanning, DNS lookup, Docker security audits and SBOM/vulnerability matching from CarterPerez-dev/AngelaMos (AGPL-3.0-or-later). Their [separate pinned manifest](community/imports.json) leaves the previously recorded import evidence untouched. They are runnable source only; no collection-authored security findings or results are claimed.
 
 [Original authors and licenses](../THIRD_PARTY.md) · [Import manifest](imports.json)

@@ -9,6 +9,8 @@ These are **verbatim copies of upstream-authored CLI tools**, not software writt
 | [Linux CIS hardening auditor](linux-cis-hardening-auditor/) | [Beginner project](https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6c8ac8547cf52edaa06935e637a1fe11ac45b865/PROJECTS/beginner/linux-cis-hardening-auditor) | Evaluates Linux hardening controls and formats compliance reports. | Verbatim source; no host audit or recorded score |
 | [DLP scanner](dlp-scanner/) | [Intermediate project](https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6c8ac8547cf52edaa06935e637a1fe11ac45b865/PROJECTS/intermediate/dlp-scanner) | Checks files, database samples and packet captures for sensitive-data patterns. | Verbatim source; no real-data scan or results |
 | [DNS lookup CLI](dns-lookup/) | [Beginner project](https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6c8ac8547cf52edaa06935e637a1fe11ac45b865/PROJECTS/beginner/dns-lookup) | Queries DNS record types, reverse lookup and WHOIS. | Verbatim source; no network queries or results |
+| [Docker Security Auditor](docker-security-audit/) | [Intermediate project](https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6c8ac8547cf52edaa06935e637a1fe11ac45b865/PROJECTS/intermediate/docker-security-audit) | Checks container, Dockerfile and Compose configurations against security controls. | Verbatim source; no daemon connection or scan result |
+| [SBOM Vulnerability Matcher](sbom-generator-vulnerability-matcher/) | [Intermediate project](https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6c8ac8547cf52edaa06935e637a1fe11ac45b865/PROJECTS/intermediate/sbom-generator-vulnerability-matcher) | Generates SBOMs and matches dependencies to OSV/NVD records. | Verbatim source; no package scan or vulnerability findings |
 
 ## Use locally
 
@@ -36,7 +38,22 @@ dlp-scan --help
 dnslookup --help
 ```
 
-Only scan systems, hosts and data you own or are authorized to examine. DLP output can include sensitive matches: do not commit real logs, personal data, credentials, or scan reports to this public repo. The CIS auditor describes a benchmark subset, not a certification of compliance. DNS/WHOIS may make external queries. Hash identification is heuristic; HTTP-header grades are not vulnerability confirmation. **No execution outcome for any of these five imports is claimed.**
+
+For the copied Go CLIs, use the Go version specified by each upstream `go.mod` (Docker audit: 1.25.9; SBOM matcher: 1.25.0). These commands may download Go dependencies; they are **examples only and were not executed during import**:
+
+```bash
+cd third_party/community/docker-security-audit
+go run ./cmd/docksec --help
+```
+
+```bash
+cd third_party/community/sbom-generator-vulnerability-matcher
+go run ./cmd/bomber --help
+```
+
+Docker auditing may require permission to connect to a local Docker daemon. SBOM vulnerability matching uses external databases (OSV/NVD); do not run it in an unauthorized or sensitive repository without reviewing what it sends. The copied code is not independently security-audited and no successful build is claimed.
+
+Only scan systems, hosts and data you own or are authorized to examine. DLP output can include sensitive matches: do not commit real logs, personal data, credentials, or scan reports to this public repo. The CIS auditor describes a benchmark subset, not a certification of compliance. DNS/WHOIS may make external queries. Hash identification is heuristic; HTTP-header grades are not vulnerability confirmation. **No execution outcome for any of these seven imports is claimed.**
 
 Run the bounded source-integrity check, which **does not execute the imported scanners**:
 

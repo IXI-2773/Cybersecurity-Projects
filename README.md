@@ -92,6 +92,8 @@ These are runnable third-party CLI imports, **not projects written for this port
 | [Linux CIS hardening auditor](third_party/community/linux-cis-hardening-auditor/) | ©AngelaMos / CarterPerez-dev; Linux hardening checks and compliance scores | [Source and run limits](third_party/community/README.md) |
 | [DLP scanner](third_party/community/dlp-scanner/) | ©AngelaMos / CarterPerez-dev; checks for sensitive data in files, databases and PCAPs | [Source and run limits](third_party/community/README.md) |
 | [DNS lookup CLI](third_party/community/dns-lookup/) | ©AngelaMos / CarterPerez-dev; DNS, reverse lookup and WHOIS investigation | [Source and run limits](third_party/community/README.md) |
+| [Docker Security Auditor](third_party/community/docker-security-audit/) | ©AngelaMos / CarterPerez-dev; assesses Docker configurations and CIS-style controls | [Source and run limits](third_party/community/README.md) |
+| [SBOM Vulnerability Matcher](third_party/community/sbom-generator-vulnerability-matcher/) | ©AngelaMos / CarterPerez-dev; maps software dependencies and queries vulnerability data | [Source and run limits](third_party/community/README.md) |
 
 The pinned files have a [separate import manifest](third_party/community/imports.json), preserving the earlier recorded integrations unchanged.
 
