@@ -1,4 +1,4 @@
-"""Verify pinned, untouched community CLI copies; never execute upstream tools."""
+"""Verify pinned, untouched community tool copies; never execute upstream scanners."""
 import ast
 import hashlib
 import json
@@ -14,7 +14,7 @@ def git_blob_sha1(data: bytes) -> str:
 
 def main() -> None:
     records = json.loads(MANIFEST.read_text(encoding="utf-8"))["imports"]
-    expected_names = {"http-headers-scanner", "hash-identifier"}
+    expected_names = {"http-headers-scanner", "hash-identifier", "linux-cis-hardening-auditor", "dlp-scanner", "dns-lookup"}
     if {item["name"] for item in records} != expected_names or len(records) != len(expected_names):
         raise ValueError("Unexpected community import set")
     total = 0

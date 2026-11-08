@@ -89,6 +89,9 @@ These are runnable third-party CLI imports, **not projects written for this port
 | --- | --- | --- |
 | [HTTP security-header scanner](third_party/community/http-headers-scanner/) | ©AngelaMos / CarterPerez-dev; evaluates HTTP response security headers | [Code, usage and limitations](third_party/community/README.md) |
 | [Hash identifier](third_party/community/hash-identifier/) | ©AngelaMos / CarterPerez-dev; suggests likely hash formats | [Code, usage and limitations](third_party/community/README.md) |
+| [Linux CIS hardening auditor](third_party/community/linux-cis-hardening-auditor/) | ©AngelaMos / CarterPerez-dev; Linux hardening checks and compliance scores | [Source and run limits](third_party/community/README.md) |
+| [DLP scanner](third_party/community/dlp-scanner/) | ©AngelaMos / CarterPerez-dev; checks for sensitive data in files, databases and PCAPs | [Source and run limits](third_party/community/README.md) |
+| [DNS lookup CLI](third_party/community/dns-lookup/) | ©AngelaMos / CarterPerez-dev; DNS, reverse lookup and WHOIS investigation | [Source and run limits](third_party/community/README.md) |
 
 The pinned files have a [separate import manifest](third_party/community/imports.json), preserving the earlier recorded integrations unchanged.
 
