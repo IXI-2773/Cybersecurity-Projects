@@ -65,6 +65,49 @@ class IamPolicyReviewTests(unittest.TestCase):
             "detail": "Allow statement lists service-wide action wildcard(s) s3:* with Resource *; review scope.",
         }])
 
+    def test_passrole_action_matching_is_case_insensitive(self):
+        # A case-sensitive check silently misses an AWS-equivalent spelling.
+        policy = {"Version": "2012-10-17", "Statement": {
+            "Effect": "Allow", "Action": "IAM:passrole", "Resource": "*"
+        }}
+        run = self.run_policy(policy)
+        self.assertEqual(run.returncode, 1, run.stderr)
+        report = json.loads(run.stdout)
+        self.assertEqual([finding["code"] for finding in report["findings"]],
+                         ["PASSROLE_ALL_RESOURCES"])
+
+    def test_flags_wildcard_assumerole_but_not_explicit_role_arn(self):
+        policy = {"Version": "2012-10-17", "Statement": [
+            {"Sid": "AnyTrustingRole", "Effect": "Allow", "Action": "sts:AssumeRole", "Resource": "*"},
+            {"Sid": "NamedRole", "Effect": "Allow", "Action": "sts:AssumeRole",
+             "Resource": "arn:aws:iam::123456789012:role/example-approved-role"},
+            {"Sid": "Denied", "Effect": "Deny", "Action": "sts:AssumeRole", "Resource": "*"},
+        ]}
+        run = self.run_policy(policy)
+        self.assertEqual(run.returncode, 1, run.stderr)
+        report = json.loads(run.stdout)
+        self.assertEqual(report["findings"], [{
+            "statement_id": "AnyTrustingRole", "code": "ASSUMEROLE_ALL_RESOURCES",
+            "priority": "REVIEW", "condition_present": False,
+            "detail": "Allow statement lists sts:AssumeRole with Resource *; review trusting roles and conditions.",
+        }])
+
+    def test_independent_action_patterns_in_same_statement_are_not_hidden(self):
+        # Ordered branching previously concealed later patterns in a mixed action list.
+        policy = {"Version": "2012-10-17", "Statement": {
+            "Sid": "MixedActions", "Effect": "Allow",
+            "Action": ["S3:*", "IAM:PassRole", "STS:assumerole"],
+            "Resource": "*", "Condition": {"StringEquals": {"aws:PrincipalTag/team": "Example"}}
+        }}
+        run = self.run_policy(policy)
+        self.assertEqual(run.returncode, 1, run.stderr)
+        report = json.loads(run.stdout)
+        self.assertEqual({finding["code"] for finding in report["findings"]}, {
+            "SERVICE_ACTIONS_ALL_RESOURCES", "PASSROLE_ALL_RESOURCES", "ASSUMEROLE_ALL_RESOURCES"
+        })
+        self.assertEqual(len(report["findings"]), 3)
+        self.assertTrue(all(finding["condition_present"] for finding in report["findings"]))
+
     def test_rejects_unsupported_or_malformed_policy_instead_of_reporting_clean(self):
         statement = {"Effect": "Allow", "Action": "s3:GetObject",
                      "Resource": "arn:aws:s3:::example-bucket/*"}
@@ -85,7 +128,8 @@ class IamPolicyReviewTests(unittest.TestCase):
 
     def test_retained_synthetic_reports_match_current_cli(self):
         project = SCRIPT.parent
-        for name, expected_exit in (("broad", 1), ("restricted", 0)):
+        for name, expected_exit in (("broad", 1), ("restricted", 0),
+                                    ("assumerole_broad", 1), ("assumerole_restricted", 0)):
             with self.subTest(name=name):
                 source = project / "fixtures" / f"{name}_identity_policy.json"
                 report = project / "artifacts" / f"{name}_report.json"

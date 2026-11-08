@@ -1,0 +1,15 @@
+{
+  "Version": "2012-10-17",
+  "Id": "SYNTHETIC-ASSUMEROLE-FOLLOWUP",
+  "Statement": {
+    "Sid": "CrossAccountRoleHandoff",
+    "Effect": "Allow",
+    "Action": "sts:AssumeRole",
+    "Resource": "arn:aws:iam::111122223333:role/example-response-readonly",
+    "Condition": {
+      "StringEquals": {
+        "aws:PrincipalTag/team": "example-response"
+      }
+    }
+  }
+}

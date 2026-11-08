@@ -83,12 +83,17 @@ def analyze(document):
                 **common, "code": "ALL_ACTIONS_ALL_RESOURCES",
                 "detail": "Allow statement specifies Action * and Resource *; review its intended scope.",
             })
-        elif "iam:PassRole" in actions:
-            findings.append({
-                **common, "code": "PASSROLE_ALL_RESOURCES",
-                "detail": "Allow statement lists iam:PassRole with Resource *; review permitted roles and conditions.",
-            })
         else:
+            if any(action.casefold() == "iam:passrole" for action in actions):
+                findings.append({
+                    **common, "code": "PASSROLE_ALL_RESOURCES",
+                    "detail": "Allow statement lists iam:PassRole with Resource *; review permitted roles and conditions.",
+                })
+            if any(action.casefold() == "sts:assumerole" for action in actions):
+                findings.append({
+                    **common, "code": "ASSUMEROLE_ALL_RESOURCES",
+                    "detail": "Allow statement lists sts:AssumeRole with Resource *; review trusting roles and conditions.",
+                })
             broad = sorted({action for action in actions if SERVICE_WILDCARD.fullmatch(action)})
             if broad:
                 findings.append({

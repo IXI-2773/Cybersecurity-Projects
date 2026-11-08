@@ -6,6 +6,8 @@
 
 This small defensive CLI identifies **literal overbroad Allow patterns** in a deliberately limited identity-policy document. It produces a machine-readable report with statement references and review questions, **not** an AWS authorization decision, production finding, or security score.
 
+**For an employer-facing walkthrough:** [Unrestricted role-assumption case study](CASE_STUDY.md). It links a simulated baseline, one proposed narrower policy, their exact machine-readable reports, and the validation steps that would be required before a real change.
+
 ## Walk through the retained synthetic evidence
 
 | Evidence | Baseline fabricated policy | Proposed fabricated follow-up |
@@ -17,6 +19,8 @@ This small defensive CLI identifies **literal overbroad Allow patterns** in a de
 | CLI exit | 1 | 0 |
 
 The baseline contains an `Allow` with `Action: "*"` and `Resource: "*"`, plus an `iam:PassRole` Allow with `Resource: "*"`. The latter has a `Condition`, which the tool **records but does not evaluate**. The follow-up replaces these two broad statements with illustrative, narrower resource scopes. All names, account numbers, roles and bucket names are fabricated examples. **No live account, policy, role or resource was accessed or changed.**
+
+The [separate role-assumption example](CASE_STUDY.md) retains a `sts:AssumeRole` wildcard-resource baseline and one synthetic role-ARN follow-up. The baseline has one `ASSUMEROLE_ALL_RESOURCES` candidate; the proposed narrower example has no modeled candidates. **Neither output proves effective role access.**
 
 Run from the repository root:
 
@@ -35,6 +39,9 @@ It accepts one IAM JSON document with `Version: "2012-10-17"`, a nonempty `State
 - `ALL_ACTIONS_ALL_RESOURCES`: literal `Action: "*"` with `Resource: "*"`.
 - `PASSROLE_ALL_RESOURCES`: literal `iam:PassRole` with `Resource: "*"`.
 - `SERVICE_ACTIONS_ALL_RESOURCES`: literal service-wide pattern such as `s3:*` with `Resource: "*"`.
+- `ASSUMEROLE_ALL_RESOURCES`: literal `sts:AssumeRole` with `Resource: "*"`; other policies and role trust still control actual access.
+
+The reviewer treats AWS action names case-insensitively for exact `PassRole`/`AssumeRole` matches, and can emit multiple distinct review candidates for mixed action lists. Literal `Action: "*"` remains one umbrella candidate. Conditions are recorded as present but not interpreted.
 
 Only `Allow` statements produce candidates. An unsupported element (including `NotAction`, `NotResource`, `Principal` or malformed field types) causes the full input to be rejected rather than reported clean. The tool does **not** calculate effective permissions, expand AWS action wildcards, analyze `Deny` overrides, evaluate `Condition`, resolve policy variables, or combine SCPs, permissions boundaries, session policies, resource-based policies, service-specific requirements or cross-account context. A missing candidate does not establish least privilege.
 
