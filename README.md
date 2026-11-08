@@ -31,6 +31,7 @@ The following sections describe the portfolio's work. Public recorded datasets, 
 
 | Project | Tools and evidence | Portfolio |
 | --- | --- | --- |
+| [Synthetic Linux CIS access-hardening review](projects/15-linux-cis-synthetic-hardening/) | Credited upstream Bash auditor; 23 synthetic controls, 17 FAIL→PASS transitions, retained before/after JSON. No live host. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/linux-cis-synthetic-hardening.html) |
 | [Linux access audit with SQL](projects/09-linux-access-audit/) | Linux, SQLite, Python; two permission corrections with actual access retests. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/linux-sql-access-audit.html) |
 | [Active Directory investigation](projects/08-ad-investigation/) | Python, Sysmon, Kerberos, PCAP; recorded third-party emulation analysis. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/ad-attack-chain.html) |
 | [Splunk authentication detection](projects/01-authentication-detection/) | SPL and Python; synthetic fixtures, boundary correction and saved dashboard. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/detection-engineering.html) |
@@ -79,17 +80,18 @@ The following sections describe the portfolio's work. Public recorded datasets, 
 | --- | --- | --- |
 | [SSH algorithm review](projects/11-ssh-algorithm-review/) | [ssh-audit — Joe Testa and contributors](third_party/ssh-audit/) · MIT | Two-algorithm fixture, offline runner and retained upstream classifications. No server scan claimed. |
 | [Secret detection](projects/12-secret-detection/) | [Yelp/detect-secrets](third_party/detect-secrets/) · Apache-2.0 | Three-file fixture, before/after runner, benign/allowlist controls and recorded outputs; network verification disabled. |
+| [Synthetic Linux access hardening](projects/15-linux-cis-synthetic-hardening/) | [AngelaMos/CarterPerez-dev Linux CIS auditor](third_party/community/linux-cis-hardening-auditor/) · AGPL-3.0-or-later | Controlled section-5 test roots, 17 FAIL→PASS transitions, saved JSON and rerunnable verifier; not a real-host CIS claim. |
 
 
 ### Additional upstream-authored tools (source copies)
 
-These are runnable third-party CLI imports, **not projects written for this portfolio**. No local execution results or security outcomes are claimed for them. Their original AGPL-3.0-or-later license and source credit are preserved.
+These are runnable third-party CLI imports, **not projects written for this portfolio**. Only the Linux CIS auditor has a recorded synthetic section-5 fixture run; the other six have no collection execution results. No real-host security outcome is claimed for any of these copies. Their original AGPL-3.0-or-later license and source credit are preserved.
 
 | Copied tool | Original authors and purpose | Open source |
 | --- | --- | --- |
 | [HTTP security-header scanner](third_party/community/http-headers-scanner/) | ©AngelaMos / CarterPerez-dev; evaluates HTTP response security headers | [Code, usage and limitations](third_party/community/README.md) |
 | [Hash identifier](third_party/community/hash-identifier/) | ©AngelaMos / CarterPerez-dev; suggests likely hash formats | [Code, usage and limitations](third_party/community/README.md) |
-| [Linux CIS hardening auditor](third_party/community/linux-cis-hardening-auditor/) | ©AngelaMos / CarterPerez-dev; Linux hardening checks and compliance scores | [Source and run limits](third_party/community/README.md) |
+| [Linux CIS hardening auditor](third_party/community/linux-cis-hardening-auditor/) | ©AngelaMos / CarterPerez-dev; Linux hardening checks and compliance scores | [Synthetic lab evidence](projects/15-linux-cis-synthetic-hardening/) · [Source and run limits](third_party/community/README.md) |
 | [DLP scanner](third_party/community/dlp-scanner/) | ©AngelaMos / CarterPerez-dev; checks for sensitive data in files, databases and PCAPs | [Source and run limits](third_party/community/README.md) |
 | [DNS lookup CLI](third_party/community/dns-lookup/) | ©AngelaMos / CarterPerez-dev; DNS, reverse lookup and WHOIS investigation | [Source and run limits](third_party/community/README.md) |
 | [Docker Security Auditor](third_party/community/docker-security-audit/) | ©AngelaMos / CarterPerez-dev; assesses Docker configurations and CIS-style controls | [Source and run limits](third_party/community/README.md) |

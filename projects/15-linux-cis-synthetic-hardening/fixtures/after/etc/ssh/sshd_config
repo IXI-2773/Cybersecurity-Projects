@@ -1,0 +1,13 @@
+# Synthetic training configuration — proposed hardening, not deployed.
+AllowUsers lab-analyst
+LogLevel VERBOSE
+X11Forwarding no
+MaxAuthTries 4
+IgnoreRhosts yes
+PermitRootLogin no
+PermitEmptyPasswords no
+PermitUserEnvironment no
+Ciphers aes256-gcm@openssh.com,chacha20-poly1305@openssh.com
+MACs hmac-sha2-256-etm@openssh.com
+KexAlgorithms curve25519-sha256
+LoginGraceTime 60
