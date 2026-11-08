@@ -80,6 +80,18 @@ The following sections describe the portfolio's work. Public recorded datasets, 
 | [SSH algorithm review](projects/11-ssh-algorithm-review/) | [ssh-audit — Joe Testa and contributors](third_party/ssh-audit/) · MIT | Two-algorithm fixture, offline runner and retained upstream classifications. No server scan claimed. |
 | [Secret detection](projects/12-secret-detection/) | [Yelp/detect-secrets](third_party/detect-secrets/) · Apache-2.0 | Three-file fixture, before/after runner, benign/allowlist controls and recorded outputs; network verification disabled. |
 
+
+### Additional upstream-authored tools (source copies)
+
+These are runnable third-party CLI imports, **not projects written for this portfolio**. No local execution results or security outcomes are claimed for them. Their original AGPL-3.0-or-later license and source credit are preserved.
+
+| Copied tool | Original authors and purpose | Open source |
+| --- | --- | --- |
+| [HTTP security-header scanner](third_party/community/http-headers-scanner/) | ©AngelaMos / CarterPerez-dev; evaluates HTTP response security headers | [Code, usage and limitations](third_party/community/README.md) |
+| [Hash identifier](third_party/community/hash-identifier/) | ©AngelaMos / CarterPerez-dev; suggests likely hash formats | [Code, usage and limitations](third_party/community/README.md) |
+
+The pinned files have a [separate import manifest](third_party/community/imports.json), preserving the earlier recorded integrations unchanged.
+
 ## Run a project
 
 Python labs use the standard library unless their individual instructions state otherwise. Start with the offline SOC Triage Assistant:
