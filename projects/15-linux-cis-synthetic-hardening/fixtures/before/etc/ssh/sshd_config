@@ -1,0 +1,12 @@
+# Synthetic training configuration — deliberately weak.
+LogLevel QUIET
+X11Forwarding yes
+MaxAuthTries 8
+IgnoreRhosts no
+PermitRootLogin yes
+PermitEmptyPasswords yes
+PermitUserEnvironment yes
+Ciphers aes128-cbc,aes256-gcm@openssh.com
+MACs hmac-md5,hmac-sha2-256
+KexAlgorithms diffie-hellman-group1-sha1,curve25519-sha256
+LoginGraceTime 120

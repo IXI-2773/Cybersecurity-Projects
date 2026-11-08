@@ -1,0 +1,298 @@
+{
+  "version": "1.0.0",
+  "cis_benchmark": "CIS Debian Linux 12 Benchmark v1.1.0",
+  "os_id": "synthetic",
+  "os_version": "1",
+  "summary": {
+    "total": 23,
+    "pass": 19,
+    "fail": 1,
+    "warn": 0,
+    "skip": 3,
+    "score_percent": 95,
+    "level1_score": 94.7,
+    "level2_score": 100
+  },
+  "sections": [
+    {
+      "name": "Initial Setup",
+      "pass": 0,
+      "fail": 0,
+      "warn": 0,
+      "skip": 0,
+      "score_percent": null
+    },
+    {
+      "name": "Services",
+      "pass": 0,
+      "fail": 0,
+      "warn": 0,
+      "skip": 0,
+      "score_percent": null
+    },
+    {
+      "name": "Network Configuration",
+      "pass": 0,
+      "fail": 0,
+      "warn": 0,
+      "skip": 0,
+      "score_percent": null
+    },
+    {
+      "name": "Logging and Auditing",
+      "pass": 0,
+      "fail": 0,
+      "warn": 0,
+      "skip": 0,
+      "score_percent": null
+    },
+    {
+      "name": "Access, Authentication and Authorization",
+      "pass": 19,
+      "fail": 1,
+      "warn": 0,
+      "skip": 3,
+      "score_percent": 95
+    },
+    {
+      "name": "System Maintenance",
+      "pass": 0,
+      "fail": 0,
+      "warn": 0,
+      "skip": 0,
+      "score_percent": null
+    }
+  ],
+  "controls": [
+    {
+      "id": "5.1.1",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure cron daemon is enabled and running",
+      "level": 1,
+      "scored": true,
+      "status": "FAIL",
+      "evidence": "cron daemon is not enabled",
+      "remediation": "systemctl enable cron && systemctl start cron"
+    },
+    {
+      "id": "5.1.2",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure permissions on /etc/crontab are configured",
+      "level": 1,
+      "scored": true,
+      "status": "SKIP",
+      "evidence": "/etc/crontab not found",
+      "remediation": "chown root:root /etc/crontab && chmod 600 /etc/crontab"
+    },
+    {
+      "id": "5.1.3",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure permissions on /etc/cron.hourly are configured",
+      "level": 1,
+      "scored": true,
+      "status": "SKIP",
+      "evidence": "/etc/cron.hourly not found",
+      "remediation": "chown root:root /etc/cron.hourly && chmod 700 /etc/cron.hourly"
+    },
+    {
+      "id": "5.1.4",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure permissions on /etc/cron.daily are configured",
+      "level": 1,
+      "scored": true,
+      "status": "SKIP",
+      "evidence": "/etc/cron.daily not found",
+      "remediation": "chown root:root /etc/cron.daily && chmod 700 /etc/cron.daily"
+    },
+    {
+      "id": "5.2.1",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure permissions on /etc/ssh/sshd_config are configured",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "sshd_config exists (permissions not verifiable in test mode)",
+      "remediation": "chown root:root /etc/ssh/sshd_config && chmod 600 /etc/ssh/sshd_config"
+    },
+    {
+      "id": "5.2.2",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure SSH access is limited",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "SSH access limited via: AllowUsers",
+      "remediation": "sed -i 's/^#*AllowUsers.*/AllowUsers root/' /etc/ssh/sshd_config && systemctl restart sshd"
+    },
+    {
+      "id": "5.2.3",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure permissions on SSH private host key files are configured",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "No SSH host private keys found (test mode)",
+      "remediation": "find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec chown root:root {} \\; -exec chmod 600 {} \\;"
+    },
+    {
+      "id": "5.2.4",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure SSH LogLevel is appropriate",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "SSH LogLevel = VERBOSE",
+      "remediation": "sed -i 's/^#*LogLevel.*/LogLevel INFO/' /etc/ssh/sshd_config && systemctl restart sshd"
+    },
+    {
+      "id": "5.2.5",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure SSH X11 forwarding is disabled",
+      "level": 2,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "SSH X11Forwarding is disabled",
+      "remediation": "sed -i 's/^#*X11Forwarding.*/X11Forwarding no/' /etc/ssh/sshd_config && systemctl restart sshd"
+    },
+    {
+      "id": "5.2.6",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure SSH MaxAuthTries is set to 4 or less",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "SSH MaxAuthTries = 4",
+      "remediation": "sed -i 's/^#*MaxAuthTries.*/MaxAuthTries 4/' /etc/ssh/sshd_config && systemctl restart sshd"
+    },
+    {
+      "id": "5.2.7",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure SSH IgnoreRhosts is enabled",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "SSH IgnoreRhosts = yes",
+      "remediation": "sed -i 's/^#*IgnoreRhosts.*/IgnoreRhosts yes/' /etc/ssh/sshd_config && systemctl restart sshd"
+    },
+    {
+      "id": "5.2.8",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure SSH root login is disabled",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "SSH root login is disabled (PermitRootLogin = no)",
+      "remediation": "sed -i 's/^#*PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config && systemctl restart sshd"
+    },
+    {
+      "id": "5.2.9",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure SSH PermitEmptyPasswords is disabled",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "SSH empty passwords are disabled",
+      "remediation": "sed -i 's/^#*PermitEmptyPasswords.*/PermitEmptyPasswords no/' /etc/ssh/sshd_config && systemctl restart sshd"
+    },
+    {
+      "id": "5.2.10",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure SSH PermitUserEnvironment is disabled",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "SSH user environment processing is disabled",
+      "remediation": "sed -i 's/^#*PermitUserEnvironment.*/PermitUserEnvironment no/' /etc/ssh/sshd_config && systemctl restart sshd"
+    },
+    {
+      "id": "5.2.11",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure only strong ciphers are used",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "Only strong SSH ciphers configured",
+      "remediation": "sed -i 's/^#*Ciphers.*/Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr/' /etc/ssh/sshd_config && systemctl restart sshd"
+    },
+    {
+      "id": "5.2.12",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure only strong MAC algorithms are used",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "Only strong SSH MACs configured",
+      "remediation": "sed -i 's/^#*MACs.*/MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256/' /etc/ssh/sshd_config && systemctl restart sshd"
+    },
+    {
+      "id": "5.2.13",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure only strong Key Exchange algorithms are used",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "Only strong SSH key exchange algorithms configured",
+      "remediation": "sed -i 's/^#*KexAlgorithms.*/KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512/' /etc/ssh/sshd_config && systemctl restart sshd"
+    },
+    {
+      "id": "5.2.14",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure SSH LoginGraceTime is set to one minute or less",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "SSH LoginGraceTime = 60",
+      "remediation": "sed -i 's/^#*LoginGraceTime.*/LoginGraceTime 60/' /etc/ssh/sshd_config && systemctl restart sshd"
+    },
+    {
+      "id": "5.3.1",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure password creation requirements are configured",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "pam_pwquality is configured in common-password",
+      "remediation": "apt-get install -y libpam-pwquality && echo 'password requisite pam_pwquality.so retry=3' >> /etc/pam.d/common-password"
+    },
+    {
+      "id": "5.4.1",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure password expiration is 365 days or less",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "Password expiration is configured (PASS_MAX_DAYS = 365)",
+      "remediation": "sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS 365/' /etc/login.defs"
+    },
+    {
+      "id": "5.4.2",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure minimum days between password changes is configured",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "Minimum days between password changes is configured (PASS_MIN_DAYS = 1)",
+      "remediation": "sed -i 's/^PASS_MIN_DAYS.*/PASS_MIN_DAYS 1/' /etc/login.defs"
+    },
+    {
+      "id": "5.4.3",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure password expiration warning days is 7 or more",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "Password expiration warning is configured (PASS_WARN_AGE = 7)",
+      "remediation": "sed -i 's/^PASS_WARN_AGE.*/PASS_WARN_AGE 7/' /etc/login.defs"
+    },
+    {
+      "id": "5.5.1",
+      "section": "Access, Authentication and Authorization",
+      "title": "Ensure account lockout for failed password attempts is configured",
+      "level": 1,
+      "scored": true,
+      "status": "PASS",
+      "evidence": "Account lockout configured via pam_faillock in common-auth",
+      "remediation": "echo 'auth required pam_faillock.so preauth' >> /etc/pam.d/common-auth && echo 'auth required pam_faillock.so authfail' >> /etc/pam.d/common-auth"
+    }
+  ]
+}

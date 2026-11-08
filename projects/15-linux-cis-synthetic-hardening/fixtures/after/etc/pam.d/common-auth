@@ -1,0 +1,2 @@
+auth required pam_faillock.so preauth silent deny=5 unlock_time=600
+auth required pam_unix.so
