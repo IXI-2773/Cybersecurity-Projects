@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "imports": [
+    {
+      "name": "http-headers-scanner",
+      "repository": "CarterPerez-dev/Cybersecurity-Projects",
+      "upstream_path": "PROJECTS/foundations/http-headers-scanner",
+      "commit": "6c8ac8547cf52edaa06935e637a1fe11ac45b865",
+      "license": "AGPL-3.0-or-later",
+      "credit": "AngelaMos (2026); distributed in CarterPerez-dev/Cybersecurity-Projects",
+      "root": "third_party/community/http-headers-scanner",
+      "scope": "Verbatim CLI, original README, package metadata and license; upstream tests, learning modules, lockfiles and execution results not imported.",
+      "files": [
+        {
+          "path": "http_headers_scanner.py",
+          "git_blob_sha1": "4b5389e279e26a48178e5cadf40cdd8dc4f3a3b4"
+        },
+        {
+          "path": "README.md",
+          "git_blob_sha1": "e784d132b76e5d783aa40823c44f34f2f109eb67"
+        },
+        {
+          "path": "LICENSE",
+          "git_blob_sha1": "0ad25db4bd1d86c452db3f9602ccdbe172438f52"
+        },
+        {
+          "path": "pyproject.toml",
+          "git_blob_sha1": "c4a60f09d8b663fb703b61d90d384475e80f57c6"
+        }
+      ]
+    },
+    {
+      "name": "hash-identifier",
+      "repository": "CarterPerez-dev/Cybersecurity-Projects",
+      "upstream_path": "PROJECTS/foundations/hash-identifier",
+      "commit": "6c8ac8547cf52edaa06935e637a1fe11ac45b865",
+      "license": "AGPL-3.0-or-later",
+      "credit": "AngelaMos (2026); distributed in CarterPerez-dev/Cybersecurity-Projects",
+      "root": "third_party/community/hash-identifier",
+      "scope": "Verbatim CLI, original README, package metadata and license; upstream tests, learning modules, lockfiles and execution results not imported.",
+      "files": [
+        {
+          "path": "hash_identifier.py",
+          "git_blob_sha1": "959cbd003ab7f43c51b922a1a44297042729806b"
+        },
+        {
+          "path": "README.md",
+          "git_blob_sha1": "c4ac91124f3805e00dce430fa4c5540aa48f306e"
+        },
+        {
+          "path": "LICENSE",
+          "git_blob_sha1": "0ad25db4bd1d86c452db3f9602ccdbe172438f52"
+        },
+        {
+          "path": "pyproject.toml",
+          "git_blob_sha1": "6185c772eee2eab06bada5c03a541f14659b9d0b"
+        }
+      ]
+    }
+  ]
+}
