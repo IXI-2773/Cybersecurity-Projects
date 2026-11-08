@@ -1,0 +1,2 @@
+# Keep pinned upstream community source bytes identical on all platforms.
+third_party/community/** -text

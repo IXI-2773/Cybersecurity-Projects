@@ -56,6 +56,366 @@
           "git_blob_sha1": "6185c772eee2eab06bada5c03a541f14659b9d0b"
         }
       ]
+    },
+    {
+      "name": "linux-cis-hardening-auditor",
+      "repository": "CarterPerez-dev/Cybersecurity-Projects",
+      "upstream_path": "PROJECTS/beginner/linux-cis-hardening-auditor",
+      "commit": "6c8ac8547cf52edaa06935e637a1fe11ac45b865",
+      "license": "AGPL-3.0-or-later",
+      "credit": "AngelaMos (2026); distributed in CarterPerez-dev/Cybersecurity-Projects",
+      "root": "third_party/community/linux-cis-hardening-auditor",
+      "scope": "Verbatim runtime source and original license/docs; upstream tests, learning modules and generated artifacts omitted.",
+      "files": [
+        {
+          "path": "src/cisaudit.sh",
+          "git_blob_sha1": "e6796c3a48946bde33469761979618c5de46b637"
+        },
+        {
+          "path": "src/checks/01_initial_setup.sh",
+          "git_blob_sha1": "2bab95142b82c2d328f1efec5b7e64930aa9c7ac"
+        },
+        {
+          "path": "src/checks/02_services.sh",
+          "git_blob_sha1": "9c0fb4c0984a64ec3eb734d41639234d72f050e2"
+        },
+        {
+          "path": "src/checks/03_network.sh",
+          "git_blob_sha1": "89743b16531c9808d7301a2eb1af70dc86f88b52"
+        },
+        {
+          "path": "src/checks/04_logging.sh",
+          "git_blob_sha1": "11dea8e5fe56892043c07f85effa180a8bf355f5"
+        },
+        {
+          "path": "src/checks/05_access.sh",
+          "git_blob_sha1": "a9828d0e0763e2560dc9a41da44b0559305e4c9b"
+        },
+        {
+          "path": "src/checks/05_access_password.sh",
+          "git_blob_sha1": "d6ed503a7f931732517a054bd0598fee6144eb58"
+        },
+        {
+          "path": "src/checks/06_maintenance.sh",
+          "git_blob_sha1": "c3acc0f6224bf0bfbc06b11ed04a208c76b65526"
+        },
+        {
+          "path": "src/controls/registry_data.sh",
+          "git_blob_sha1": "269c8dbef7d2cbff63da91ce6882a0b2a91d90b5"
+        },
+        {
+          "path": "src/lib/baseline.sh",
+          "git_blob_sha1": "7799c0e76908c5f4d273604a15bb54aab829ee01"
+        },
+        {
+          "path": "src/lib/constants.sh",
+          "git_blob_sha1": "7231f1a279ef0a5fa8101f8ac88e4b0f9b8b086b"
+        },
+        {
+          "path": "src/lib/engine.sh",
+          "git_blob_sha1": "48c4faa737cb7602cb24aa925e383659ad552395"
+        },
+        {
+          "path": "src/lib/registry.sh",
+          "git_blob_sha1": "d24794d4e7dc08cc07d5c65cd0478a9ac157901f"
+        },
+        {
+          "path": "src/lib/report_html.sh",
+          "git_blob_sha1": "8660441108795ffa4810a2ef5ec778eb68607783"
+        },
+        {
+          "path": "src/lib/report_json.sh",
+          "git_blob_sha1": "144eaa0040b0c70f0ba360ac0936081cfe65003e"
+        },
+        {
+          "path": "src/lib/report_terminal.sh",
+          "git_blob_sha1": "d0652c3a100d734d5944779d8aad69daf92f9210"
+        },
+        {
+          "path": "src/lib/utils.sh",
+          "git_blob_sha1": "82d7aa9b6382d9e0361654eaf74672ff732a11e4"
+        },
+        {
+          "path": "README.md",
+          "git_blob_sha1": "0f4c2c2e04303b4fdefbaa3dd1a76c7808c713e9"
+        },
+        {
+          "path": "LICENSE",
+          "git_blob_sha1": "0ad25db4bd1d86c452db3f9602ccdbe172438f52"
+        },
+        {
+          "path": "DEMO.md",
+          "git_blob_sha1": "063aeec79915c63ebb5c22fdec43c10ad53f0f88"
+        }
+      ]
+    },
+    {
+      "name": "dlp-scanner",
+      "repository": "CarterPerez-dev/Cybersecurity-Projects",
+      "upstream_path": "PROJECTS/intermediate/dlp-scanner",
+      "commit": "6c8ac8547cf52edaa06935e637a1fe11ac45b865",
+      "license": "AGPL-3.0-or-later",
+      "credit": "AngelaMos (2026); distributed in CarterPerez-dev/Cybersecurity-Projects",
+      "root": "third_party/community/dlp-scanner",
+      "scope": "Verbatim runtime source and original license/docs; upstream tests, learning modules and generated artifacts omitted.",
+      "files": [
+        {
+          "path": "src/dlp_scanner/__init__.py",
+          "git_blob_sha1": "4e0a5ce65f4354d5bb3182f7f46a24e4e4aadf38"
+        },
+        {
+          "path": "src/dlp_scanner/cli.py",
+          "git_blob_sha1": "1cff3630df429ced3bd4c724daf347fe35ee53b1"
+        },
+        {
+          "path": "src/dlp_scanner/compliance.py",
+          "git_blob_sha1": "8761f09593c4ada3a36143d6f74da1b57e226806"
+        },
+        {
+          "path": "src/dlp_scanner/config.py",
+          "git_blob_sha1": "73813991521a39e467bb0751f4384638acd3947f"
+        },
+        {
+          "path": "src/dlp_scanner/constants.py",
+          "git_blob_sha1": "41bf3850c32450ef6234cc8ad6ba2712407a6466"
+        },
+        {
+          "path": "src/dlp_scanner/engine.py",
+          "git_blob_sha1": "b45f5b185c05d9e9bba74961e581deff401f6375"
+        },
+        {
+          "path": "src/dlp_scanner/log.py",
+          "git_blob_sha1": "e9ee554678c6dfb960c64c00572a3f13623d4c78"
+        },
+        {
+          "path": "src/dlp_scanner/models.py",
+          "git_blob_sha1": "2c5edab35760c78dc251747f7c124df95163d476"
+        },
+        {
+          "path": "src/dlp_scanner/redaction.py",
+          "git_blob_sha1": "2982866b9ae7046c51bf1638627f82592e150b53"
+        },
+        {
+          "path": "src/dlp_scanner/scoring.py",
+          "git_blob_sha1": "48b5682782deb9fa208d0d76bb360fe08eae0d40"
+        },
+        {
+          "path": "src/dlp_scanner/commands/__init__.py",
+          "git_blob_sha1": "e1add2a99827a0287bdd84beb838f5f37159a48c"
+        },
+        {
+          "path": "src/dlp_scanner/commands/report.py",
+          "git_blob_sha1": "bae4109f5fd9b70d5dde1cab84e400e7ec9d9ed3"
+        },
+        {
+          "path": "src/dlp_scanner/commands/scan.py",
+          "git_blob_sha1": "cd3fd366fea540a7fdedc77caca3274766a27425"
+        },
+        {
+          "path": "src/dlp_scanner/detectors/__init__.py",
+          "git_blob_sha1": "e1add2a99827a0287bdd84beb838f5f37159a48c"
+        },
+        {
+          "path": "src/dlp_scanner/detectors/base.py",
+          "git_blob_sha1": "d8438432041377b9b1218f7796bff78f2184ff00"
+        },
+        {
+          "path": "src/dlp_scanner/detectors/context.py",
+          "git_blob_sha1": "7330e21c6bb28d18a495274229423a73e9904124"
+        },
+        {
+          "path": "src/dlp_scanner/detectors/entropy.py",
+          "git_blob_sha1": "5ed0385107ed9bac475aad3827dc78565e1dff3e"
+        },
+        {
+          "path": "src/dlp_scanner/detectors/pattern.py",
+          "git_blob_sha1": "060c771402d22a4580824b8c3cdf065c03745a09"
+        },
+        {
+          "path": "src/dlp_scanner/detectors/registry.py",
+          "git_blob_sha1": "635e8a1cdd20b92afcdb1351ec1467c2eb7b3408"
+        },
+        {
+          "path": "src/dlp_scanner/detectors/rules/__init__.py",
+          "git_blob_sha1": "e1add2a99827a0287bdd84beb838f5f37159a48c"
+        },
+        {
+          "path": "src/dlp_scanner/detectors/rules/credentials.py",
+          "git_blob_sha1": "afffee1b3f3191fc8413cbe978140aa6397385bc"
+        },
+        {
+          "path": "src/dlp_scanner/detectors/rules/financial.py",
+          "git_blob_sha1": "835580187dc0d4ca8da1c3b0410ab4e6fc9decce"
+        },
+        {
+          "path": "src/dlp_scanner/detectors/rules/health.py",
+          "git_blob_sha1": "ead20a9c4e02ae04619eae2b8df75d81d7833e5d"
+        },
+        {
+          "path": "src/dlp_scanner/detectors/rules/pii.py",
+          "git_blob_sha1": "c543c7853e715850806b046bf15ec00e90497a09"
+        },
+        {
+          "path": "src/dlp_scanner/extractors/__init__.py",
+          "git_blob_sha1": "e1add2a99827a0287bdd84beb838f5f37159a48c"
+        },
+        {
+          "path": "src/dlp_scanner/extractors/archive.py",
+          "git_blob_sha1": "18fe4a39a2c5f7c01311f462ef0e78f1c5878b9b"
+        },
+        {
+          "path": "src/dlp_scanner/extractors/base.py",
+          "git_blob_sha1": "2e008b1e43b430d09d50c2844f55b845600ed4ec"
+        },
+        {
+          "path": "src/dlp_scanner/extractors/email.py",
+          "git_blob_sha1": "7dba9cf5d20595fd51f58a96027bdd6acd5bd869"
+        },
+        {
+          "path": "src/dlp_scanner/extractors/office.py",
+          "git_blob_sha1": "25f6497f1ab2dc722d61cf8c90a4f94e25435235"
+        },
+        {
+          "path": "src/dlp_scanner/extractors/pdf.py",
+          "git_blob_sha1": "07d938a50b1c1646cdad15419ba6b0aa9d5babdc"
+        },
+        {
+          "path": "src/dlp_scanner/extractors/plaintext.py",
+          "git_blob_sha1": "5771447f8740c2954d57cf5ed25928f4bcb9a615"
+        },
+        {
+          "path": "src/dlp_scanner/extractors/structured.py",
+          "git_blob_sha1": "52eec32d865561e09e7e0c12753a70906921da82"
+        },
+        {
+          "path": "src/dlp_scanner/network/__init__.py",
+          "git_blob_sha1": "e1add2a99827a0287bdd84beb838f5f37159a48c"
+        },
+        {
+          "path": "src/dlp_scanner/network/exfiltration.py",
+          "git_blob_sha1": "b10f48459176468e4a82b5fb8b8f44333945aa0e"
+        },
+        {
+          "path": "src/dlp_scanner/network/flow_tracker.py",
+          "git_blob_sha1": "b5fb651920ee751fdef43638f895a3c29dec2936"
+        },
+        {
+          "path": "src/dlp_scanner/network/pcap.py",
+          "git_blob_sha1": "6bd1f4b290006f27a67996e52933addb42f6f59b"
+        },
+        {
+          "path": "src/dlp_scanner/network/protocols.py",
+          "git_blob_sha1": "edf2abda1c08b14216fbf1361dfc6ffbb304c8af"
+        },
+        {
+          "path": "src/dlp_scanner/reporters/__init__.py",
+          "git_blob_sha1": "e1add2a99827a0287bdd84beb838f5f37159a48c"
+        },
+        {
+          "path": "src/dlp_scanner/reporters/base.py",
+          "git_blob_sha1": "05940a2023b89b25b29ddfa0139b120d0b9baf38"
+        },
+        {
+          "path": "src/dlp_scanner/reporters/console.py",
+          "git_blob_sha1": "7c3f6315bfdfade0a095f27a8cbf6d80e3c459c7"
+        },
+        {
+          "path": "src/dlp_scanner/reporters/csv_report.py",
+          "git_blob_sha1": "6675a9abcd7e139b90da1704de66302ab5f1c670"
+        },
+        {
+          "path": "src/dlp_scanner/reporters/json_report.py",
+          "git_blob_sha1": "bb91c5297acba91ce431048290f33e9411d2bc90"
+        },
+        {
+          "path": "src/dlp_scanner/reporters/sarif.py",
+          "git_blob_sha1": "3d309ebd668845a180f7c21be4669044bf9ea154"
+        },
+        {
+          "path": "src/dlp_scanner/scanners/__init__.py",
+          "git_blob_sha1": "e1add2a99827a0287bdd84beb838f5f37159a48c"
+        },
+        {
+          "path": "src/dlp_scanner/scanners/base.py",
+          "git_blob_sha1": "74f56f8d5883e3f42d2d8c8d1fdf306a32a7b6f9"
+        },
+        {
+          "path": "src/dlp_scanner/scanners/db_scanner.py",
+          "git_blob_sha1": "a3a955321554798101fe96523526c499767e0231"
+        },
+        {
+          "path": "src/dlp_scanner/scanners/file_scanner.py",
+          "git_blob_sha1": "2046cbc60a3e2fad4472e6033a264ad0d30dcc73"
+        },
+        {
+          "path": "src/dlp_scanner/scanners/network_scanner.py",
+          "git_blob_sha1": "e7aa9f88d42ae11d80b3aecaa195ad9fd8daca4b"
+        },
+        {
+          "path": "README.md",
+          "git_blob_sha1": "b2271ea3cb2660388fc69f9f75e0d86cdadf0d94"
+        },
+        {
+          "path": "LICENSE",
+          "git_blob_sha1": "0ad25db4bd1d86c452db3f9602ccdbe172438f52"
+        },
+        {
+          "path": "pyproject.toml",
+          "git_blob_sha1": "175d799682f0ae47d5cd2f6db21c141d00feaee7"
+        },
+        {
+          "path": ".dlp-scanner.yml",
+          "git_blob_sha1": "422cd5dd5ea6c9f4e4563bb010a5437861db78f9"
+        }
+      ]
+    },
+    {
+      "name": "dns-lookup",
+      "repository": "CarterPerez-dev/Cybersecurity-Projects",
+      "upstream_path": "PROJECTS/beginner/dns-lookup",
+      "commit": "6c8ac8547cf52edaa06935e637a1fe11ac45b865",
+      "license": "AGPL-3.0-or-later",
+      "credit": "AngelaMos (2026); distributed in CarterPerez-dev/Cybersecurity-Projects",
+      "root": "third_party/community/dns-lookup",
+      "scope": "Verbatim runtime source and original license/docs; upstream tests, learning modules and generated artifacts omitted.",
+      "files": [
+        {
+          "path": "dnslookup/__init__.py",
+          "git_blob_sha1": "2bdfd02e3056875128eeda6b5845319c5e6c95d1"
+        },
+        {
+          "path": "dnslookup/__main__.py",
+          "git_blob_sha1": "0b487f6e89564124aa4a040dd4cf50160f261533"
+        },
+        {
+          "path": "dnslookup/cli.py",
+          "git_blob_sha1": "479e8b0322112276e6952daa309ffd794d7a0a45"
+        },
+        {
+          "path": "dnslookup/output.py",
+          "git_blob_sha1": "2a734961047f868d4c9578619e1f330f8883ce91"
+        },
+        {
+          "path": "dnslookup/resolver.py",
+          "git_blob_sha1": "95d861ef162e9114330895ece2dea5302c3ea32a"
+        },
+        {
+          "path": "dnslookup/whois_lookup.py",
+          "git_blob_sha1": "edb50822b593ca51584d0804c95c09cab970f9f2"
+        },
+        {
+          "path": "README.md",
+          "git_blob_sha1": "fda2674f583dc81917594833cef6252e3f0cb406"
+        },
+        {
+          "path": "LICENSE",
+          "git_blob_sha1": "0ad25db4bd1d86c452db3f9602ccdbe172438f52"
+        },
+        {
+          "path": "pyproject.toml",
+          "git_blob_sha1": "9b18dd93c04dd4a43c0b9aa52250e292bd5e2cf7"
+        }
+      ]
     }
   ]
 }
