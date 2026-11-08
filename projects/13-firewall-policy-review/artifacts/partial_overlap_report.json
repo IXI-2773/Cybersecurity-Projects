@@ -1,0 +1,29 @@
+{
+  "policy": "iptables-save IPv4 filter INPUT",
+  "rule_count": 3,
+  "findings": [
+    {
+      "rule_id": "INPUT:L8",
+      "code": "UNRESTRICTED_ADMIN_SOURCE",
+      "severity": "HIGH",
+      "detail": "TCP/3389 is allowed from all IPv4 addresses; review source restrictions."
+    },
+    {
+      "rule_id": "INPUT:L8",
+      "code": "PARTIALLY_SHADOWED_RULE",
+      "severity": "INFO",
+      "overlapping_rule_ids": [
+        "INPUT:L6",
+        "INPUT:L7"
+      ],
+      "overlap_example": {
+        "source": "0.0.0.0/1",
+        "destination": "0.0.0.0/0",
+        "protocol": "tcp",
+        "port": 3389
+      },
+      "detail": "Earlier terminating INPUT rules match part, but not all, of this rule's traffic; review redundant matches and rule order."
+    }
+  ],
+  "scope": "Exact single/combined shadowing and partial overlap checked for supported IPv4 INPUT; real reachability not evaluated"
+}

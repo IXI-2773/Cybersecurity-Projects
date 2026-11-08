@@ -1,0 +1,9 @@
+# Fabricated export: two DROP ranges cover 3/4 of sources; RDP allow remains partly reachable.
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -s 0.0.0.0/1 -j DROP
+-A INPUT -s 128.0.0.0/2 -j DROP
+-A INPUT -p tcp --dport 3389 -j ACCEPT
+COMMIT

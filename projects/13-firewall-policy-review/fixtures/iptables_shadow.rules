@@ -1,0 +1,8 @@
+# Fabricated iptables-save -t filter export; an unreachable RDP allow follows DROP-all.
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -j DROP
+-A INPUT -p tcp -m tcp --dport 3389 -j ACCEPT
+COMMIT
