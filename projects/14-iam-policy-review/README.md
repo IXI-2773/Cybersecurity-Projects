@@ -43,7 +43,7 @@ It accepts one IAM JSON document with `Version: "2012-10-17"`, a nonempty `State
 
 The reviewer treats AWS action names case-insensitively for exact `PassRole`/`AssumeRole` matches, and can emit multiple distinct review candidates for mixed action lists. Literal `Action: "*"` remains one umbrella candidate. Conditions are recorded as present but not interpreted.
 
-Only `Allow` statements produce candidates. An unsupported element (including `NotAction`, `NotResource`, `Principal` or malformed field types) causes the full input to be rejected rather than reported clean. The tool does **not** calculate effective permissions, expand AWS action wildcards, analyze `Deny` overrides, evaluate `Condition`, resolve policy variables, or combine SCPs, permissions boundaries, session policies, resource-based policies, service-specific requirements or cross-account context. A missing candidate does not establish least privilege.
+Only `Allow` statements produce candidates. An unsupported element (including `NotAction`, `NotResource`, `Principal`, duplicate JSON object keys or malformed field types) causes the full input to be rejected rather than reported clean. The tool does **not** calculate effective permissions, expand AWS action wildcards, analyze `Deny` overrides, evaluate `Condition`, resolve policy variables, or combine SCPs, permissions boundaries, session policies, resource-based policies, service-specific requirements or cross-account context. A missing candidate does not establish least privilege.
 
 ## Analyst follow-up
 

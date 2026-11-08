@@ -22,6 +22,16 @@ STATEMENT_ELEMENTS = {"Sid", "Effect", "Action", "Resource", "Condition"}
 SERVICE_WILDCARD = re.compile(r"^[A-Za-z0-9][A-Za-z0-9-]*:\*$")
 
 
+def _unique_json_keys(pairs):
+    """Reject ambiguous JSON objects instead of silently keeping the last key."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
 def _terms(value, label):
     """Accept only explicit nonempty string(s), never guessed AWS expressions."""
     if isinstance(value, str):
@@ -110,7 +120,8 @@ def main(argv=None):
     parser.add_argument("policy", type=Path, help="Local synthetic identity-policy JSON file")
     args = parser.parse_args(argv)
     try:
-        document = json.loads(args.policy.read_text(encoding="utf-8"))
+        document = json.loads(args.policy.read_text(encoding="utf-8"),
+                              object_pairs_hook=_unique_json_keys)
         report = analyze(document)
     except (OSError, ValueError, TypeError) as exc:
         print(f"Unsupported policy: {exc}", file=sys.stderr)

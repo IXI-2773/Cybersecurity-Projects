@@ -138,6 +138,20 @@ class IamPolicyReviewTests(unittest.TestCase):
                 self.assertEqual(run.stdout, "")
                 self.assertIn("Unsupported policy:", run.stderr)
 
+    def test_rejects_duplicate_json_keys_before_any_clean_report(self):
+        # The later Action must not silently replace an earlier broad permission.
+        raw_policy = ('{"Version":"2012-10-17","Statement":'
+                      '{"Effect":"Allow","Action":"*","Action":"s3:GetObject",'
+                      '"Resource":"*"}}')
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "ambiguous_policy.json"
+            source.write_text(raw_policy, encoding="utf-8")
+            run = subprocess.run([sys.executable, str(SCRIPT), str(source)],
+                                 capture_output=True, text=True, check=False)
+        self.assertEqual(run.returncode, 2, run.stdout)
+        self.assertEqual(run.stdout, "")
+        self.assertIn("duplicate", run.stderr.lower())
+
     def test_retained_synthetic_reports_match_current_cli(self):
         project = SCRIPT.parent
         for name, expected_exit in (("broad", 1), ("restricted", 0),
