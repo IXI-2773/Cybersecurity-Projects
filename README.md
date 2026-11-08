@@ -48,6 +48,7 @@ The following sections describe the portfolio's work. Public recorded datasets, 
 | [SOC Triage Assistant](projects/10-soc-triage/) | Runnable Python CLI, synthetic inputs, actual HTML/JSON output and focused tests. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/soc-triage-automation.html) |
 | [Splunk execution workflow](splunk_workflow/) | Runbooks, verifier and [app source](splunk_app/don_lopez_soc/); offline validation exists, live indexing and fired-alert validation remain pending. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/splunk-execution-workflow.html) |
 | [Certification learning engines](projects/certification-learning-engine.md) | Public [Security+ source](https://github.com/IXI-2773/Comptia-SY0-701-Test-Learning-Engine) and [SC-900 source](https://github.com/IXI-2773/Microsoft_SC-900_Test_Learning_Engine) remain in their existing repositories. | [Case](https://ixi-2773.github.io/Cybersecurity_Portfolio/projects/certification-learning-engine.html) |
+| [AWS IAM Policy Reviewer — starter](projects/14-iam-policy-review/) | Original offline Python checks for literal broad IAM Allow statements. Synthetic baseline and follow-up JSON reports; no cloud account, credentials or effective-permission claim. | [Code, retained reports and scope](projects/14-iam-policy-review/) |
 
 ### Training and playbooks
 
