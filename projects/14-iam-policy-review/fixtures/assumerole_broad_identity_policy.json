@@ -1,0 +1,15 @@
+{
+  "Version": "2012-10-17",
+  "Id": "SYNTHETIC-ASSUMEROLE-TRAINING",
+  "Statement": {
+    "Sid": "CrossAccountRoleHandoff",
+    "Effect": "Allow",
+    "Action": "sts:AssumeRole",
+    "Resource": "*",
+    "Condition": {
+      "StringEquals": {
+        "aws:PrincipalTag/team": "example-response"
+      }
+    }
+  }
+}

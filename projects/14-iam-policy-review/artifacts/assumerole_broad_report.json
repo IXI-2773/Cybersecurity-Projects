@@ -1,0 +1,13 @@
+{
+  "statement_count": 1,
+  "findings": [
+    {
+      "statement_id": "CrossAccountRoleHandoff",
+      "priority": "REVIEW",
+      "condition_present": true,
+      "code": "ASSUMEROLE_ALL_RESOURCES",
+      "detail": "Allow statement lists sts:AssumeRole with Resource *; review trusting roles and conditions."
+    }
+  ],
+  "scope": "Literal syntax checks of identity-policy Allow statements only; not effective access. Conditions, explicit denies, boundaries, SCPs, session and resource policies are not evaluated together."
+}

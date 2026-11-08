@@ -1,0 +1,5 @@
+{
+  "statement_count": 2,
+  "findings": [],
+  "scope": "Literal syntax checks of identity-policy Allow statements only; not effective access. Conditions, explicit denies, boundaries, SCPs, session and resource policies are not evaluated together."
+}

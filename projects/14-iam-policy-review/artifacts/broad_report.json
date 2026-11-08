@@ -1,0 +1,20 @@
+{
+  "statement_count": 3,
+  "findings": [
+    {
+      "statement_id": "BroadAdministrator",
+      "priority": "REVIEW",
+      "condition_present": false,
+      "code": "ALL_ACTIONS_ALL_RESOURCES",
+      "detail": "Allow statement specifies Action * and Resource *; review its intended scope."
+    },
+    {
+      "statement_id": "RoleHandoff",
+      "priority": "REVIEW",
+      "condition_present": true,
+      "code": "PASSROLE_ALL_RESOURCES",
+      "detail": "Allow statement lists iam:PassRole with Resource *; review permitted roles and conditions."
+    }
+  ],
+  "scope": "Literal syntax checks of identity-policy Allow statements only; not effective access. Conditions, explicit denies, boundaries, SCPs, session and resource policies are not evaluated together."
+}
