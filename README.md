@@ -99,6 +99,18 @@ These are runnable third-party CLI imports, **not projects written for this port
 
 The pinned files have a [separate import manifest](third_party/community/imports.json), preserving the earlier recorded integrations unchanged.
 
+### Independent GitHub tool source (copied, not authored here)
+
+These are direct, pinned imports from two additional maintainers—not original code or completed hands-on investigations. No network use, runtime validation, or detection findings are claimed.
+
+| Copied source | Original maintainer and purpose | Provenance |
+| --- | --- | --- |
+| [dnstwist](third_party/external/dnstwist/) | [elceef](https://github.com/elceef/dnstwist); phishing/lookalike-domain permutation analysis | [Pinned source and limitations](third_party/external/README.md) |
+| [assetfinder](third_party/external/assetfinder/) | [tomnomnom](https://github.com/tomnomnom/assetfinder); public subdomain discovery | [Pinned source and limitations](third_party/external/README.md) |
+| [httprobe](third_party/external/httprobe/) | [tomnomnom](https://github.com/tomnomnom/httprobe); HTTP/HTTPS reachability probing | [Pinned source and limitations](third_party/external/README.md) |
+
+Exact file identities are recorded in a [separate manifest](third_party/external/imports.json) and checked without running the imported tools.
+
 ## Run a project
 
 Python labs use the standard library unless their individual instructions state otherwise. Start with the offline SOC Triage Assistant:
