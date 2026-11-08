@@ -49,6 +49,8 @@ def validate(policy):
             raise ValueError(f"{identifier}: protocol any requires port null")
         if protocol != "any" and (type(port) is not int or not 1 <= port <= 65535):
             raise ValueError(f"{identifier}: TCP/UDP requires a port between 1 and 65535")
+        if not isinstance(rule.get("source"), str) or not isinstance(rule.get("destination"), str):
+            raise ValueError(f"{identifier}: source and destination must be CIDR text")
         source = ipaddress.ip_network(rule["source"], strict=True)
         destination = ipaddress.ip_network(rule["destination"], strict=True)
         if source.version != destination.version:

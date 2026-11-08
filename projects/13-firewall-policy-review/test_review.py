@@ -83,6 +83,19 @@ class FirewallPolicyReviewTests(unittest.TestCase):
         run = self.run_policy({"name": "synthetic", "default_action": "maybe", "rules": []})
         self.assertEqual(run.returncode, 2, run.stdout)
 
+    def test_rejects_non_text_addresses_instead_of_reporting_clean(self):
+        valid_rule = {"id": "RDP", "action": "allow", "source": "192.0.2.0/24",
+                      "destination": "198.51.100.10/32", "protocol": "tcp", "port": 3389}
+        for field, malformed in (("source", True), ("source", 0),
+                                 ("destination", False), ("destination", 0)):
+            with self.subTest(field=field, value=malformed):
+                policy = {"name": "synthetic", "default_action": "deny",
+                          "rules": [{**valid_rule, field: malformed}]}
+                run = self.run_policy(policy)
+                self.assertEqual(run.returncode, 2, run.stdout)
+                self.assertEqual(run.stdout, "")
+                self.assertIn("Invalid policy:", run.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()
