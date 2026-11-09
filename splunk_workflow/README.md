@@ -2,13 +2,15 @@
 
 ![Portfolio project](../assets/badges/portfolio-project.svg)
 
-**Owner:** Don Lopez · **Source:** 64 synthetic authentication rows, nine scenarios, five expected correlation matches.
+**Owner:** Don Lopez · **Source:** 64 original synthetic authentication rows, nine scenarios, five expected correlation matches; a separate current-time replay adds six synthetic rows.
 
-**Status:** Application/dashboard/alert package **PREPARED — installation, true CSV ingestion, dashboard rendering, and alert triggering are NOT YET VERIFIED in your Splunk Enterprise trial.** The separate original seven-event smoke search passed and the corrected 64-row in-memory SPL returned a screenshot with five expected rows; those do not validate this packaged app or indexed behavior.
+**Packaged-app status:** Custom-app installation, its dashboard rendering, and its bundled saved-alert execution remain **UNVERIFIED**. The older seven-event smoke search and 64-row in-memory screenshot exercise are separate from package validation.
+
+**Separate live confirmation — November 8, 2026:** An authorized standalone synthetic lab indexed exactly **70 source-equal events** (64 original plus six fresh), matched all **five** original expected findings without extras from the supplied negative fixtures, and retained **one native tracked scheduled alert** and its exact job result before disabling the temporary schedule. See the [source-bound confirmation](LIVE_CONFIRMATION_2026-11-08.md) and [employer-facing investigation draft](EMPLOYER_SOC_CASE_STUDY_DRAFT.md). This is not a real incident or proof of the packaged app's runtime.
 
 ## What is ready to use
 
-The [execution evidence workflow](EXECUTION.md) now prepares a current-time six-event replay and verifies indexed events, native fired-alert job results and an analyst handoff through authenticated REST. The new verifier has offline protocol tests; **it has not run against a live Splunk instance**. Existing upload and temporary-alert configuration steps remain operator actions.
+The [execution evidence workflow](EXECUTION.md) prepares a six-event replay and checks indexed rows, the actual fired-alert job and an analyst handoff. Its **HTTPS bearer-token verifier was not the entrypoint used for the November live result**: that run used an existing authenticated local Splunk CLI context, with hostname validation disabled in its unchanged configuration. The separate token-based path retains offline protocol tests. Uploading and configuring a temporary alert remain manual authorized lab steps.
 
 | Component | Artifact | Deployment state |
 | --- | --- | --- |
@@ -62,13 +64,13 @@ If the direct link works, the old app menu or cached navigation was likely the p
 4. Expected: 64 events, nine scenario labels, two counts/charts/tables, and five candidate detections under the inclusive 600-second rule. Take actual Splunk screenshots **only after viewing these results**.
 5. If the dashboard shows a missing lookup warning, verify installation and app context. Do not claim a successful dashboard until observed.
 
-## Next: genuine CSV indexing and investigation
+## Indexed CSV investigation
 
-Follow [the ingestion guide](INGESTION.md), which uses the original fixture in a **separate isolated test index** with CSV field extraction, UTC timestamp verification, no duplicates, and explicit checks. The indexed dashboard will remain empty until ingestion works.
+Follow [the ingestion guide](INGESTION.md) for a separate isolated index, CSV field extraction and UTC timestamp checks. The November 8 standalone run confirmed 70 correctly indexed synthetic events. **The packaged indexed dashboard itself still lacks observed runtime rendering**; verified indexing does not establish its UI behavior.
 
 ## Controlled alert demonstration
 
-Follow [the alert runbook](ALERTING.md). The bundled alert is *disabled* and does not email, send webhooks, run scripts, or isolate hosts. The alert preview can be tested manually; **historical 2026-10-05 data will not trigger a live last-five-minutes alert on today's date**. Creating a controlled alert with current fabricated events is a separate authorized operation and has not been performed.
+Follow [the alert runbook](ALERTING.md). The bundled alert is *disabled* and does not email, send webhooks, run scripts, or isolate hosts. Historical 2026-10-05 data cannot trigger a current five-minute alert. A **separate temporary native alert** was successfully confirmed using six current-time fabricated events on November 8; its exact job and tracked fired-alert record were retained before the schedule was disabled. No external actions were enabled. See the [bounded result](LIVE_CONFIRMATION_2026-11-08.md).
 
 ## Limits
 
