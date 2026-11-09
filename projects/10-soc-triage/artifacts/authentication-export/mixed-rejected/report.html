@@ -1,0 +1,107 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Executed exported-log triage report with source records, rejected inputs and analyst follow-up."><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"><title>SOC triage handoff</title><style>body{font:16px/1.65 system-ui,sans-serif;color:#213533;max-width:860px;margin:40px auto;padding:0 22px}h1,h2,h3{line-height:1.25;overflow-wrap:anywhere}a{color:#286b60}section{margin-top:36px}li+li,details{margin-top:18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#eef3f0;padding:16px}.status{padding:20px;border-left:4px solid #93651d;background:#fff8e9}summary{cursor:pointer}p{overflow-wrap:anywhere}</style></head><body><a class="skip-link" href="#main">Skip to content</a><main id="main">
+<h1>SOC triage handoff</h1><p class="status"><strong>PARTIAL / analyst review required</strong><br>input rows: 14 / accepted events: 7 / duplicate rows: 0 / rejected rows: 7 / review candidates: 0</p><p>Exported-log processing; review candidates, not confirmed incidents. No endpoint collection, network calls or response actions.</p><p>Rejected records remain below. A zero-candidate result does not establish that the input is complete or safe.</p>
+<nav aria-label="Report sections"><a href="#findings">Candidates</a> / <a href="#timeline">Timeline</a> / <a href="#sources">Sources</a> / <a href="#records">Input records</a></nav>
+<section id="findings"><h2>Review candidates</h2><ol></ol></section><section id="timeline"><h2>Normalized UTC timeline</h2><ol><li><strong>2026-11-08T10:01:00Z</strong><p>login_failure / lab_burst / synthetic-export-01</p><a href="#S01:R000002">S01:R000002</a></li><li><strong>2026-11-08T10:02:00Z</strong><p>login_failure / lab_burst / synthetic-export-01</p><a href="#S01:R000003">S01:R000003</a></li><li><strong>2026-11-08T10:03:00Z</strong><p>login_failure / lab_burst / synthetic-export-01</p><a href="#S01:R000004">S01:R000004</a></li><li><strong>2026-11-08T10:04:00Z</strong><p>login_failure / lab_burst / synthetic-export-01</p><a href="#S01:R000005">S01:R000005</a></li><li><strong>2026-11-08T10:10:00Z</strong><p>login_success / lab_burst / synthetic-export-01</p><a href="#S01:R000006">S01:R000006</a></li><li><strong>2026-11-08T11:00:00Z</strong><p>login_failure / lab_benign / synthetic-export-01</p><a href="#S01:R000007">S01:R000007</a></li><li><strong>2026-11-08T11:01:00Z</strong><p>login_success / lab_benign / synthetic-export-01</p><a href="#S01:R000008">S01:R000008</a></li></ol></section><section id="sources"><h2>Source files and scope</h2><ul><li>S01 / valid.csv / 8 data records<pre>b76966b8cdef9dfc0e14e26f18a16384815d8797c2973dfc22df70c391265514</pre></li><li>S02 / malformed.csv / 6 data records<pre>ea92256f387b8cb2aaeca4a18a7ab0b81b3fd100a13fb2d42934d738b8ed01ce</pre></li></ul><p>Same-time failures and successes do not establish order: tied failures are excluded and every success resets the earlier failure history.</p><p>Record references count CSV data records after the header or JSON array positions, starting at one. Record hashes cover canonical parsed JSON; file hashes cover exact input bytes. Only declared host/event_uid pairs are coalesced. Shared IDs must be stable and unique within a host across the supplied exports.</p></section><section id="records"><h2>Preserved input records</h2><details id="S01:R000001"><summary>S01:R000001 / rejected</summary><p>Conflicting or invalid copy of event_uid within host; all identifiable matching IDs quarantined</p><pre>{
+  &quot;_time&quot;: &quot;2026-11-08T12:00:00+02:00&quot;,
+  &quot;username&quot;: &quot;lab_burst&quot;,
+  &quot;host&quot;: &quot;SYNTHETIC-EXPORT-01&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.77&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;event_uid&quot;: &quot;burst-01&quot;
+}</pre><p>Parsed-record SHA-256: e777cf11961d3ab872cf839db36d7ab21b1d9c676ba4eddc714fd399862ffcac</p></details><details id="S01:R000002"><summary>S01:R000002 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;_time&quot;: &quot;2026-11-08T10:01:00Z&quot;,
+  &quot;username&quot;: &quot;lab_burst&quot;,
+  &quot;host&quot;: &quot;SYNTHETIC-EXPORT-01&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.77&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;event_uid&quot;: &quot;burst-02&quot;
+}</pre><p>Parsed-record SHA-256: c0de3255fbb0be9165d44df81959ed89dd597f6a1f819ab6f74696cdd7d4c481</p></details><details id="S01:R000003"><summary>S01:R000003 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;_time&quot;: &quot;2026-11-08T10:02:00Z&quot;,
+  &quot;username&quot;: &quot;lab_burst&quot;,
+  &quot;host&quot;: &quot;SYNTHETIC-EXPORT-01&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.77&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;event_uid&quot;: &quot;burst-03&quot;
+}</pre><p>Parsed-record SHA-256: 0add2b60034146e579b68142b60900094c872790b1f527b1e791b3d70efb3df1</p></details><details id="S01:R000004"><summary>S01:R000004 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;_time&quot;: &quot;2026-11-08T10:03:00Z&quot;,
+  &quot;username&quot;: &quot;lab_burst&quot;,
+  &quot;host&quot;: &quot;SYNTHETIC-EXPORT-01&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.77&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;event_uid&quot;: &quot;burst-04&quot;
+}</pre><p>Parsed-record SHA-256: 0fa7b058a983d025f7745ba2aed0a5345b1136e58019570265a4e0f4befe565c</p></details><details id="S01:R000005"><summary>S01:R000005 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;_time&quot;: &quot;2026-11-08T10:04:00Z&quot;,
+  &quot;username&quot;: &quot;lab_burst&quot;,
+  &quot;host&quot;: &quot;SYNTHETIC-EXPORT-01&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.77&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;event_uid&quot;: &quot;burst-05&quot;
+}</pre><p>Parsed-record SHA-256: 794d0fde77a059c53eb932a82ec576d807324f0d3767c7e6bba97461d38d8ca1</p></details><details id="S01:R000006"><summary>S01:R000006 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;_time&quot;: &quot;2026-11-08T10:10:00Z&quot;,
+  &quot;username&quot;: &quot;lab_burst&quot;,
+  &quot;host&quot;: &quot;SYNTHETIC-EXPORT-01&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.77&quot;,
+  &quot;event_type&quot;: &quot;login_success&quot;,
+  &quot;event_uid&quot;: &quot;burst-06&quot;
+}</pre><p>Parsed-record SHA-256: 5fbb92d72982a3f4b3746282ccd8d64660b848c843106b10f3421a799a925ed2</p></details><details id="S01:R000007"><summary>S01:R000007 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;_time&quot;: &quot;2026-11-08T11:00:00Z&quot;,
+  &quot;username&quot;: &quot;lab_benign&quot;,
+  &quot;host&quot;: &quot;SYNTHETIC-EXPORT-01&quot;,
+  &quot;source_ip&quot;: &quot;198.51.100.23&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;event_uid&quot;: &quot;benign-01&quot;
+}</pre><p>Parsed-record SHA-256: c7b6010a0f573a9fa421174f893583e9bbafa20ea2f44f668439cdc1328c1333</p></details><details id="S01:R000008"><summary>S01:R000008 / accepted</summary><p>Accepted source record</p><pre>{
+  &quot;_time&quot;: &quot;2026-11-08T11:01:00Z&quot;,
+  &quot;username&quot;: &quot;lab_benign&quot;,
+  &quot;host&quot;: &quot;SYNTHETIC-EXPORT-01&quot;,
+  &quot;source_ip&quot;: &quot;198.51.100.23&quot;,
+  &quot;event_type&quot;: &quot;login_success&quot;,
+  &quot;event_uid&quot;: &quot;benign-02&quot;
+}</pre><p>Parsed-record SHA-256: a7006fe02392f7e5459d91bcb7599a91b42db2c88911dbabfc22b7f1c745d93c</p></details><details id="S02:R000001"><summary>S02:R000001 / rejected</summary><p>Invalid isoformat string: &#x27;not-a-time&#x27;</p><pre>{
+  &quot;_time&quot;: &quot;not-a-time&quot;,
+  &quot;username&quot;: &quot;lab_burst&quot;,
+  &quot;host&quot;: &quot;SYNTHETIC-EXPORT-01&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.77&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;event_uid&quot;: &quot;burst-01&quot;
+}</pre><p>Parsed-record SHA-256: 71ff5c94f4c9d9922d3e62cba16b162f4de6ffca0f8ebe2551b381209b52a682</p></details><details id="S02:R000002"><summary>S02:R000002 / rejected</summary><p>Timestamp must include an explicit timezone</p><pre>{
+  &quot;_time&quot;: &quot;2026-11-08T12:01:00&quot;,
+  &quot;username&quot;: &quot;lab_bad&quot;,
+  &quot;host&quot;: &quot;SYNTHETIC-EXPORT-02&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.78&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;event_uid&quot;: &quot;bad-timezone&quot;
+}</pre><p>Parsed-record SHA-256: 816730de261d00c3e247031f7ca20a18ffe357b1d74074b79704b9fd2c41ba31</p></details><details id="S02:R000003"><summary>S02:R000003 / rejected</summary><p>&#x27;999.0.0.1&#x27; does not appear to be an IPv4 or IPv6 address</p><pre>{
+  &quot;_time&quot;: &quot;2026-11-08T12:02:00Z&quot;,
+  &quot;username&quot;: &quot;lab_bad&quot;,
+  &quot;host&quot;: &quot;SYNTHETIC-EXPORT-02&quot;,
+  &quot;source_ip&quot;: &quot;999.0.0.1&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;event_uid&quot;: &quot;bad-ip&quot;
+}</pre><p>Parsed-record SHA-256: a98b0bbab253a3019316b92621690e18108d1c5ff9fb9024fd5986496c7e6f65</p></details><details id="S02:R000004"><summary>S02:R000004 / rejected</summary><p>Missing required field: host</p><pre>{
+  &quot;_time&quot;: &quot;2026-11-08T12:03:00Z&quot;,
+  &quot;username&quot;: &quot;lab_bad&quot;,
+  &quot;host&quot;: &quot;&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.78&quot;,
+  &quot;event_type&quot;: &quot;login_failure&quot;,
+  &quot;event_uid&quot;: &quot;bad-host&quot;
+}</pre><p>Parsed-record SHA-256: cb6cd9f21a9eda2bb10a43a2a821ee32993a9793aef63599a971778b7f896cbb</p></details><details id="S02:R000005"><summary>S02:R000005 / rejected</summary><p>Unsupported event_type</p><pre>{
+  &quot;_time&quot;: &quot;2026-11-08T12:04:00Z&quot;,
+  &quot;username&quot;: &quot;lab_bad&quot;,
+  &quot;host&quot;: &quot;SYNTHETIC-EXPORT-02&quot;,
+  &quot;source_ip&quot;: &quot;192.0.2.78&quot;,
+  &quot;event_type&quot;: &quot;success&quot;,
+  &quot;event_uid&quot;: &quot;bad-kind&quot;
+}</pre><p>Parsed-record SHA-256: 299b0a04ff2f304f258b06ddd701194dd3d922a1cfa810f644892c37580bf03f</p></details><details id="S02:R000006"><summary>S02:R000006 / rejected</summary><p>Expected an object with a valid CSV field count</p><pre>{
+  &quot;csv_fields&quot;: {
+    &quot;_time&quot;: &quot;2026-11-08T12:05:00Z&quot;,
+    &quot;username&quot;: &quot;lab_bad&quot;,
+    &quot;host&quot;: &quot;SYNTHETIC-EXPORT-02&quot;,
+    &quot;source_ip&quot;: &quot;192.0.2.78&quot;,
+    &quot;event_type&quot;: &quot;login_failure&quot;,
+    &quot;event_uid&quot;: &quot;bad-columns&quot;
+  },
+  &quot;extra_values&quot;: [
+    &quot;unexpected&quot;
+  ]
+}</pre><p>Parsed-record SHA-256: 8a740cb396bd4770f24fd5642cc488ae0d47b7ab65cac07108ff8a84d82ad42d</p></details></section></main></body></html>
