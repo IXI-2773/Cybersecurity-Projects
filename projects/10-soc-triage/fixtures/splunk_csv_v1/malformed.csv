@@ -1,0 +1,7 @@
+_time,username,host,source_ip,event_type,event_uid
+not-a-time,lab_burst,SYNTHETIC-EXPORT-01,192.0.2.77,login_failure,burst-01
+2026-11-08T12:01:00,lab_bad,SYNTHETIC-EXPORT-02,192.0.2.78,login_failure,bad-timezone
+2026-11-08T12:02:00Z,lab_bad,SYNTHETIC-EXPORT-02,999.0.0.1,login_failure,bad-ip
+2026-11-08T12:03:00Z,lab_bad,,192.0.2.78,login_failure,bad-host
+2026-11-08T12:04:00Z,lab_bad,SYNTHETIC-EXPORT-02,192.0.2.78,success,bad-kind
+2026-11-08T12:05:00Z,lab_bad,SYNTHETIC-EXPORT-02,192.0.2.78,login_failure,bad-columns,unexpected
