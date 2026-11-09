@@ -1,9 +1,9 @@
 {
   "schema": "portfolio.soc-triage.v1",
   "status": "PARTIAL",
-  "scope": "Offline exported-log processing; review candidates, not confirmed incidents. No endpoint collection, network calls or response actions.",
+  "scope": "Exported-log processing; review candidates, not confirmed incidents. No endpoint collection, network calls or response actions.",
   "source_sha256": {
-    "triage.py": "f74800fa490303e2a62d061b53ca2d0ffdc6ebbbcc5b83800495a84ae1787fd7",
+    "triage.py": "c10abcf1c3b79227d36a1825e480dd8568b55c5b699effd5f5241f494a54b976",
     "process_triage.py": "cd8784969935356a724d55a2a5f1e7885f6338fe5b1d5d4137e0578398412064"
   },
   "summary": {
