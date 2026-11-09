@@ -125,9 +125,17 @@ class SplunkAPI:
         for _ in range(16):
             data = self.request(path)
             entries = data.get('entry', [])
-            if len(entries) != 1 or entries[0].get('name') != sid:
+            if len(entries) != 1:
                 raise ValueError('Missing or mismatched search job metadata')
             metadata = entries[0].get('content', {})
+            resource_id = entries[0].get('id')
+            native_sid = metadata.get('sid')
+            if native_sid is not None or resource_id is not None:
+                if (native_sid != sid or not isinstance(resource_id, str)
+                        or urllib.parse.urlsplit(resource_id).path != path):
+                    raise ValueError('Missing or mismatched search job metadata')
+            elif entries[0].get('name') != sid:
+                raise ValueError('Missing or mismatched search job metadata')
             if metadata.get('isFailed') not in (None, False, 0, '0') or metadata.get('isFinalized') not in (None, False, 0, '0'):
                 raise ValueError('Failed or finalized search job cannot qualify')
             state = metadata.get('dispatchState')
@@ -138,7 +146,11 @@ class SplunkAPI:
             time.sleep(1)
         else:
             raise ValueError('Search job exceeded the bounded wait')
-        original = metadata.get('request', {}).get('search')
+        request_search = metadata.get('request', {}).get('search')
+        original = metadata.get('search') or request_search
+        if (metadata.get('search') and request_search
+                and normalized_query(metadata['search']) != normalized_query(request_search)):
+            raise ValueError('Conflicting original job query metadata')
         if expected_query is not None and normalized_query(original) != normalized_query(expected_query):
             raise ValueError('Original job query does not match the indexed lab query')
         if owner is not None or app is not None:
@@ -202,6 +214,36 @@ def verify(folder, client, *, index, owner, app, alert_name):
         if tuples(list(csv.DictReader(f)), RAW_FIELDS) != tuples(replay, RAW_FIELDS):
             raise ValueError('Replay artifact does not match its manifest')
     base = f'index={index} sourcetype="portfolio:auth"'
+    # Capture the time-sensitive scheduled evidence before creating ad hoc jobs.
+    anchor = epoch(manifest['anchor_utc'])
+    candidates = []
+    for entry in client.fired(owner, app, alert_name):
+        content = entry.get('content', {})
+        try:
+            trigger = float(content.get('trigger_time', -1))
+        except (ValueError, TypeError):
+            continue
+        if content.get('savedsearch_name') == alert_name and anchor <= trigger <= anchor + 300 and not content.get('actions'):
+            candidates.append(entry)
+    if not candidates:
+        raise ValueError('No matching native fired alert for this replay; a preview is insufficient')
+    fired_entry = max(candidates, key=lambda row: float(row['content']['trigger_time']))
+    fired = fired_entry['content']
+    retained_alert = dict(run_id=manifest['run_id'],
+                          captured_at_utc=datetime.now(timezone.utc).isoformat(timespec='seconds'),
+                          entry=fired_entry)
+    (folder / 'fired_alert.json').write_text(json.dumps(retained_alert, indent=2) + '\n', encoding='utf-8')
+    alert_query = (HERE / 'searches/08_alert_preview_indexed.spl').read_text(encoding='utf-8')
+    alert_first, alert_remaining = alert_query.split('\n', 1)
+    if alert_first != 'index=lab_auth sourcetype="portfolio:auth"':
+        raise ValueError('Indexed alert query source contract changed')
+    alert_query = 'search ' + base + '\n' + alert_remaining
+    alert_job = client.results(fired.get('sid', ''), expected_query=alert_query, owner=owner, app=app)
+    alert_rows = alert_job['rows']
+    expected_alert = [{**replay[-1], 'failure_count_in_window': 5}]
+    if tuples(alert_rows, FINDING_FIELDS) != tuples(expected_alert, FINDING_FIELDS):
+        raise ValueError('Fired search job does not contain this exact replay finding')
+    csv_write(folder / 'fired_findings.csv', alert_rows, FINDING_FIELDS)
     raw_job = client.search('search ' + base + ' | eval indexed_epoch=_time | table _time indexed_epoch ' + ' '.join(RAW_FIELDS))
     raw = raw_job['rows']
     if len(raw) != 70:
@@ -236,36 +278,12 @@ def verify(folder, client, *, index, owner, app, alert_name):
         source = [row for row in canonical if row.get('event_type') == 'login_success' and all(str(row.get(k)) == str(finding.get(k)) for k in ('timestamp', 'username', 'source_ip', 'host', 'scenario'))]
         if len(source) != 1 or not any(all(str(row.get(k)) == str(finding.get(k)) for k in row) for row in expected):
             raise ValueError('Finding source binding failed')
-    candidates = []
-    anchor = epoch(manifest['anchor_utc'])
-    for entry in client.fired(owner, app, alert_name):
-        content = entry.get('content', {})
-        try:
-            trigger = float(content.get('trigger_time', -1))
-        except (ValueError, TypeError):
-            continue
-        if content.get('savedsearch_name') == alert_name and anchor <= trigger <= anchor + 300 and not content.get('actions'):
-            candidates.append(content)
-    if not candidates:
-        raise ValueError('No matching native fired alert for this replay; a preview is insufficient')
-    fired = max(candidates, key=lambda row: float(row['trigger_time']))
-    alert_query = (HERE / 'searches/08_alert_preview_indexed.spl').read_text(encoding='utf-8')
-    alert_first, alert_remaining = alert_query.split('\n', 1)
-    if alert_first != 'index=lab_auth sourcetype="portfolio:auth"':
-        raise ValueError('Indexed alert query source contract changed')
-    alert_query = 'search ' + base + '\n' + alert_remaining
-    alert_job = client.results(fired.get('sid', ''), expected_query=alert_query, owner=owner, app=app)
-    alert_rows = alert_job['rows']
-    expected_alert = [{**replay[-1], 'failure_count_in_window': 5}]
-    if tuples(alert_rows, FINDING_FIELDS) != tuples(expected_alert, FINDING_FIELDS):
-        raise ValueError('Fired search job does not contain this exact replay finding')
-    csv_write(folder / 'fired_findings.csv', alert_rows, FINDING_FIELDS)
     report.update(status='INDEXED_AND_FIRED_ALERT_EVIDENCE_PASS', observed_at_utc=datetime.now(timezone.utc).isoformat(timespec='seconds'),
                   canonical_events=64, replay_events=6, canonical_findings=5, indexed_time_checked=True,
                   raw_job_sid=raw_job['sid'], finding_job_sid=finding_job['sid'], fired_job_sid=fired['sid'],
                   query_sha256={'raw': raw_job['query_sha256'], 'findings': finding_job['query_sha256'], 'fired_observed': alert_job['observed_query_sha256']},
                   fired_namespace={'owner': owner, 'app': app},
-                  artifact_sha256={name: digest((folder / name).read_bytes()) for name in ('manifest.json', 'canonical.csv', 'replay.csv', 'indexed_canonical.csv', 'indexed_findings.csv', 'fired_findings.csv')},
+                  artifact_sha256={name: digest((folder / name).read_bytes()) for name in ('manifest.json', 'canonical.csv', 'replay.csv', 'indexed_canonical.csv', 'indexed_findings.csv', 'fired_alert.json', 'fired_findings.csv')},
                   note='Authenticated response checks only; not independent attestation, production efficacy, scheduler or suppression validation.')
     (folder / 'verification.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     handoff = '# Analyst handoff — synthetic authentication lab\n\n' + f'Run: `{manifest["run_id"]}` · Replay success: {manifest["anchor_utc"]}\n\n'

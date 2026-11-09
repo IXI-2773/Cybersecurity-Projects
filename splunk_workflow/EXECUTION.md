@@ -1,6 +1,6 @@
 # Indexed evidence → fired alert → analyst handoff
 
-**Implementation status:** the preparation/verifier is covered by offline tests. **Live Splunk execution has not occurred in this development session:** no management endpoint or token is configured, and the connected desktop is offline. No new ingestion, fired-alert, dashboard or scheduled-execution accomplishment is claimed.
+**Implementation status:** the preparation/verifier is covered by offline tests. This code change does not execute a live Splunk alert or establish a fired-alert record. Any separate live lab results must retain their own source-bound runtime evidence; offline tests cannot replace them.
 
 The existing app and runbooks already provide the searches and disabled alert. This command-line aid removes manual CSV comparison and handoff assembly. It creates bounded search jobs and reads an existing fired-alert job through authenticated REST; it does **not** upload events, install apps, enable a schedule, send notifications or modify accounts.
 
@@ -19,7 +19,7 @@ Use the existing [alerting guide](ALERTING.md) and [indexed alert search](search
 - Trigger when results exceed zero; retain triggered-alert tracking (`alert.track=1`).
 - Keep email, webhook, script, and other external actions off.
 - Record its actual owner, app and name. The commands below use `admin` and `search` only as examples.
-- Disable the temporary schedule after collecting the evidence.
+- Keep the temporary schedule enabled until the fired-alert record **and its exact result rows** have been captured. Disable it immediately afterward, including when verification fails; do not leave a recurring lab schedule running while investigating missing evidence.
 
 The verifier observes a native fired-alert record; it does not infer scheduler origin or suppression behavior from its existence. Those remain separate checks.
 
@@ -41,7 +41,7 @@ This creates a new directory and refuses to overwrite an existing one. It contai
 
 Upload **only `replay.csv`** to the same lab index and sourcetype, using the existing parsing/UTC preview checks. It uses a unique synthetic account and scenario, a documentation-range IP, and a synthetic host label. No credentials or real account activity are involved.
 
-The expected combined index is now **70 events: 64 canonical plus six replay rows**. Wait for the actual triggered-alert entry. A manually run preview is insufficient. If the five-minute window expires first, use a new approved empty lab index and a new prepared directory for another attempt; preserve prior evidence and avoid duplicate uploads.
+The expected combined index is now **70 events: 64 canonical plus six replay rows**. Wait for the actual triggered-alert entry. A manually run preview is insufficient. If the five-minute window expires first, preserve the current evidence and check the scheduler/dispatch logs and alert tracking before deciding whether a fresh approved attempt is justified. Never duplicate the replay upload into the existing index.
 
 ## 4. Collect and verify the native evidence
 
@@ -53,14 +53,16 @@ The token needs permission to search the isolated lab index and read the relevan
 python splunk_workflow/verify_execution.py verify --output local_splunk_run --index lab_auth --owner admin --app search --alert-name "Portfolio Replay"
 ```
 
+Run verification **before disabling** the temporary schedule, promptly after the scheduled execution. It first retrieves the time-sensitive fired-alert instance and exact scheduled-job result; only then does it create ad hoc search jobs to check the canonical data. Always disable the schedule afterward, even if this command reports failure. The verifier intentionally has no configuration-write permission and cannot disable the schedule for you.
+
 The verifier checks:
 
 1. Canonical/replay file custody and exactly 70 indexed rows, rejecting missing or duplicate data.
 2. Native indexed event time against every source UTC timestamp, before the detection SPL recalculates time.
 3. All 64 canonical rows and the five original expected findings using the existing [CSV qualifier](../projects/01-authentication-detection/qualify_exports.py), plus host/scenario binding.
-4. A native fired-alert instance with the requested name and replay time range, followed by its completed job's exact replay finding. Its original `request.search` must match the existing indexed alert SPL for the selected lab index, and its owner/app ACL must match the requested namespace. A generating query or a same-looking result from another index cannot qualify. Failed, prematurely finalized, truncated or inconsistent search results are rejected.
+4. A native fired-alert instance with the requested name and replay time range, followed by its completed job's exact replay finding. Job identity binds to native `content.sid` and its REST resource path when provided; the original scheduled query may appear in `content.search` rather than `request.search`, and must match the existing indexed alert SPL for the selected lab index. Its owner/app ACL must match the requested namespace. A generating query or a same-looking result from another index cannot qualify. Failed, prematurely finalized, truncated or inconsistent search results are rejected.
 
-Only after all checks pass does it write `INDEXED_AND_FIRED_ALERT_EVIDENCE_PASS`, the compared CSV exports, source/query/artifact hashes, job SIDs, and `handoff.md`. Reports and handoffs reset to an unverified state before another attempt, including connection failures. Missing connection settings produce `BLOCKED_NO_CONNECTION`.
+The selected native record is saved immediately to private `fired_alert.json`, bound to the replay run ID, and its exact result rows are exported before the later canonical checks. These retained artifacts alone are not a pass. Only after all checks pass does the verifier write `INDEXED_AND_FIRED_ALERT_EVIDENCE_PASS`, source/query/artifact hashes, job SIDs, and `handoff.md`. Reports and handoffs reset to an unverified state before another attempt, including connection failures. Missing connection settings produce `BLOCKED_NO_CONNECTION`.
 
 Keep this directory private until reviewed. The suggested `local_splunk_run*` directories are ignored by git. These are authenticated-response checks, not independent attestation, a claim of production efficacy, proof of dashboard rendering, or validation of scheduler/suppression behavior. **Offline protocol tests cannot supply execution evidence.**
 

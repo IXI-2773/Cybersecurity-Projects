@@ -38,12 +38,17 @@ class EvidenceTests(unittest.TestCase):
     def client(self, *, raw=None, findings=None, alert_rows=None, fired=True):
         parent = self
         class FakeAPI:
+            def __init__(self):
+                self.calls = []
             def search(self, query):
+                self.calls.append('search')
                 rows = (raw if raw is not None else parent.canonical + parent.replay) if '| table _time ' in query else (findings if findings is not None else parent.findings)
                 return {'sid': 'test_job', 'query_sha256': 'a' * 64, 'rows': copy.deepcopy(rows)}
             def fired(self, owner, app, name):
+                self.calls.append('fired')
                 return ([{'name': 'test_alert_instance', 'content': {'savedsearch_name': name, 'sid': 'scheduler_test_job', 'trigger_time': workflow.epoch(parent.manifest['anchor_utc']) + 30}}] if fired else [])
             def results(self, sid, **binding):
+                self.calls.append('results')
                 parent.assertIn('index=lab_auth ', binding['expected_query'])
                 parent.assertEqual((binding['owner'], binding['app']), ('admin', 'search'))
                 return {'rows': copy.deepcopy(alert_rows if alert_rows is not None else [parent.alert_row]), 'observed_query_sha256': 'b' * 64}
@@ -70,6 +75,20 @@ class EvidenceTests(unittest.TestCase):
         self.assertFalse(report['independently_attested'])
         self.assertFalse(report['suppression_verified'])
         self.assertIn('Legitimate user recovery', (self.folder / 'handoff.md').read_text())
+
+    def test_fired_evidence_is_captured_before_new_search_jobs(self):
+        client = self.client()
+        self.run_check(client)
+        self.assertEqual(client.calls[:2], ['fired', 'results'])
+
+    def test_native_fired_record_survives_a_later_verification_failure(self):
+        with self.assertRaisesRegex(ValueError, '70'):
+            self.run_check(self.client(raw=self.canonical))
+        retained = json.loads((self.folder / 'fired_alert.json').read_text())
+        self.assertEqual(retained['run_id'], self.manifest['run_id'])
+        self.assertEqual(retained['entry']['name'], 'test_alert_instance')
+        self.assertEqual(retained['entry']['content']['sid'], 'scheduler_test_job')
+        self.assertEqual(json.loads((self.folder / 'verification.json').read_text())['status'], 'NOT_VERIFIED')
 
     def test_duplicate_ingestion_is_rejected(self):
         with self.assertRaisesRegex(ValueError, '70'):
@@ -132,6 +151,31 @@ class TransportTests(unittest.TestCase):
     def test_untrusted_origin_rejected_before_token_use(self):
         with self.assertRaises(ValueError):
             workflow.SplunkAPI('http://example.invalid:8089', 'secret')
+
+    def test_native_scheduled_job_uses_content_sid_and_content_search(self):
+        sid = 'scheduler__xex__search__RMD5d9e5f97ba2974cf9_at_1794149580_90'
+        query = 'search index=lab_auth sourcetype="portfolio:auth" | head 1'
+        responses = [
+            {'entry': [{'name': query,
+                        'id': 'https://127.0.0.1:8089/services/search/jobs/' + sid,
+                        'acl': {'owner': 'xex', 'app': 'search'},
+                        'content': {'sid': sid, 'search': query, 'request': {'earliest_time': '-20m'},
+                                    'dispatchState': 'DONE', 'resultCount': '1'}}]},
+            {'results': [{'timestamp': '2026-11-08T14:50:52Z'}]},
+        ]
+        api = workflow.SplunkAPI('https://127.0.0.1:8089', 'test-token')
+        api.request = lambda path, **kwargs: responses.pop(0)
+        observed = api.results(sid, expected_query=query, owner='xex', app='search')
+        self.assertEqual(observed['sid'], sid)
+        self.assertEqual(observed['rows'], [{'timestamp': '2026-11-08T14:50:52Z'}])
+
+    def test_conflicting_native_sid_cannot_pass_using_display_name(self):
+        api = workflow.SplunkAPI('https://example.invalid:8089', 'test-token')
+        api.request = lambda path, **kw: {'entry': [{'name': 'job-1',
+            'id': 'https://example.invalid:8089/services/search/jobs/job-1',
+            'content': {'sid': 'job-OTHER', 'dispatchState': 'DONE', 'resultCount': '0'}}]}
+        with self.assertRaisesRegex(ValueError, 'metadata'):
+            api.results('job-1')
 
     def test_failed_or_finalized_job_never_yields_completed_results(self):
         for content in ({'dispatchState': 'FAILED'}, {'dispatchState': 'DONE', 'isFinalized': True}):
