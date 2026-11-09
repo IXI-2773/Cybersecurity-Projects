@@ -1,0 +1,9 @@
+_time,username,host,source_ip,event_type,event_uid
+2026-11-08T12:00:00+02:00,lab_burst,SYNTHETIC-EXPORT-01,192.0.2.77,login_failure,burst-01
+2026-11-08T10:01:00Z,lab_burst,SYNTHETIC-EXPORT-01,192.0.2.77,login_failure,burst-02
+2026-11-08T10:02:00Z,lab_burst,SYNTHETIC-EXPORT-01,192.0.2.77,login_failure,burst-03
+2026-11-08T10:03:00Z,lab_burst,SYNTHETIC-EXPORT-01,192.0.2.77,login_failure,burst-04
+2026-11-08T10:04:00Z,lab_burst,SYNTHETIC-EXPORT-01,192.0.2.77,login_failure,burst-05
+2026-11-08T10:10:00Z,lab_burst,SYNTHETIC-EXPORT-01,192.0.2.77,login_success,burst-06
+2026-11-08T11:00:00Z,lab_benign,SYNTHETIC-EXPORT-01,198.51.100.23,login_failure,benign-01
+2026-11-08T11:01:00Z,lab_benign,SYNTHETIC-EXPORT-01,198.51.100.23,login_success,benign-02

@@ -1,4 +1,4 @@
-"""Offline CSV/JSON triage. No network, command execution or response actions.
+"""CSV/JSON security-export triage. No network, command execution or response actions.
 
 Run from a clone of this repository; process patterns reuse process_triage.py.
 Exit 0: complete scoped processing; 2: partial, rejected rows retained; 1: fatal.
@@ -19,7 +19,7 @@ import sys
 HERE = Path(__file__).resolve().parent
 PROCESS_SOURCE = HERE.parent / '02-windows-process-triage/process_triage.py'
 ALIASES = {
-    'timestamp': ('timestamp', 'time', 'TimeCreated'),
+    'timestamp': ('timestamp', 'time', 'TimeCreated', '_time'),
     'username': ('username', 'user', 'User'),
     'host': ('host', 'computer', 'Computer'),
     'source_ip': ('source_ip', 'src_ip', 'IpAddress'),
@@ -208,7 +208,7 @@ def analyze(paths):
     rejected = sum(r['status'] == 'rejected' for r in records)
     findings = review(events)
     return {'schema': 'portfolio.soc-triage.v1', 'status': 'PARTIAL' if rejected else 'COMPLETE',
-            'scope': 'Offline exported-log processing; review candidates, not confirmed incidents. No endpoint collection, network calls or response actions.',
+            'scope': 'Exported-log processing; review candidates, not confirmed incidents. No endpoint collection, network calls or response actions.',
             'source_sha256': {'triage.py': digest(Path(__file__).read_bytes()), 'process_triage.py': digest(PROCESS_SOURCE.read_bytes())},
             'summary': {'input_rows': len(records), 'accepted_events': len(events),
                         'duplicate_rows': sum(r['status'] == 'duplicate' for r in records),

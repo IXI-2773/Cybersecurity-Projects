@@ -1,0 +1,339 @@
+{
+  "schema": "portfolio.soc-triage.v1",
+  "status": "PARTIAL",
+  "scope": "Exported-log processing; review candidates, not confirmed incidents. No endpoint collection, network calls or response actions.",
+  "source_sha256": {
+    "triage.py": "c10abcf1c3b79227d36a1825e480dd8568b55c5b699effd5f5241f494a54b976",
+    "process_triage.py": "cd8784969935356a724d55a2a5f1e7885f6338fe5b1d5d4137e0578398412064"
+  },
+  "summary": {
+    "input_rows": 14,
+    "accepted_events": 7,
+    "duplicate_rows": 0,
+    "rejected_rows": 7,
+    "review_candidates": 0
+  },
+  "inputs": [
+    {
+      "id": "S01",
+      "name": "valid.csv",
+      "format": "csv",
+      "sha256": "b76966b8cdef9dfc0e14e26f18a16384815d8797c2973dfc22df70c391265514",
+      "rows": 8
+    },
+    {
+      "id": "S02",
+      "name": "malformed.csv",
+      "format": "csv",
+      "sha256": "ea92256f387b8cb2aaeca4a18a7ab0b81b3fd100a13fb2d42934d738b8ed01ce",
+      "rows": 6
+    }
+  ],
+  "notes": [
+    "Same-time failures and successes do not establish order: tied failures are excluded and every success resets the earlier failure history."
+  ],
+  "findings": [],
+  "timeline": [
+    {
+      "timestamp": "2026-11-08T10:01:00Z",
+      "username": "lab_burst",
+      "host": "synthetic-export-01",
+      "event_type": "login_failure",
+      "event_uid": "burst-02",
+      "source_ip": "192.0.2.77",
+      "source_refs": [
+        "S01:R000002"
+      ]
+    },
+    {
+      "timestamp": "2026-11-08T10:02:00Z",
+      "username": "lab_burst",
+      "host": "synthetic-export-01",
+      "event_type": "login_failure",
+      "event_uid": "burst-03",
+      "source_ip": "192.0.2.77",
+      "source_refs": [
+        "S01:R000003"
+      ]
+    },
+    {
+      "timestamp": "2026-11-08T10:03:00Z",
+      "username": "lab_burst",
+      "host": "synthetic-export-01",
+      "event_type": "login_failure",
+      "event_uid": "burst-04",
+      "source_ip": "192.0.2.77",
+      "source_refs": [
+        "S01:R000004"
+      ]
+    },
+    {
+      "timestamp": "2026-11-08T10:04:00Z",
+      "username": "lab_burst",
+      "host": "synthetic-export-01",
+      "event_type": "login_failure",
+      "event_uid": "burst-05",
+      "source_ip": "192.0.2.77",
+      "source_refs": [
+        "S01:R000005"
+      ]
+    },
+    {
+      "timestamp": "2026-11-08T10:10:00Z",
+      "username": "lab_burst",
+      "host": "synthetic-export-01",
+      "event_type": "login_success",
+      "event_uid": "burst-06",
+      "source_ip": "192.0.2.77",
+      "source_refs": [
+        "S01:R000006"
+      ]
+    },
+    {
+      "timestamp": "2026-11-08T11:00:00Z",
+      "username": "lab_benign",
+      "host": "synthetic-export-01",
+      "event_type": "login_failure",
+      "event_uid": "benign-01",
+      "source_ip": "198.51.100.23",
+      "source_refs": [
+        "S01:R000007"
+      ]
+    },
+    {
+      "timestamp": "2026-11-08T11:01:00Z",
+      "username": "lab_benign",
+      "host": "synthetic-export-01",
+      "event_type": "login_success",
+      "event_uid": "benign-02",
+      "source_ip": "198.51.100.23",
+      "source_refs": [
+        "S01:R000008"
+      ]
+    }
+  ],
+  "source_records": [
+    {
+      "id": "S01:R000001",
+      "input_id": "S01",
+      "data_record": 1,
+      "parsed_record_sha256": "e777cf11961d3ab872cf839db36d7ab21b1d9c676ba4eddc714fd399862ffcac",
+      "raw": {
+        "_time": "2026-11-08T12:00:00+02:00",
+        "username": "lab_burst",
+        "host": "SYNTHETIC-EXPORT-01",
+        "source_ip": "192.0.2.77",
+        "event_type": "login_failure",
+        "event_uid": "burst-01"
+      },
+      "status": "rejected",
+      "reason": "Conflicting or invalid copy of event_uid within host; all identifiable matching IDs quarantined"
+    },
+    {
+      "id": "S01:R000002",
+      "input_id": "S01",
+      "data_record": 2,
+      "parsed_record_sha256": "c0de3255fbb0be9165d44df81959ed89dd597f6a1f819ab6f74696cdd7d4c481",
+      "raw": {
+        "_time": "2026-11-08T10:01:00Z",
+        "username": "lab_burst",
+        "host": "SYNTHETIC-EXPORT-01",
+        "source_ip": "192.0.2.77",
+        "event_type": "login_failure",
+        "event_uid": "burst-02"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000003",
+      "input_id": "S01",
+      "data_record": 3,
+      "parsed_record_sha256": "0add2b60034146e579b68142b60900094c872790b1f527b1e791b3d70efb3df1",
+      "raw": {
+        "_time": "2026-11-08T10:02:00Z",
+        "username": "lab_burst",
+        "host": "SYNTHETIC-EXPORT-01",
+        "source_ip": "192.0.2.77",
+        "event_type": "login_failure",
+        "event_uid": "burst-03"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000004",
+      "input_id": "S01",
+      "data_record": 4,
+      "parsed_record_sha256": "0fa7b058a983d025f7745ba2aed0a5345b1136e58019570265a4e0f4befe565c",
+      "raw": {
+        "_time": "2026-11-08T10:03:00Z",
+        "username": "lab_burst",
+        "host": "SYNTHETIC-EXPORT-01",
+        "source_ip": "192.0.2.77",
+        "event_type": "login_failure",
+        "event_uid": "burst-04"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000005",
+      "input_id": "S01",
+      "data_record": 5,
+      "parsed_record_sha256": "794d0fde77a059c53eb932a82ec576d807324f0d3767c7e6bba97461d38d8ca1",
+      "raw": {
+        "_time": "2026-11-08T10:04:00Z",
+        "username": "lab_burst",
+        "host": "SYNTHETIC-EXPORT-01",
+        "source_ip": "192.0.2.77",
+        "event_type": "login_failure",
+        "event_uid": "burst-05"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000006",
+      "input_id": "S01",
+      "data_record": 6,
+      "parsed_record_sha256": "5fbb92d72982a3f4b3746282ccd8d64660b848c843106b10f3421a799a925ed2",
+      "raw": {
+        "_time": "2026-11-08T10:10:00Z",
+        "username": "lab_burst",
+        "host": "SYNTHETIC-EXPORT-01",
+        "source_ip": "192.0.2.77",
+        "event_type": "login_success",
+        "event_uid": "burst-06"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000007",
+      "input_id": "S01",
+      "data_record": 7,
+      "parsed_record_sha256": "c7b6010a0f573a9fa421174f893583e9bbafa20ea2f44f668439cdc1328c1333",
+      "raw": {
+        "_time": "2026-11-08T11:00:00Z",
+        "username": "lab_benign",
+        "host": "SYNTHETIC-EXPORT-01",
+        "source_ip": "198.51.100.23",
+        "event_type": "login_failure",
+        "event_uid": "benign-01"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S01:R000008",
+      "input_id": "S01",
+      "data_record": 8,
+      "parsed_record_sha256": "a7006fe02392f7e5459d91bcb7599a91b42db2c88911dbabfc22b7f1c745d93c",
+      "raw": {
+        "_time": "2026-11-08T11:01:00Z",
+        "username": "lab_benign",
+        "host": "SYNTHETIC-EXPORT-01",
+        "source_ip": "198.51.100.23",
+        "event_type": "login_success",
+        "event_uid": "benign-02"
+      },
+      "status": "accepted"
+    },
+    {
+      "id": "S02:R000001",
+      "input_id": "S02",
+      "data_record": 1,
+      "parsed_record_sha256": "71ff5c94f4c9d9922d3e62cba16b162f4de6ffca0f8ebe2551b381209b52a682",
+      "raw": {
+        "_time": "not-a-time",
+        "username": "lab_burst",
+        "host": "SYNTHETIC-EXPORT-01",
+        "source_ip": "192.0.2.77",
+        "event_type": "login_failure",
+        "event_uid": "burst-01"
+      },
+      "status": "rejected",
+      "reason": "Invalid isoformat string: 'not-a-time'"
+    },
+    {
+      "id": "S02:R000002",
+      "input_id": "S02",
+      "data_record": 2,
+      "parsed_record_sha256": "816730de261d00c3e247031f7ca20a18ffe357b1d74074b79704b9fd2c41ba31",
+      "raw": {
+        "_time": "2026-11-08T12:01:00",
+        "username": "lab_bad",
+        "host": "SYNTHETIC-EXPORT-02",
+        "source_ip": "192.0.2.78",
+        "event_type": "login_failure",
+        "event_uid": "bad-timezone"
+      },
+      "status": "rejected",
+      "reason": "Timestamp must include an explicit timezone"
+    },
+    {
+      "id": "S02:R000003",
+      "input_id": "S02",
+      "data_record": 3,
+      "parsed_record_sha256": "a98b0bbab253a3019316b92621690e18108d1c5ff9fb9024fd5986496c7e6f65",
+      "raw": {
+        "_time": "2026-11-08T12:02:00Z",
+        "username": "lab_bad",
+        "host": "SYNTHETIC-EXPORT-02",
+        "source_ip": "999.0.0.1",
+        "event_type": "login_failure",
+        "event_uid": "bad-ip"
+      },
+      "status": "rejected",
+      "reason": "'999.0.0.1' does not appear to be an IPv4 or IPv6 address"
+    },
+    {
+      "id": "S02:R000004",
+      "input_id": "S02",
+      "data_record": 4,
+      "parsed_record_sha256": "cb6cd9f21a9eda2bb10a43a2a821ee32993a9793aef63599a971778b7f896cbb",
+      "raw": {
+        "_time": "2026-11-08T12:03:00Z",
+        "username": "lab_bad",
+        "host": "",
+        "source_ip": "192.0.2.78",
+        "event_type": "login_failure",
+        "event_uid": "bad-host"
+      },
+      "status": "rejected",
+      "reason": "Missing required field: host"
+    },
+    {
+      "id": "S02:R000005",
+      "input_id": "S02",
+      "data_record": 5,
+      "parsed_record_sha256": "299b0a04ff2f304f258b06ddd701194dd3d922a1cfa810f644892c37580bf03f",
+      "raw": {
+        "_time": "2026-11-08T12:04:00Z",
+        "username": "lab_bad",
+        "host": "SYNTHETIC-EXPORT-02",
+        "source_ip": "192.0.2.78",
+        "event_type": "success",
+        "event_uid": "bad-kind"
+      },
+      "status": "rejected",
+      "reason": "Unsupported event_type"
+    },
+    {
+      "id": "S02:R000006",
+      "input_id": "S02",
+      "data_record": 6,
+      "parsed_record_sha256": "8a740cb396bd4770f24fd5642cc488ae0d47b7ab65cac07108ff8a84d82ad42d",
+      "raw": {
+        "csv_fields": {
+          "_time": "2026-11-08T12:05:00Z",
+          "username": "lab_bad",
+          "host": "SYNTHETIC-EXPORT-02",
+          "source_ip": "192.0.2.78",
+          "event_type": "login_failure",
+          "event_uid": "bad-columns"
+        },
+        "extra_values": [
+          "unexpected"
+        ]
+      },
+      "status": "rejected",
+      "reason": "Expected an object with a valid CSV field count"
+    }
+  ]
+}

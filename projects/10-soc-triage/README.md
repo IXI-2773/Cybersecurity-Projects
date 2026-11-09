@@ -7,6 +7,14 @@ Standard library only; run from a clone of this repository. No home PC, Splunk,
 network, endpoint agent, third-party package or live account access is required.
 The process-pattern checks reuse `../02-windows-process-triage/process_triage.py`.
 
+## Authentication Export → Analyst Case Report
+
+[Explore the executed case and report](artifacts/authentication-export/README.md):
+an authentication CSV becomes a UTC timeline, a review candidate and traceable
+source records. Malformed records are retained with reasons, not silently dropped.
+The demonstration uses synthetic data; its methodology and reproducible commands
+are included with the results.
+
 ## Run
 
 From the repository root, choose a **new** output directory:
@@ -32,7 +40,7 @@ rows/file. This is a bounded utility, not an EVTX parser or universal vendor ada
 
 | Field | Accepted names | Meaning |
 | --- | --- | --- |
-| Timestamp | `timestamp`, `time`, `TimeCreated` | ISO 8601 with explicit timezone; normalized to UTC |
+| Timestamp | `timestamp`, `time`, `TimeCreated`, `_time` | ISO 8601 with explicit timezone; normalized to UTC |
 | User | `username`, `user`, `User` | Required; case preserved; no domain alias inference |
 | Host | `host`, `computer`, `Computer` | Required; trimmed and lowercased |
 | Event type | `event_type`, `action` | `login_failure`, `login_success`, `process_start`; `event_id=4688` can identify a process event |
