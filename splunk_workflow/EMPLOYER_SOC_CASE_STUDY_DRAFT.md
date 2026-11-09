@@ -5,7 +5,7 @@
 **Project owner:** Don Lopez-Moya  
 **Focus:** Detection engineering · Splunk SPL · SIEM validation · SOC investigation  
 **Evidence status:** Indexed detection and one native scheduled-alert confirmation **passed** on November 8, 2026. Temporary schedule subsequently disabled.  
-**Reference:** [Source-bound live confirmation record](https://github.com/IXI-2773/Cybersecurity-Projects/blob/b9ccad9b8b9cbca3fd919986bebfce5ed090407c/splunk_workflow/LIVE_CONFIRMATION_2026-11-08.md) (commit `b9ccad9`, branch `fix/splunk-native-evidence`; not yet merged into `main`).
+**Reference:** [Source-bound live confirmation record](https://github.com/IXI-2773/Cybersecurity-Projects/blob/c375b0403f493431e37f85a0176559d6534eab8e/splunk_workflow/LIVE_CONFIRMATION_2026-11-08.md) (published on `main` via [project PR #11](https://github.com/IXI-2773/Cybersecurity-Projects/pull/11); link pins merge commit `c375b04`).
 
 ## The 30-second story
 
@@ -78,7 +78,7 @@ The five original findings cover the **threshold**, **post-success reset**, **in
 5. Captured the exact scheduled-job result and alert record **before** the temporary schedule was disabled.
 6. Disabled and unscheduled the temporary alert to avoid repeat firings. Retained sensitive native responses locally outside version control.
 
-**Evidence quality and limitations:** The confirmation workflow reported `INDEXED_AND_FIRED_ALERT_EVIDENCE_PASS`. The public [confirmation note](https://github.com/IXI-2773/Cybersecurity-Projects/blob/b9ccad9b8b9cbca3fd919986bebfce5ed090407c/splunk_workflow/LIVE_CONFIRMATION_2026-11-08.md) identifies the run, source/artifact hashes, and privacy boundary. The verifier's separate HTTPS/token entrypoint was **not** exercised in this live attempt; native operations used an existing authenticated local Splunk CLI context whose hostname-verification setting was unchanged. The result is not independent attestation, a dashboard-rendering test, or evidence of scheduler suppression behavior. An earlier missing scheduled artifact has an **unresolved cause**; the corrected capture order succeeded but does not establish that root cause.
+**Evidence quality and limitations:** The confirmation workflow reported `INDEXED_AND_FIRED_ALERT_EVIDENCE_PASS`. The public [confirmation note](https://github.com/IXI-2773/Cybersecurity-Projects/blob/c375b0403f493431e37f85a0176559d6534eab8e/splunk_workflow/LIVE_CONFIRMATION_2026-11-08.md) identifies the run, source/artifact hashes, and privacy boundary. The verifier's separate HTTPS/token entrypoint was **not** exercised in this live attempt; native operations used an existing authenticated local Splunk CLI context whose hostname-verification setting was unchanged. The result is not independent attestation, a dashboard-rendering test, or evidence of scheduler suppression behavior. An earlier missing scheduled artifact has an **unresolved cause**; the corrected capture order succeeded but does not establish that root cause.
 
 ## Employer-view screenshots to capture when Splunk is available
 
@@ -102,10 +102,10 @@ Do not imply the temporary alert is still enabled, and do not reconstruct a scre
 
 ## Publication checklist
 
-- [x] Live confirmation note retained in the project branch.
+- [x] Live confirmation note retained on the project repository’s `main` branch (PR #11).
 - [x] One concise investigation narrative with explicit alternative hypotheses and response boundary.
 - [ ] Genuine redacted Splunk screenshots captured and reviewed.
 - [ ] Owner personally walks through SPL, one positive, one negative, and the alert evidence.
-- [ ] This draft and the project index linked from the public portfolio after review.
+- [x] Draft and project index linked in the published portfolio source (portfolio PR #38 merged); GitHub Pages propagation not independently checked.
 
 **Related exercise:** [LAB-AUTH-001](../projects/01-authentication-detection/SOC_CASE_REPORT.md) describes a **different 16-event fabricated case** and retains its own historical verification boundary. It must not be mistaken for this 70-event live Splunk confirmation.
