@@ -1,9 +1,10 @@
-# Offline authentication CSV contract — v1
+# Authentication export CSV contract — v1
 
-Status: **synthetic contract and fixtures prepared; importer change pending**.
-These files were authored for an offline test, not exported from Splunk. They
-do not establish live connectivity or native Splunk export compatibility.
-The production importer does not yet recognize `_time`.
+Status: **importer implemented, with focused checks and retained CLI reports**.
+See [Authentication Export → Analyst Case Report](../../artifacts/authentication-export/README.md).
+These fixtures are synthetic, not actual Splunk exports. They do not establish
+live connectivity or compatibility with an unmodified native Splunk export.
+The importer recognizes `_time` under the explicit format below.
 
 ## Input format
 
@@ -47,9 +48,10 @@ The completed diagnostic used the unchanged source at commit
 `0a3049fdf864c55867ee198b038821404769837b`, then temporarily appended `_time` to
 `ALIASES['timestamp']` in memory and restored the tuple afterward. It did not edit
 the importer. It exited 0; the results below summarize that earlier diagnostic,
-which was **not rerun during this save-only slice**. No generated case JSON or
-HTML report was retained. These are diagnostic observations, not a shipped
-integration test or genuine-export validation.
+which was not rerun during the earlier save-only preparation slice. No generated
+case JSON or HTML report was retained from that diagnostic. These are historical
+diagnostic observations, distinct from the subsequently retained CLI evidence
+linked above and not genuine-export validation.
 
 | Input and mode | Input records | Accepted | Rejected | Review candidates |
 | --- | ---: | ---: | ---: | ---: |
@@ -77,17 +79,18 @@ The diagnostic also checked source references in the in-memory HTML report.
 | `triage.py` baseline | `f74800fa490303e2a62d061b53ca2d0ffdc6ebbbcc5b83800495a84ae1787fd7` |
 | `process_triage.py` baseline | `cd8784969935356a724d55a2a5f1e7885f6338fe5b1d5d4137e0578398412064` |
 
-## Smallest next implementation slice
+## Implemented changes and limits
 
-1. Append `_time` to the existing timestamp alias tuple in `triage.py`. No
-   separate converter, new detection rule or intermediate normalized file.
-2. Add focused tests for the fixture outcomes above, conflicting timestamp
-   aliases, rejected naive/epoch timestamps and preserved blank-UID behavior.
-3. Retain a small CLI case/report with hashes tied to the changed source before
-   publishing an implemented outcome. Do not rerun the whole lab or full suite.
+1. `_time` was appended to the existing timestamp alias tuple in `triage.py`.
+   No separate converter, new detection rule or intermediate normalized file.
+2. Nine focused tests cover the fixture outcomes, conflicting timestamp aliases,
+   naive/epoch timestamps, fractional time, blank/absent IDs, HTML escaping and
+   the shared JSON process-event path. Four nearby existing checks also passed.
+3. Actual CLI case/report files are retained for the valid and mixed inputs with
+   hashes bound to the executed source. The full suite and live lab were not run.
 
-The alias table is also used by existing JSON-array input; this change would not
-add support for native Splunk JSON envelopes or streaming exports. Keep the new
-integration labeled **offline synthetic validation** until an authorized genuine
-event export is processed. Live Splunk, PC access, Commander, credentials,
-notifications and containment are outside this slice.
+The alias table is also used by existing JSON-array input, including process
+events. `_time` is now validated rather than ignored: conflicting aliases reject
+the row. This does not add native Splunk JSON-envelope or streaming support.
+Validation used synthetic event exports. No live Splunk connection, PC access,
+Commander, credentials, notifications or containment was involved.
