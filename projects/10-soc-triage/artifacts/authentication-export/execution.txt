@@ -1,0 +1,10 @@
+CLI execution record — 2026-11-09
+Synthetic authentication-export demonstration; actual captured stdout.
+
+Valid input; exit 0
+COMPLETE: input_rows=8, accepted_events=8, duplicate_rows=0, rejected_rows=0, review_candidates=1
+Wrote case.json and report.html; findings require analyst review.
+
+Mixed input; exit 2
+PARTIAL: input_rows=14, accepted_events=7, duplicate_rows=0, rejected_rows=7, review_candidates=0
+Wrote case.json and report.html; findings require analyst review.
