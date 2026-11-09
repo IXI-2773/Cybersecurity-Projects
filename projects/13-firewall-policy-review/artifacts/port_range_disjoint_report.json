@@ -1,0 +1,6 @@
+{
+  "policy": "iptables-save IPv4 filter INPUT",
+  "rule_count": 2,
+  "findings": [],
+  "scope": "Exact single/combined shadowing and partial overlap checked for supported IPv4 INPUT; real reachability not evaluated"
+}

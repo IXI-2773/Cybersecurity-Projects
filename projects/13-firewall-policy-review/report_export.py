@@ -22,6 +22,8 @@ def _overlap_example(finding):
     service = example["protocol"]
     if example["port"] is not None:
         service += f"/{example['port']}"
+        if "port_end" in example:
+            service += f":{example['port_end']}"
     return f"{example['source']} → {example['destination']} ({service})"
 
 

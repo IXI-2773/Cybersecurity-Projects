@@ -1,0 +1,2 @@
+policy,rule_count,rule_id,severity,code,detail,prior_rule_ids,overlap_example,scope
+iptables-save IPv4 filter INPUT,2,INPUT:L5,INFO,PARTIALLY_SHADOWED_RULE,"Earlier terminating INPUT rules match part, but not all, of this rule's traffic; review redundant matches and rule order.",INPUT:L4,10.0.0.128/25 → 0.0.0.0/0 (tcp/85:90),Exact single/combined shadowing and partial overlap checked for supported IPv4 INPUT; real reachability not evaluated

@@ -1,0 +1,54 @@
+{
+  "recorded_date": "2026-11-09",
+  "scope": "Offline synthetic destination-port-range extension; no live firewall or network access",
+  "base_revision": "c2f53daccc458f0966f057fe273351e31e7b73e5",
+  "base_revision_context": "Execution-time checkout, before the firewall-only branch was isolated from the unrelated Splunk documentation commit",
+  "source_status": "Uncommitted working-tree implementation at execution time; hashes below identify the executed files",
+  "paths_relative_to": "projects/13-firewall-policy-review",
+  "source_sha256": {
+    "ports.py": "26e5cb82385506bf196961fb11d5c81a2a9999b39fdb60d3d3fab643cfa0c555",
+    "iptables_import.py": "195ed1cff8723e2e5f2a4f37b28b0e0d90dfc9867f0600d39fa792b5b3a291ee",
+    "rule_order.py": "870b598ee418496b549b542cdbc3eda827b36be6d0ddab9294a6bf10abf2a2fb",
+    "review.py": "773691db153959ece78485dacb4977479fa166279adc2a77b84d0d64c9fd9581",
+    "report_export.py": "6629411c1c7d7ee6caedcbfd0d9e9a4161694fa06bf3a3f992bde9fa554bed1a"
+  },
+  "acceptance_test_sha256": {
+    "test_port_ranges.py": "4ac1a35c7182cd290cee6db4d5344fb8da7d4dcd5c0059bb26f048d06463bdc5"
+  },
+  "fixture_sha256": {
+    "fixtures/iptables_port_range_overlap.rules": "b6cf62081352b4cbde65ae2e1e472baa7d45010d3a45a4116593a0d23736ea68",
+    "fixtures/iptables_port_range_disjoint.rules": "16a627426ecf114ffd50cccd9188f0d0b1ca3232a9a72f82e60b03a71ecf8443"
+  },
+  "artifact_sha256": {
+    "artifacts/port_range_overlap_report.json": "b5b5e03d1c01fd09115f904abe16118e48c6e90cf927bac1835a16a7d1e1520a",
+    "artifacts/port_range_overlap_report.html": "ca2611d34b4c53678adad91ea7c8d2d1bdf43af7654ccb9efe6cdc630263ee28",
+    "artifacts/port_range_overlap_report.csv": "7393f7651a3a7dfb02f3758f3d35c077284c71093bcdce9507b51fd5e4dc4421",
+    "artifacts/port_range_disjoint_report.json": "3a9fc88e26fa162f464c75e91491c20d7e3c3fe786df1e2bdca5892beac383bd"
+  },
+  "verification": {
+    "focused_command_from_repository_root": "python3 -m unittest discover -s projects/13-firewall-policy-review -p 'test_*.py' -v",
+    "baseline_tests_passed": 22,
+    "range_tests_before_implementation": {
+      "tests_run": 19,
+      "failed_subtests": 29,
+      "reason": "Range inputs were rejected; JSON port_end was ignored; port partitions were not modeled"
+    },
+    "final_tests_run": 42,
+    "final_failures": 0,
+    "final_exit_code": 0,
+    "repository_wide_suite_run": false,
+    "diff_whitespace_check_passed": true,
+    "legacy_retained_reports_reproduced": true
+  },
+  "sample_runs": [
+    {"fixture": "fixtures/iptables_port_range_overlap.rules", "report_formats": ["json", "html", "csv"], "exit_code": 1, "finding_count": 1, "finding": "PARTIALLY_SHADOWED_RULE", "witness": "10.0.0.128/25 -> 0.0.0.0/0 tcp/85:90"},
+    {"fixture": "fixtures/iptables_port_range_disjoint.rules", "report_formats": ["json"], "exit_code": 0, "finding_count": 0}
+  ],
+  "external_services_used": [],
+  "publication": "Not committed, pushed, merged, or deployed at execution time",
+  "limitations": [
+    "Simplified IPv4 filter/INPUT model only; real reachability is not evaluated",
+    "Closed numeric ranges only; no multiport lists, open endpoints, state, interfaces, NAT, or chain jumps",
+    "Synthetic examples and review priorities are not confirmed vulnerabilities or production evidence"
+  ]
+}

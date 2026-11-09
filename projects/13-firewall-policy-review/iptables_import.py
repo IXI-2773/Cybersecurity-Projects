@@ -9,8 +9,11 @@ import re
 import shlex
 from ipaddress import ip_network
 
+from ports import port_fields
+
 
 COUNTERS = re.compile(r"^\[\d+:\d+\]$")
+DESTINATION_PORT = re.compile(r"[0-9]+(?::[0-9]+)?")
 
 
 def _input_rule(line, line_number):
@@ -37,11 +40,13 @@ def _input_rule(line, line_number):
     if protocol == "all":
         if "--dport" in options:
             raise ValueError(f"line {line_number}: port without TCP/UDP")
-        port = None
+        ports = {"port": None}
     else:
-        if "--dport" not in options or not options["--dport"].isdigit():
-            raise ValueError(f"line {line_number}: TCP/UDP requires one numeric destination port")
-        port = int(options["--dport"])
+        value = options.get("--dport", "")
+        if not DESTINATION_PORT.fullmatch(value):
+            raise ValueError(f"line {line_number}: TCP/UDP requires a numeric port or closed start:end range")
+        endpoints = [int(endpoint) for endpoint in value.split(":")]
+        ports = port_fields(endpoints[0], endpoints[-1])
 
     source = options.get("-s", "0.0.0.0/0")
     destination = options.get("-d", "0.0.0.0/0")
@@ -54,7 +59,7 @@ def _input_rule(line, line_number):
         "source": source,
         "destination": destination,
         "protocol": "any" if protocol == "all" else protocol,
-        "port": port,
+        **ports,
     }
 
 

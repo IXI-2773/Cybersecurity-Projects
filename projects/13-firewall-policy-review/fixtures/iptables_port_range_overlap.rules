@@ -1,0 +1,6 @@
+# Fabricated range-overlap example; no live firewall was queried.
+*filter
+:INPUT DROP [0:0]
+-A INPUT -s 10.0.0.0/24 -p tcp --dport 80:90 -j ACCEPT
+-A INPUT -s 10.0.0.128/25 -p tcp --dport 85:95 -j DROP
+COMMIT

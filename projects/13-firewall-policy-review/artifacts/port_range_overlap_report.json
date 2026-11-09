@@ -1,0 +1,23 @@
+{
+  "policy": "iptables-save IPv4 filter INPUT",
+  "rule_count": 2,
+  "findings": [
+    {
+      "rule_id": "INPUT:L5",
+      "code": "PARTIALLY_SHADOWED_RULE",
+      "severity": "INFO",
+      "overlapping_rule_ids": [
+        "INPUT:L4"
+      ],
+      "overlap_example": {
+        "source": "10.0.0.128/25",
+        "destination": "0.0.0.0/0",
+        "protocol": "tcp",
+        "port": 85,
+        "port_end": 90
+      },
+      "detail": "Earlier terminating INPUT rules match part, but not all, of this rule's traffic; review redundant matches and rule order."
+    }
+  ],
+  "scope": "Exact single/combined shadowing and partial overlap checked for supported IPv4 INPUT; real reachability not evaluated"
+}

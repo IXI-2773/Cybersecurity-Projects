@@ -30,7 +30,7 @@ python -m unittest discover -s projects/13-firewall-policy-review -p 'test_*.py'
 
 The example intentionally exits **1** because two potential policy problems are present. Its captured [JSON report](artifacts/example_report.json) contains exactly those two findings, with rule IDs and descriptions. Exit codes: `0` = no modeled findings; `1` = one or more review candidates; `2` = unreadable or invalid policy. `0` does **not** certify a firewall as secure.
 
-## Import a limited `iptables-save` export and check shadowing (v6)
+## Import a limited `iptables-save` export and check shadowing (v7)
 
 The same CLI can also read **IPv4 `iptables-save -t filter` output**, without applying or changing firewall rules. For example, run the supplied fabricated export:
 
@@ -64,6 +64,25 @@ python projects/13-firewall-policy-review/review.py --format iptables-save proje
 
 The two earlier `DROP` CIDRs cover three quarters of the source address space, leaving the final quarter unmatched by those rules. The [retained partial-overlap report](artifacts/partial_overlap_report.json) records `PARTIALLY_SHADOWED_RULE`, both earlier rule IDs and a concrete overlapping CIDR/port example. It **retains the `HIGH` unrestricted-RDP-source review candidate** because the later allow is not fully shadowed. The example is a witness of some overlap, **not** a complete overlap listing or a measured share of real traffic. Fully shadowed earlier rules are excluded from the reported overlap IDs.
 
+### Closed destination-port ranges
+
+The importer also accepts one inclusive numeric range such as `--dport 80:90` for TCP or UDP. This extends the existing analyzer; it does not add live firewall access or a new service.
+
+```sh
+python projects/13-firewall-policy-review/review.py --format iptables-save projects/13-firewall-policy-review/fixtures/iptables_port_range_overlap.rules
+python projects/13-firewall-policy-review/review.py --format iptables-save projects/13-firewall-policy-review/fixtures/iptables_port_range_disjoint.rules
+```
+
+In the [overlap fixture](fixtures/iptables_port_range_overlap.rules), an earlier `ACCEPT` permits TCP/80–90 from `10.0.0.0/24`; a later `DROP` covers TCP/85–95 from `10.0.0.128/25`. The [JSON report](artifacts/port_range_overlap_report.json) records one partial shadow with the exact witness `10.0.0.128/25`, TCP/85–90. Ports 91–95 are not covered by the earlier rule, so the later rule is **not fully shadowed**. The same evidence is available as [standalone HTML](artifacts/port_range_overlap_report.html) and [CSV](artifacts/port_range_overlap_report.csv).
+
+The [disjoint negative control](fixtures/iptables_port_range_disjoint.rules) narrows the earlier range to 80–84; its [retained report](artifacts/port_range_disjoint_report.json) has no findings and exits `0`. This is a fabricated control, **not a recommendation to change a production policy**. The overlap example exits `1` because a review candidate was found.
+
+The [local execution record](artifacts/port_range_execution.json) binds the implementation, new test file, fixtures and retained outputs by SHA-256 and records the focused test result. It explicitly distinguishes local validation from publication or live-system evidence.
+
+Single-rule coverage uses interval containment; combined coverage subtracts source CIDR × destination CIDR × port regions together. Separate address and port unions do not establish coverage of their full cross-product. A one-port gap prevents a full-shadow finding, a shared endpoint is a real one-port overlap, and TCP/UDP ranges cannot fully cover an all-protocol rule.
+
+Ranges containing administrative TCP ports are checked once per service. In iptables mode, a warning for a later rule is suppressed when predecessors fully cover that specific service's source/destination slice, even if the wider rule is only partly covered. Remaining warnings are still configuration-review candidates, not proof of live exposure. New range-based administrative findings include `service_port`; legacy single-port reports retain their existing shape.
+
 ## Open or export an analyst-readable report
 
 Employers can download and open the **[saved HTML report](artifacts/partial_overlap_report.html)** in a browser, or inspect the **[saved CSV report](artifacts/partial_overlap_report.csv)** in a spreadsheet. Both come from the same fabricated partial-overlap fixture and retain rule IDs, findings, earlier-rule references, overlap evidence and scope limits. The HTML is self-contained—no JavaScript, external stylesheets or live data connections.
@@ -80,18 +99,18 @@ Without `--output`, the chosen format is printed to standard output; without `--
 The adapter intentionally supports a bounded subset:
 
 - One complete `*filter` table with an `INPUT` default policy (`ACCEPT` or `DROP`) and `COMMIT`.
-- IPv4 `-A INPUT` rules using `-s`, `-d`, `-p tcp`/`udp`/`all`, optional matching `-m tcp`/`udp`, one numeric `--dport`, and `-j ACCEPT`/`DROP`/`REJECT`. Unspecified addresses mean `0.0.0.0/0`.
+- IPv4 `-A INPUT` rules using `-s`, `-d`, `-p tcp`/`udp`/`all`, optional matching `-m tcp`/`udp`, one numeric `--dport` or closed `START:END` range, and `-j ACCEPT`/`DROP`/`REJECT`. Port endpoints must be integers from 1 through 65535, with `START <= END`; `22:22` normalizes to single port 22. Unspecified addresses mean `0.0.0.0/0`.
 - `INPUT` review only. Other built-in chains are outside this tool's analysis scope.
 
-It rejects unsupported `INPUT` syntax, including conntrack/state matches, interface matches, negation, multiport/ranges, user-chain jumps, IPv6, and other tables. This is **not** a full iptables parser. Shadow detection handles complete coverage by **one or a combination of earlier terminal rules** and separately flags incomplete intersections, including when an earlier TCP/UDP port overlaps a later all-protocol rule. It does not estimate overlap percentages, simulate packets or recommend automatic rule removal. The exact-CIDR full-shadow analysis stops with exit code `2` and no partial report if its uncovered-region partition grows past 4,096 regions. Routing, NAT, other chains and real packet reachability are not evaluated; the output labels that limitation. Non-shadowed warnings remain review candidates, not proof that traffic can reach a destination.
+It rejects unsupported `INPUT` syntax, including conntrack/state matches, interface matches, negation, multiport lists, open-ended or reversed ranges, named services, port 0, user-chain jumps, IPv6, and other tables. This is **not** a full iptables parser. Shadow detection handles complete coverage by **one or a combination of earlier terminal rules** and separately flags incomplete intersections, including when an earlier TCP/UDP port or range overlaps a later all-protocol rule. It does not estimate overlap percentages, simulate packets or recommend automatic rule removal. The exact CIDR/port-region analysis stops with exit code `2` and no partial report if its uncovered-region partition grows past 4,096 regions. Routing, NAT, other chains and real packet reachability are not evaluated; the output labels that limitation. Non-shadowed warnings remain review candidates, not proof that traffic can reach a destination.
 
 Format references: [iptables-save manual](https://man7.org/linux/man-pages/man8/iptables-save.8.html) and [iptables rule syntax](https://man7.org/linux/man-pages/man8/iptables.8.html).
 
-For the default JSON mode, input must be an object with `name` (text), `default_action` (`allow`/`deny`), and `rules` (array). Each rule has a unique `id`, `action` (`allow`/`deny`), IPv4/IPv6 CIDR `source` and `destination` of the same IP family, `protocol` (`tcp`, `udp`, or `any`) and `port` (1–65535 for TCP/UDP; `null` for `any`). Invalid or ambiguous input is rejected rather than silently analyzed. It reads local files only, makes no network calls and cannot change firewall rules.
+For the default JSON mode, input must be an object with `name` (text), `default_action` (`allow`/`deny`), and `rules` (array). Each rule has a unique `id`, `action` (`allow`/`deny`), IPv4/IPv6 CIDR `source` and `destination` of the same IP family, `protocol` (`tcp`, `udp`, or `any`) and `port` (1–65535 for TCP/UDP; `null` for `any`). TCP/UDP may also include integer `port_end`, with `port <= port_end <= 65535`, to describe an inclusive range. Omit it for a single port; protocol `any` must not have `port_end`. Overlap witnesses use the same scalar-plus-optional-end shape. JSON mode retains its static checks and does **not** evaluate rule order. Invalid or ambiguous input is rejected rather than silently analyzed. It reads local files only, makes no network calls and cannot change firewall rules.
 
 ## Scope and next extensions
 
-- **Now:** three static checks on JSON plus a bounded IPv4 `iptables-save` filter/INPUT importer with single/combined shadowing, partial-overlap findings, reproducible JSON/HTML/CSV examples and a [before/after analyst case study](CASE_STUDY.md).
+- **Now:** three static checks on JSON plus a bounded IPv4 `iptables-save` filter/INPUT importer with single/combined shadowing, CIDR/port-range partial-overlap findings, reproducible JSON/HTML/CSV examples and a [before/after analyst case study](CASE_STUDY.md).
 - **Next:** expand supported match syntax only when an authorized sample and focused tests establish a useful need.
 - **Later:** pursue a properly authorized, sanitized real-world configuration case study and validate actual behavior with independent network evidence.
 

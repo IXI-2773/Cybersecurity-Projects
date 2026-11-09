@@ -12,9 +12,11 @@ from pathlib import Path
 import sys
 
 from iptables_import import parse_iptables_save
+from ports import port_bounds
 from report_export import render_csv, render_html
 from rule_order import (combined_shadowed_by_prior_rules,
-                        partially_shadowed_by_prior_rules, shadowed_by_prior_rule)
+                        covering_prior_rule_ids, partially_shadowed_by_prior_rules,
+                        shadowed_by_prior_rule)
 
 
 ADMIN_TCP_PORTS = {22, 3389, 5985, 5986}  # SSH, RDP, WinRM
@@ -45,10 +47,14 @@ def validate(policy):
         if protocol not in {"tcp", "udp", "any"}:
             raise ValueError(f"{identifier}: unsupported protocol")
         port = rule.get("port")
-        if protocol == "any" and port is not None:
-            raise ValueError(f"{identifier}: protocol any requires port null")
+        if protocol == "any" and (port is not None or "port_end" in rule):
+            raise ValueError(f"{identifier}: protocol any requires port null and no port_end")
         if protocol != "any" and (type(port) is not int or not 1 <= port <= 65535):
             raise ValueError(f"{identifier}: TCP/UDP requires a port between 1 and 65535")
+        if protocol != "any" and "port_end" in rule:
+            end = rule["port_end"]
+            if type(end) is not int or not port <= end <= 65535:
+                raise ValueError(f"{identifier}: port_end must be an integer from port through 65535")
         if not isinstance(rule.get("source"), str) or not isinstance(rule.get("destination"), str):
             raise ValueError(f"{identifier}: source and destination must be CIDR text")
         source = ipaddress.ip_network(rule["source"], strict=True)
@@ -76,15 +82,18 @@ def analyze(policy):
                 "detail": (f"Allows all protocols between all IPv{source.version} "
                            "addresses; verify intent and scope."),
             })
-        if (rule["action"] == "allow" and source.prefixlen == 0
-                and rule["protocol"] == "tcp" and rule["port"] in ADMIN_TCP_PORTS):
-            findings.append({
-                "rule_id": rule["id"],
-                "code": "UNRESTRICTED_ADMIN_SOURCE",
-                "severity": "HIGH",
-                "detail": (f"TCP/{rule['port']} is allowed from all IPv{source.version} "
-                           "addresses; review source restrictions."),
-            })
+        if rule["action"] == "allow" and source.prefixlen == 0 and rule["protocol"] == "tcp":
+            start, end = port_bounds(rule)
+            for service_port in sorted(ADMIN_TCP_PORTS):
+                if start <= service_port <= end:
+                    findings.append({
+                        "rule_id": rule["id"],
+                        "code": "UNRESTRICTED_ADMIN_SOURCE",
+                        "severity": "HIGH",
+                        **({"service_port": service_port} if start != end else {}),
+                        "detail": (f"TCP/{service_port} is allowed from all IPv{source.version} "
+                                   "addresses; review source restrictions."),
+                    })
 
     return {"policy": policy["name"], "rule_count": len(policy["rules"]),
             "findings": findings}
@@ -109,9 +118,20 @@ def main(argv=None):
             shadows = shadowed_by_prior_rule(policy["rules"])
             combined = combined_shadowed_by_prior_rules(policy["rules"], shadows)
             partial = partially_shadowed_by_prior_rules(policy["rules"], shadows, combined)
+            input_order = {rule["id"]: index for index, rule in enumerate(policy["rules"])}
             report["findings"] = [finding for finding in report["findings"]
                                   if finding["rule_id"] not in shadows
                                   and finding["rule_id"] not in combined]
+            retained = []
+            for finding in report["findings"]:
+                if "service_port" in finding:
+                    index = input_order[finding["rule_id"]]
+                    service_rule = {**policy["rules"][index], "port": finding["service_port"]}
+                    service_rule.pop("port_end", None)
+                    if covering_prior_rule_ids(service_rule, policy["rules"][:index]):
+                        continue
+                retained.append(finding)
+            report["findings"] = retained
             for rule_id, earlier_id in shadows.items():
                 report["findings"].append({
                     "rule_id": rule_id, "code": "SHADOWED_RULE", "severity": "INFO",
@@ -135,7 +155,6 @@ def main(argv=None):
                     "detail": ("Earlier terminating INPUT rules match part, but not all, "
                                "of this rule's traffic; review redundant matches and rule order."),
                 })
-            input_order = {rule["id"]: index for index, rule in enumerate(policy["rules"])}
             report["findings"].sort(key=lambda item: input_order.get(item["rule_id"], -1))
             report["scope"] = ("Exact single/combined shadowing and partial overlap checked "
                                "for supported IPv4 INPUT; real reachability not evaluated")
